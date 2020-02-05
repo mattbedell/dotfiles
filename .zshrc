@@ -6,7 +6,6 @@ export PATH="/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/mbedell/.oh-my-zsh"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -140,7 +139,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-autorun nvm use
+#autorun nvm use
 # place this after nvm initialization!
 load-nvmrc() {
   local node_version="$(nvm version)"
@@ -162,14 +161,20 @@ load-nvmrc() {
 
 # - VIM Shell -
 export KEYTIMEOUT=1
+VIMODE=">"
 autoload -U add-zsh-hook
 function zle-line-init zle-keymap-select zle-line-finish {
   if [ $KEYMAP = vicmd ]; then
     # vim normal mode
     echo -ne '\e[2 q'
+    VIMODE='^'
   else
     echo -ne '\e[0 q'
+    VIMODE='>'
   fi
+
+  zle reset-prompt
+  zle -R
 }
 
 add-zsh-hook chpwd load-nvmrc
