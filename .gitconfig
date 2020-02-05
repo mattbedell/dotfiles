@@ -1,0 +1,22 @@
+[user]
+	name = Matt Bedell
+	email = matt@bedell.co
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[alias]
+	co = checkout
+	sw = switch
+	br = branch
+	st = status
+	diffc = diff --cached
+	assume = update-index --assume-unchanged
+	unassume = update-index --no-assume-unchanged
+	lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%an%d%Creset %s %Cgreen(%cr)%Creset' --date=relative
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	pullb = "!git pull origin \"$(git rev-parse --abbrev-ref HEAD)\""
+	pushb = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\""
+	undo = reset HEAD~1 --mixed
+	wt = worktree
+	wta = "!f() { git worktree add $(git rev-parse --show-toplevel)/../${1-TMP}; }; f"
+	wtr = "!f() { git worktree remove $(git rev-parse --show-toplevel)/../${1-TMP}; }; f"
