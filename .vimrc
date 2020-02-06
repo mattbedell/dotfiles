@@ -2,7 +2,8 @@ let &t_SI = "\e[6 q"
 let &t_SR = "\e[4 q"
 let &t_EI = "\e[2 q"
 
-syntax on
+:syntax on
+:set timeoutlen=1000 ttimeoutlen=5
 
 " toggle hybrid line numbers based on mode
 :set number relativenumber
