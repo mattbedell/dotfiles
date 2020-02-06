@@ -162,17 +162,18 @@ load-nvmrc() {
 autoload -U add-zsh-hook
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
 # - VIM Shell -
 export KEYTIMEOUT=1
-VIMODE=">"
+VIMODE="►"
 function zle-line-init zle-keymap-select {
   if [ $KEYMAP = vicmd ]; then
     # vim normal mode
     echo -ne "\e[2 q"
-    VIMODE="^^"
+    VIMODE="○"
   else
     echo -ne "\e[0 q"
-    VIMODE=">>"
+    VIMODE="►"
   fi
 
   zle reset-prompt
@@ -182,7 +183,7 @@ function zle-line-init zle-keymap-select {
 # set cursor to command mode before entering vim
 function zle-line-finish {
   echo -ne "\e[2 q"
-  VIMODE="^^"
+  VIMODE="▶"
 }
 
 set -o vi
