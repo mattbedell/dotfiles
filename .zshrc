@@ -1,5 +1,3 @@
-bindkey '\e.' insert-last-word
-
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/python3.7:$PATH"
 
@@ -191,4 +189,6 @@ set -o vi
 zle -N zle-line-init
 zle -N zle-keymap-select
 zle -N zle-line-finish
+
+bindkey '\e.' insert-last-word
 
