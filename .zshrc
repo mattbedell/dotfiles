@@ -1,3 +1,5 @@
+bindkey '\e.' insert-last-word
+
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/python3.7:$PATH"
 
@@ -159,26 +161,32 @@ load-nvmrc() {
   fi
 }
 
+autoload -U add-zsh-hook
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 # - VIM Shell -
 export KEYTIMEOUT=1
 VIMODE=">"
-autoload -U add-zsh-hook
-function zle-line-init zle-keymap-select zle-line-finish {
+function zle-line-init zle-keymap-select {
   if [ $KEYMAP = vicmd ]; then
     # vim normal mode
-    echo -ne '\e[2 q'
-    VIMODE='^'
+    echo -ne "\e[2 q"
+    VIMODE="^^"
   else
-    echo -ne '\e[0 q'
-    VIMODE='>'
+    echo -ne "\e[0 q"
+    VIMODE=">>"
   fi
 
   zle reset-prompt
   zle -R
 }
 
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# set cursor to command mode before entering vim
+function zle-line-finish {
+  echo -ne "\e[2 q"
+  VIMODE="^^"
+}
+
 set -o vi
 zle -N zle-line-init
 zle -N zle-keymap-select
