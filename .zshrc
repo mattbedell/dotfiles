@@ -191,5 +191,8 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 zle -N zle-line-finish
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'v' edit-command-line
 bindkey '\e.' insert-last-word
 
