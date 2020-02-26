@@ -114,6 +114,14 @@ alias ga='git add .'
 
 function gmc() {
     message=''
+    branch="$(git rev-parse --abbrev-ref HEAD)"
+    branch=${branch:u}
+    ticket=''
+
+    if [[ "$branch" =~ (^[[:alpha:]]{3,}-[[:digit:]]+) ]]; then
+        ticket="[${match[1]}] "
+    fi
+
     args=()
     for i in $@; do
         if [[ "$i" =~ ^- ]]; then
@@ -126,7 +134,7 @@ function gmc() {
     #trim any leading whitespace
     message=$(expr "$message" : '[[:blank:]]*\(.*\)');
 
-    git commit -m "$message" ${args[@]};
+    git commit -m "$ticket$message" ${args[@]};
 }
 
 function gcane() {
