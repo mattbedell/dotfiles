@@ -1,7 +1,13 @@
+" -- Mapping --
+" List open buffers
+nnoremap gb :ls<CR>:b<Space>
+
+" Change cursor shape based on mode
 let &t_SI = "\e[6 q"
 let &t_SR = "\e[4 q"
 let &t_EI = "\e[2 q"
 
+:set hidden
 :syntax on
 :set timeoutlen=1000 ttimeoutlen=5
 
