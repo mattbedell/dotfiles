@@ -204,3 +204,6 @@ zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
 bindkey '\e.' insert-last-word
 
+# fuzzy autocompletion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
