@@ -2,7 +2,7 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/python3.7:$PATH"
 
 # FZF configuration
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!{.git,node_modules}/*"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!{.git,node_modules}"'
 export FZF_DEFAULT_OPTS='--no-height'
 
 # If you come from bash you might have to change your $PATH.
