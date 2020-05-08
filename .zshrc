@@ -1,9 +1,18 @@
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/python3.7:$PATH"
 
-# FZF configuration
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!{.git,node_modules}"'
-export FZF_DEFAULT_OPTS='--no-height'
+# -- FZF configuration --
+FD_SEARCH_OPTS='--hidden --follow --exclude .git --exclude node_modules'
+export FZF_DEFAULT_COMMAND="fd --type f $FD_SEARCH_OPTS"
+export FZF_CTRL_T_COMMAND="fd $FD_SEARCH_OPTS"
+export FZF_ALT_C_COMMAND="fd --type d $FD_SEARCH_OPTS"
+
+export FZF_DEFAULT_OPTS='--height 80%'
+#preview to FZF commands
+export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview '(bat --color=always --style=header,grid --line-range :300 {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --no-height --preview-window down:4:wrap"
+
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
