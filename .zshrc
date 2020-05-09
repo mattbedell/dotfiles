@@ -116,6 +116,9 @@ source $ZSH/oh-my-zsh.sh
 alias code="open -a '/Applications/Visual Studio Code.app/Contents/MacOS/Electron'"
 alias reload='source ~/.zshrc'
 
+# open vim with global variable set to local tty, for yanking to local machine's unnamed register
+alias vi='vim -c "let g:tty='\''$(tty)'\''"'
+
 function portkill() {
     kill -9 $(lsof -ti tcp:$1)
 }
