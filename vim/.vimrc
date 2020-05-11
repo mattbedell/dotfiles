@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'sheerun/vim-polyglot'
 " Initialize plugin system
 call plug#end()
 
