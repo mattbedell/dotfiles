@@ -2,18 +2,22 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'tmsvg/pear-tree'
 " Initialize plugin system
 call plug#end()
 
 
-" FZF Configuration
+" FZF configuration
 let g:fzf_layout = { 'down': '~80%' }
+
+" vim-javascript configuration
+let g:javascript_plugin_jsdoc=1 " syntax highlighting for JSDOC
 
 " -- Mapping --
 let mapleader=" "
 nnoremap <silent> <leader>l :BLines<CR>
 nnoremap <silent> <leader><space> :Buffers<CR>
-nnoremap <silent> <leader>s :Rg<CR>
+nnoremap <leader>s :Rg<space>
 nnoremap <leader>f :Files<space>
 
 nnoremap <leader>q @@<CR>
