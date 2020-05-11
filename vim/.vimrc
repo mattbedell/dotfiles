@@ -7,6 +7,8 @@ Plug 'srcery-colors/srcery-vim' "theme
 " Initialize plugin system
 call plug#end()
 
+" -- Theme --
+ set termguicolors
 
 " FZF configuration
 let g:fzf_layout = { 'down': '~80%' }
