@@ -1,3 +1,7 @@
+# VIM
 vim/.vim/plugged
+.netrwhist
+
+# Brew
 Brewfile.lock.json
 
