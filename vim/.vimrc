@@ -13,7 +13,7 @@ let mapleader=" "
 nnoremap <silent> <leader>l :BLines<CR>
 nnoremap <silent> <leader><space> :Buffers<CR>
 nnoremap <silent> <leader>s :Rg<CR>
-nnoremap <silent> <leader>f :Files<CR>
+nnoremap <leader>f :Files<space>
 
 nnoremap <leader>q @@<CR>
  
