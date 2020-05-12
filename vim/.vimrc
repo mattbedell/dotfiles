@@ -22,6 +22,7 @@ nnoremap <silent> <leader><space> :Buffers<CR>
 nnoremap <leader>s :Rg<space>
 nnoremap <leader>f :Files<space>
 
+nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
  
 " Use FZF for autocompletion
