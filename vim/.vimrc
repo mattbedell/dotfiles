@@ -3,12 +3,11 @@ Plug 'junegunn/fzf' "fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim' "fzf fuzzy finder plugin
 Plug 'sheerun/vim-polyglot' "multi-language syntax support
 Plug 'tmsvg/pear-tree' "autopair parens, etc.
-Plug 'srcery-colors/srcery-vim' "theme
 " Initialize plugin system
 call plug#end()
 
 " -- Theme --
- set termguicolors
+set termguicolors
 
 " FZF configuration
 let g:fzf_layout = { 'down': '~80%' }
