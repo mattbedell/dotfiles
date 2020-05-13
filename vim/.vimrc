@@ -3,6 +3,7 @@ Plug 'junegunn/fzf' "fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim' "fzf fuzzy finder plugin
 Plug 'sheerun/vim-polyglot' "multi-language syntax support
 Plug 'tmsvg/pear-tree' "autopair parens, etc.
+Plug 'tpope/vim-commentary' "comment code
 " Initialize plugin system
 call plug#end()
 
