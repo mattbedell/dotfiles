@@ -46,6 +46,7 @@ let &t_EI = "\e[2 q"
 :set ignorecase
 :set smartcase
 :set listchars=tab:▸\ ,eol:¬
+:set hlsearch
 
 " Indentation
 :set autoindent
