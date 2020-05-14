@@ -49,7 +49,10 @@ nnoremap <leader>f :Files<space>
 
 nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
- 
+
+" FZF
+nnoremap <leader>d :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
+
 " Use FZF for autocompletion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
