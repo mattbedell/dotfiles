@@ -7,6 +7,7 @@ Plug 'tpope/vim-commentary' "comment code
 Plug 'romainl/vim-cool' "auto highlight search, add search match count
 Plug 'unblevable/quick-scope' " highlight unique chars for 'f' and 't' motions
 Plug 'ludovicchabant/vim-gutentags' "ctag manager
+Plug 'nathanaelkane/vim-indent-guides' "indent guides
 " Initialize plugin system
 call plug#end()
 
@@ -32,6 +33,10 @@ let g:gutentags_ctags_exclude = ['node_modules', 'dist']
 if executable('fd')
   let g:gutentags_file_list_command = 'fd --type file'
 endif
+
+" vim-indent-guides configuration
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
 
 " -- Mapping --
 let mapleader=" "
