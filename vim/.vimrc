@@ -12,7 +12,9 @@ Plug 'nathanaelkane/vim-indent-guides' "indent guides
 call plug#end()
 
 " -- Theme --
-set termguicolors
+:set termguicolors
+:colorscheme pablo
+:set background=dark
 
 " FZF configuration
 let g:fzf_layout = { 'down': '~80%' }
