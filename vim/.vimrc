@@ -5,6 +5,7 @@ Plug 'sheerun/vim-polyglot' "multi-language syntax support
 Plug 'tmsvg/pear-tree' "autopair parens, etc.
 Plug 'tpope/vim-commentary' "comment code
 Plug 'romainl/vim-cool' "auto highlight search, add search match count
+Plug 'unblevable/quick-scope' " highlight unique chars for 'f' and 't' motions
 " Initialize plugin system
 call plug#end()
 
@@ -19,6 +20,10 @@ let g:javascript_plugin_jsdoc=1 " syntax highlighting for JSDOC
 
 " vim-cool configuration
 let g:CoolTotalMatches = 1
+
+" quick-scope configuration
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T'] "Only highlight on keys
+let g:qs_lazy_highlight = 1 " autocmd event from CursorMoved to CursorHold (reduces slowdown)
 
 " -- Mapping --
 let mapleader=" "
