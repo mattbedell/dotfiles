@@ -69,9 +69,9 @@ let &t_EI = "\e[2 q"
 " Indentation
 :set autoindent
 :set smartindent
-:set tabstop=4
-:set softtabstop=4
-:set shiftwidth=4
+:set tabstop=2
+:set softtabstop=2
+:set shiftwidth=2
 :set expandtab
 
 command! -nargs=* Stab call Stab()
