@@ -6,6 +6,7 @@ Plug 'tmsvg/pear-tree' "autopair parens, etc.
 Plug 'tpope/vim-commentary' "comment code
 Plug 'romainl/vim-cool' "auto highlight search, add search match count
 Plug 'unblevable/quick-scope' " highlight unique chars for 'f' and 't' motions
+Plug 'ludovicchabant/vim-gutentags' "ctag manager
 " Initialize plugin system
 call plug#end()
 
@@ -24,6 +25,13 @@ let g:CoolTotalMatches = 1
 " quick-scope configuration
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T'] "Only highlight on keys
 let g:qs_lazy_highlight = 1 " autocmd event from CursorMoved to CursorHold (reduces slowdown)
+
+" vim-gutentags configuration
+let g:gutentags_define_advanced_commands = 1
+let g:gutentags_ctags_exclude = ['node_modules', 'dist']
+if executable('fd')
+  let g:gutentags_file_list_command = 'fd --type file'
+endif
 
 " -- Mapping --
 let mapleader=" "
