@@ -4,6 +4,7 @@ Plug 'junegunn/fzf.vim' "fzf fuzzy finder plugin
 Plug 'sheerun/vim-polyglot' "multi-language syntax support
 Plug 'tmsvg/pear-tree' "autopair parens, etc.
 Plug 'tpope/vim-commentary' "comment code
+Plug 'romainl/vim-cool' "auto highlight search, add search match count
 " Initialize plugin system
 call plug#end()
 
@@ -15,6 +16,9 @@ let g:fzf_layout = { 'down': '~80%' }
 
 " vim-javascript configuration
 let g:javascript_plugin_jsdoc=1 " syntax highlighting for JSDOC
+
+" vim-cool configuration
+let g:CoolTotalMatches = 1
 
 " -- Mapping --
 let mapleader=" "
