@@ -4,6 +4,7 @@ Plug 'junegunn/fzf.vim' "fzf fuzzy finder plugin
 Plug 'sheerun/vim-polyglot' "multi-language syntax support
 Plug 'tmsvg/pear-tree' "autopair parens, etc.
 Plug 'tpope/vim-commentary' "comment code
+Plug 'tpope/vim-surround' "mappings for surrounding characters
 Plug 'romainl/vim-cool' "auto highlight search, add search match count
 Plug 'unblevable/quick-scope' " highlight unique chars for 'f' and 't' motions
 Plug 'ludovicchabant/vim-gutentags' "ctag manager
