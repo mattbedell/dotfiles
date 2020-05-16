@@ -10,6 +10,7 @@ Plug 'romainl/vim-cool' "auto highlight search, add search match count
 Plug 'unblevable/quick-scope' " highlight unique chars for 'f' and 't' motions
 Plug 'ludovicchabant/vim-gutentags' "ctag manager
 Plug 'nathanaelkane/vim-indent-guides' "indent guides
+Plug 'dense-analysis/ale' "use for linting only
 " Initialize plugin system
 call plug#end()
 
@@ -49,6 +50,14 @@ endif
 " vim-indent-guides configuration
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
+
+" ale configuration
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+" only lint on enter and save
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 1
 
 " -- Mapping --
 let mapleader=" "
