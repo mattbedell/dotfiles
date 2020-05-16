@@ -85,7 +85,6 @@ let &t_EI = "\e[2 q"
 :set timeoutlen=1000 ttimeoutlen=5
 :set ignorecase
 :set smartcase
-:set listchars=tab:▸\ ,eol:¬
 :set hlsearch
 :set list
 :set listchars=trail:·
