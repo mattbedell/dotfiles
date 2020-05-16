@@ -50,6 +50,15 @@ nnoremap <leader>f :Files<space>
 nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
 
+" autocompletion popup menu enhancement
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+
 " FZF
 nnoremap <leader>d :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
 
@@ -72,6 +81,7 @@ let &t_EI = "\e[2 q"
 :set hlsearch
 :set list
 :set listchars=trail:·
+:set completeopt=longest,menuone
 
 " -- Theme --
 :set termguicolors
