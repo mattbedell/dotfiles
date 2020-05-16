@@ -11,11 +11,6 @@ Plug 'nathanaelkane/vim-indent-guides' "indent guides
 " Initialize plugin system
 call plug#end()
 
-" -- Theme --
-:set termguicolors
-:colorscheme pablo
-:set background=dark
-
 " FZF configuration
 let g:fzf_layout = { 'down': '~80%' }
 
@@ -26,6 +21,11 @@ let g:javascript_plugin_jsdoc=1 " syntax highlighting for JSDOC
 let g:CoolTotalMatches = 1
 
 " quick-scope configuration
+augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * highlight QuickScopePrimary guifg='#ff00ff' gui=bold ctermfg=201 cterm=bold
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#ff0000' gui=bold ctermfg=9 cterm=bold
+augroup END
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T'] "Only highlight on keys
 let g:qs_lazy_highlight = 1 " autocmd event from CursorMoved to CursorHold (reduces slowdown)
 
@@ -72,6 +72,11 @@ let &t_EI = "\e[2 q"
 :set hlsearch
 :set list
 :set listchars=trail:·
+
+" -- Theme --
+:set termguicolors
+:colorscheme pablo
+:set background=dark
 
 " Indentation
 :set autoindent
