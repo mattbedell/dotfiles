@@ -14,6 +14,14 @@ call plug#end()
 " FZF configuration
 let g:fzf_layout = { 'down': '~80%' }
 
+" allow fzf Rg command to accept arguments
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case --hidden -g "!.git" '
+  \  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
+  \    fzf#vim#with_preview(), <bang>0)
+
+
 " vim-javascript configuration
 let g:javascript_plugin_jsdoc=1 " syntax highlighting for JSDOC
 
