@@ -4,6 +4,10 @@ log/
 .env
 *.swp
 
+# CTAGS
+/tags
+/tags.*
+
 # Mac
 .DS_Store
 
