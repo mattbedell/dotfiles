@@ -134,3 +134,9 @@ let &t_EI = "\e[2 q"
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
+" auto source vimrc
+:augroup MyAutoCmd
+:  autocmd!
+:  autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
+:augroup END
+
