@@ -11,6 +11,7 @@ Plug 'unblevable/quick-scope' " highlight unique chars for 'f' and 't' motions
 Plug 'ludovicchabant/vim-gutentags' "ctag manager
 Plug 'nathanaelkane/vim-indent-guides' "indent guides
 Plug 'dense-analysis/ale' "use for linting only
+Plug 'gruvbox-community/gruvbox' "theme
 " Initialize plugin system
 call plug#end()
 
@@ -58,6 +59,14 @@ let g:ale_linters_explicit = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 1
+
+" gruvbox theme configuration
+let g:gruvbox_contrast_dark='hard'
+augroup GruvboxCust
+  autocmd!
+  autocmd ColorScheme gruvbox highlight Normal ctermbg=0 guibg=#000000
+    \ | let g:fzf_colors.bg = ['bg', 'Normal'] " gruvbox sets FZF colors, override it
+augroup END
 
 " -- Mapping --
 let mapleader=" "
@@ -107,8 +116,7 @@ let &t_EI = "\e[2 q"
 
 " -- Theme --
 :set termguicolors
-:colorscheme pablo
-:set background=dark
+:colorscheme gruvbox
 
 " Indentation
 :set autoindent
