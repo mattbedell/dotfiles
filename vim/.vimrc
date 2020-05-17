@@ -103,6 +103,7 @@ let &t_EI = "\e[2 q"
 :set incsearch
 :set ruler
 :set wildmenu
+:set showcmd
 
 " -- Theme --
 :set termguicolors
