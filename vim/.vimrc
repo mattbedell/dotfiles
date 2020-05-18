@@ -130,6 +130,8 @@ let &t_EI = "\e[2 q"
 :set ruler
 :set wildmenu
 :set showcmd
+:set splitbelow
+:set splitright
 
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ -g\ '!.git'
