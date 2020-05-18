@@ -85,6 +85,12 @@ let mapleader=" "
 nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
 
+" more natural movement around windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " autocompletion popup menu enhancement
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
