@@ -9,6 +9,7 @@ brew "htop" # Better top
 brew "less"
 brew "ripgrep" # Better grep
 brew "stow" # Symlink farm manager
+brew "tmux"
 brew "tree" # Filesystem tree view
 brew "vim"
 brew "zsh"
