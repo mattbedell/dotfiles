@@ -62,10 +62,16 @@ let g:ale_lint_on_enter = 1
 
 " gruvbox theme configuration
 let g:gruvbox_contrast_dark='hard'
+" set background color to black to match iterm
+" reset gruvbox overriding fzf popup colors
+" turn on cursorline but only highlight line numer
 augroup GruvboxCust
   autocmd!
   autocmd ColorScheme gruvbox highlight Normal ctermbg=0 guibg=#000000
-    \ | let g:fzf_colors.bg = ['bg', 'Normal'] " gruvbox sets FZF colors, override it
+    \ | let g:fzf_colors.bg = ['bg', 'Normal']
+    \ | highlight clear CursorLine
+    \ | highlight CursorLineNR cterm=bold ctermbg=0 guibg=#000000
+    \ | :set cursorline
 augroup END
 
 " -- Mapping --
