@@ -16,7 +16,7 @@ Plug 'gruvbox-community/gruvbox' "theme
 call plug#end()
 
 " FZF configuration
-let g:fzf_layout = { 'down': '~80%' }
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'yoffset': 1, 'border': 'top' } }
 
 " allow fzf Rg command to accept arguments
 command! -bang -nargs=* Rg
