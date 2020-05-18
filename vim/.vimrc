@@ -144,9 +144,9 @@ let &t_EI = "\e[2 q"
 :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
-" auto source vimrc
-:augroup MyAutoCmd
+" auto source vimrc, must edit symlink at ~/.vimrc not file
+:augroup VimrcAutoSrc
 :  autocmd!
-:  autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
+:  autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
 :augroup END
 
