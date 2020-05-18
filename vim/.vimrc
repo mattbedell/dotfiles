@@ -1,3 +1,4 @@
+" -- PLUGINS: vim-plug --
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf' "fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim' "fzf fuzzy finder plugin
@@ -14,6 +15,9 @@ Plug 'dense-analysis/ale' "use for linting only
 Plug 'gruvbox-community/gruvbox' "theme
 " Initialize plugin system
 call plug#end()
+
+"-- PLUGINS: native --
+filetype plugin indent on
 
 " FZF configuration
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'yoffset': 1, 'border': 'top' } }
@@ -126,7 +130,6 @@ let &t_EI = "\e[2 q"
 
 " Indentation
 :set autoindent
-:set smartindent
 :set tabstop=2
 :set softtabstop=2
 :set shiftwidth=2
