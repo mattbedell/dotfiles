@@ -81,10 +81,6 @@ augroup END
 
 " -- Mapping --
 let mapleader=" "
-nnoremap <silent> <leader>l :BLines<CR>
-nnoremap <silent> <leader><space> :Buffers<CR>
-nnoremap <leader>s :Rg<space>
-nnoremap <leader>f :GFiles<CR>
 
 nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
@@ -100,6 +96,10 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 
 " FZF
 nnoremap <leader>d :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
+nnoremap <silent> <leader>l :BLines<CR>
+nnoremap <silent> <leader><space> :Buffers<CR>
+nnoremap <leader>s :Rg<space>
+nnoremap <leader>f :GFiles<CR>
 
 " Use FZF for autocompletion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
