@@ -17,6 +17,7 @@ Plug 'gruvbox-community/gruvbox' "theme
 call plug#end()
 
 "-- PLUGINS: native --
+packadd! cfilter "filter quickfix list, see :help CFilter
 filetype plugin indent on
 
 " FZF configuration
