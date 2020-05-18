@@ -125,6 +125,10 @@ let &t_EI = "\e[2 q"
 :set wildmenu
 :set showcmd
 
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ -g\ '!.git'
+endif
+
 " -- Theme --
 :set termguicolors
 :colorscheme gruvbox
