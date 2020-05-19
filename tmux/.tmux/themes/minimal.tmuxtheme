@@ -1,0 +1,36 @@
+
+#
+## Theme
+#
+# a theme found on reddit that I heavily modified
+# https://old.reddit.com/r/unixporn/comments/4p03w4/tmux_minimal/
+#
+
+# panes
+set -g pane-border-style fg=colour0
+set -g pane-active-border-style fg=colour238
+
+# toggle statusbar
+bind-key b set-option status
+
+# status line
+set -g status-justify left
+set -g status-bg default
+set -g status-fg default
+set -g status-interval 2
+
+# messaging
+set -g message-style fg=black,bg=yellow
+set -g message-command-style fg=blue,bg=black
+
+setw -g mode-style fg=colour6,bg=colour0
+
+# colors
+setw -g window-status-format " #[fg=colour8]#W"
+setw -g window-status-current-format " #[fg=colour2]#W#F#[fg=colour8]"
+setw -g window-status-current-style dim
+set -g status-position bottom
+set -g status-justify centre
+set -g status-left "  #[fg=colour3]#S #[fg=colour2]#I #[fg=colour4]#P"
+set -g status-right "#[fg=colour242]#(whoami)#[fg=colour4]@#[fg=colour6]#H  "
+
