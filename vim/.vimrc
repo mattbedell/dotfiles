@@ -49,6 +49,9 @@ let g:qs_lazy_highlight = 1 " autocmd event from CursorMoved to CursorHold (redu
 " vim-gutentags configuration
 let g:gutentags_define_advanced_commands = 1
 let g:gutentags_ctags_exclude = ['node_modules', 'dist']
+let g:gutentags_generate_on_missing = 0
+:set statusline+=%{gutentags#statusline()}
+
 if executable('fd')
   let g:gutentags_file_list_command = 'fd --type file'
 endif
