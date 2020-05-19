@@ -28,6 +28,6 @@ setw -g window-status-current-format " #[fg=colour2]#W#F#[fg=colour8]"
 setw -g window-status-current-style dim
 set -g status-position bottom
 set -g status-justify centre
-set -g status-left "  #[fg=colour3]#S #[fg=colour2]#I #[fg=colour4]#P"
+set -g status-left "#{?client_prefix,#[bg=colour8],}  #[fg=colour3]#S #[fg=colour2]#I #[fg=colour4]#P  "
 set -g status-right "#[fg=colour242]#(whoami)#[fg=colour4]@#[fg=colour6]#H  "
 
