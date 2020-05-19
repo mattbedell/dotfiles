@@ -10,9 +10,6 @@
 set -g pane-border-style fg=colour0
 set -g pane-active-border-style fg=colour238
 
-# toggle statusbar
-bind-key b set-option status
-
 # status line
 set -g status-justify left
 set -g status-bg default
