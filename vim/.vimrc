@@ -7,6 +7,7 @@ Plug 'tmsvg/pear-tree' "autopair parens, etc.
 Plug 'tpope/vim-commentary' "comment code
 Plug 'tpope/vim-surround' "mappings for surrounding characters
 Plug 'tpope/vim-repeat' "make mappings repeatable
+Plug 'tpope/vim-fugitive' "git integration, not sure if I will keep this, I just want the blame feature
 Plug 'romainl/vim-cool' "auto highlight search, add search match count
 Plug 'unblevable/quick-scope' " highlight unique chars for 'f' and 't' motions
 Plug 'ludovicchabant/vim-gutentags' "ctag manager
