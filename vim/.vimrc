@@ -17,6 +17,7 @@ Plug 'gruvbox-community/gruvbox' "theme
 " Initialize plugin system
 call plug#end()
 
+:set statusline=\ %{expand('%:~:.')}
 "-- PLUGINS: native --
 packadd! cfilter "filter quickfix list, see :help CFilter
 filetype plugin indent on
@@ -49,9 +50,9 @@ let g:qs_lazy_highlight = 1 " autocmd event from CursorMoved to CursorHold (redu
 
 " vim-gutentags configuration
 let g:gutentags_define_advanced_commands = 1
-let g:gutentags_ctags_exclude = ['node_modules', 'dist']
+let g:gutentags_ctags_exclude = ['node_modules', 'dist', '*.spec.js', '**/fixtures', '*.stories.js', '*.spec-a11y.js']
 let g:gutentags_generate_on_missing = 0
-:set statusline+=%{gutentags#statusline()}
+:set statusline+=\ \|\ %{gutentags#statusline()}
 
 if executable('fd')
   let g:gutentags_file_list_command = 'fd --type file'
@@ -136,6 +137,7 @@ let &t_EI = "\e[2 q"
 :set showcmd
 :set splitbelow
 :set splitright
+:set laststatus=2
 
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ -g\ '!.git'
