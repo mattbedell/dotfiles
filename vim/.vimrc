@@ -17,6 +17,7 @@ Plug 'gruvbox-community/gruvbox' "theme
 " Initialize plugin system
 call plug#end()
 
+
 :set statusline=\ %{expand('%:~:.')}
 "-- PLUGINS: native --
 packadd! cfilter "filter quickfix list, see :help CFilter
@@ -77,7 +78,7 @@ let g:gruvbox_contrast_dark='hard'
 " turn on cursorline but only highlight line numer
 augroup GruvboxCust
   autocmd!
-  autocmd ColorScheme gruvbox highlight Normal ctermbg=0 guibg=#000000
+  autocmd ColorScheme gruvbox highlight Normal guibg=#000000
     \ | let g:fzf_colors.bg = ['bg', 'Normal']
     \ | highlight clear CursorLine
     \ | highlight CursorLineNR cterm=bold ctermbg=0 guibg=#000000
