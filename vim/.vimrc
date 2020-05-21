@@ -17,7 +17,7 @@ Plug 'gruvbox-community/gruvbox' "theme
 " Initialize plugin system
 call plug#end()
 
-
+:set background=dark
 :set statusline=\ %{expand('%:~:.')}
 "-- PLUGINS: native --
 packadd! cfilter "filter quickfix list, see :help CFilter
@@ -75,7 +75,7 @@ let g:ale_lint_on_enter = 1
 let g:gruvbox_contrast_dark='hard'
 " set background color to black to match iterm
 " reset gruvbox overriding fzf popup colors
-" turn on cursorline but only highlight line numer
+" turn on cursorline but only highlight line number
 augroup GruvboxCust
   autocmd!
   autocmd ColorScheme gruvbox highlight Normal guibg=#000000
