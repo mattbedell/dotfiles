@@ -574,7 +574,14 @@ shell:
 # If the same trigger is assigned to multiple actions, all of them are executed
 # at once.
 key_bindings:
-  - { key: K,      mods: Command,         chars: "\x00k"            }
+  # the good old mac k-bomb in tmux:
+  ## pass this though to tmux as <C-space (tmux leader)>k, in tmux bind <leader>k to C-l and clear-history
+  - { key: K,        mods: Command,       chars: "\x00k"           }
+  # <C-^> doesn't seem to work in vim without this remap
+  - { key: Key6,     mods: Control,       chars: "\x1e"            }
+  # sending escape sequences for alt is supported but not working on osx, so map manually as needed
+  - { key: Period,   mods: Alt,           chars: "\x1b."           }
+
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }
