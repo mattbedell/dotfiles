@@ -80,8 +80,8 @@ augroup GruvboxCust
   autocmd!
   autocmd ColorScheme gruvbox highlight Normal guibg=#000000
     \ | let g:fzf_colors.bg = ['bg', 'Normal']
-    \ | highlight clear CursorLine
-    \ | highlight CursorLineNR cterm=bold ctermbg=0 guibg=#000000
+    \ | highlight CursorLine ctermbg=232 guibg=#080808
+    \ | highlight CursorLineNR cterm=bold ctermbg=232 guibg=#080808
     \ | :set cursorline
 augroup END
 
@@ -139,6 +139,8 @@ let &t_EI = "\e[2 q"
 :set splitbelow
 :set splitright
 :set laststatus=2
+:set cursorline
+:set cursorcolumn
 
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ -g\ '!.git'
@@ -161,6 +163,13 @@ augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+" toggle cursor line and cursor column on active window
+augroup ActiveWindow
+  autocmd!
+  autocmd WinEnter * set cursorline   | set cursorcolumn
+  autocmd Winleave * set nocursorline | set nocursorcolumn
 augroup END
 
 " auto source vimrc, must edit symlink at ~/.vimrc not file
