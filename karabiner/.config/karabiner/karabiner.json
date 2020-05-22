@@ -75,12 +75,12 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_control"
+                                        "key_code": "left_control",
+                                        "lazy": true
                                     }
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "hold_down_milliseconds": 500,
                                         "key_code": "escape"
                                     }
                                 ],
