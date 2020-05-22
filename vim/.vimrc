@@ -157,15 +157,15 @@ endif
 
 " toggle hybrid line numbers based on mode
 :set number relativenumber
-:augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-:augroup END
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 " auto source vimrc, must edit symlink at ~/.vimrc not file
-:augroup VimrcAutoSrc
-:  autocmd!
-:  autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
-:augroup END
+augroup VimrcAutoSrc
+  autocmd!
+  autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+augroup END
 
