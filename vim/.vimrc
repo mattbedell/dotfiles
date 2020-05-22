@@ -79,6 +79,7 @@ let g:gruvbox_contrast_dark='hard'
 augroup GruvboxCust
   autocmd!
   autocmd ColorScheme gruvbox highlight Normal guibg=#000000
+    \ | highlight SpecialKey guifg='#ff00ff' ctermfg=201 cterm=bold
     \ | let g:fzf_colors.bg = ['bg', 'Normal']
     \ | highlight CursorLine ctermbg=232 guibg=#080808
     \ | highlight CursorLineNR cterm=bold ctermbg=232 guibg=#080808
