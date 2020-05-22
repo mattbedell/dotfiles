@@ -165,11 +165,22 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
-" toggle cursor line and cursor column on active window
+" toggle cursor line and cursor column on active window, if it is enabled for
+" the buffer
+" this allows for :set nocursorcolumn in the buffer without it being
+" reenabled if the window loses and regains focus
+function! ToggleCursorLC(isEnter)
+  if a:isEnter && &g:cursorline | setlocal cursorline | endif
+  if a:isEnter && &g:cursorcolumn | setlocal cursorcolumn | endif
+
+  if !a:isEnter && &g:cursorline | setlocal nocursorline | endif
+  if !a:isEnter && &g:cursorcolumn | setlocal nocursorcolumn | endif
+endfunction
+
 augroup ActiveWindow
   autocmd!
-  autocmd WinEnter * set cursorline   | set cursorcolumn
-  autocmd Winleave * set nocursorline | set nocursorcolumn
+  autocmd WinEnter * call ToggleCursorLC(1)
+  autocmd WinLeave * call ToggleCursorLC(0)
 augroup END
 
 " auto source vimrc, must edit symlink at ~/.vimrc not file
