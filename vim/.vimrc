@@ -145,6 +145,7 @@ let &t_EI = "\e[2 q"
 
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ -g\ '!.git'
+  set grepformat^=%f:%l:%c:%m
 endif
 
 " -- Theme --
