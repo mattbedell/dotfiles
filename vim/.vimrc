@@ -14,6 +14,7 @@ Plug 'ludovicchabant/vim-gutentags' "ctag manager
 Plug 'nathanaelkane/vim-indent-guides' "indent guides
 Plug 'dense-analysis/ale' "use for linting only
 Plug 'gruvbox-community/gruvbox' "theme
+Plug 'takac/vim-hardtime' "break bad habits
 " Initialize plugin system
 call plug#end()
 
@@ -86,6 +87,10 @@ augroup GruvboxCust
     \ | :set cursorline
 augroup END
 
+" hardtime configuration
+let g:hardtime_default_on = 1
+let g:hardtime_ignore_quickfix = 1
+
 " -- Mapping --
 let mapleader=" "
 
@@ -136,6 +141,7 @@ let &t_EI = "\e[2 q"
 :set incsearch
 :set ruler
 :set wildmenu
+:set wildignorecase
 :set showcmd
 :set splitbelow
 :set splitright
