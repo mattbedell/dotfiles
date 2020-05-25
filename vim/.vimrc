@@ -148,6 +148,7 @@ let &t_EI = "\e[2 q"
 :set laststatus=2
 :set cursorline
 :set cursorcolumn
+:set diffopt=vertical,filler,closeoff
 
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ -g\ '!.git'
