@@ -84,6 +84,7 @@ augroup GruvboxCust
     \ | let g:fzf_colors.bg = ['bg', 'Normal']
     \ | highlight CursorLine ctermbg=232 guibg=#080808
     \ | highlight CursorLineNR cterm=bold ctermbg=232 guibg=#080808
+    \ | highlight GruvboxRed guifg=#f6362f
     \ | :set cursorline
 augroup END
 
