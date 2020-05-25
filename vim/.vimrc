@@ -14,6 +14,7 @@ Plug 'ludovicchabant/vim-gutentags' "ctag manager
 Plug 'nathanaelkane/vim-indent-guides' "indent guides
 Plug 'dense-analysis/ale' "use for linting only
 Plug 'gruvbox-community/gruvbox' "theme
+Plug 'yassinebridi/vim-purpura' "theme, all purple because its fun
 Plug 'takac/vim-hardtime' "break bad habits
 " Initialize plugin system
 call plug#end()
@@ -158,6 +159,9 @@ endif
 
 " -- Theme --
 :set termguicolors
+" something to do with truecolor
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 :colorscheme gruvbox
 
 " Indentation
