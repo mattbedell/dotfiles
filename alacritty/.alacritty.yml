@@ -211,7 +211,7 @@ schemes:
 
     cursor:
       text: '#feffff'
-      cursor: '#c7c7c7'
+      cursor: '#ff00ff'
 
     selection:
       text: '#000000'
