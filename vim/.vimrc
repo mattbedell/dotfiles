@@ -54,6 +54,7 @@ let g:qs_lazy_highlight = 1 " autocmd event from CursorMoved to CursorHold (redu
 " vim-gutentags configuration
 let g:gutentags_define_advanced_commands = 1
 let g:gutentags_ctags_exclude = ['node_modules', 'dist', '*.spec.js', '**/fixtures', '*.stories.js', '*.spec-a11y.js']
+let g:gutentags_ctags_extra_args = ['--map-typescript=+.tsx']
 let g:gutentags_generate_on_missing = 0
 :set statusline+=%{gutentags#statusline('[',']')}
 
