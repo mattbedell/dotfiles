@@ -112,7 +112,7 @@ set cursorcolumn
 set diffopt=vertical,filler,closeoff
 
 " show relative filepath of the buffer always
-set statusline^=\ %{expand('%:~:.')}\ 
+set statusline^=\ %{utils#truncatedpath()}%t\ %m
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ -g\ '!.git'
   set grepformat^=%f:%l:%c:%m
@@ -220,6 +220,7 @@ augroup END
 
 colorscheme gruvbox
 "}}}
+
 
 " auto source vimrc, must edit symlink at ~/.vimrc for this to work
 augroup VimrcAutoSrc
