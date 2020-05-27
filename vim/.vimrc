@@ -103,7 +103,6 @@ set incsearch
 set ruler
 set wildmenu
 set wildignorecase
-set showcmd
 set splitbelow
 set splitright
 set laststatus=2
