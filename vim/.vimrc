@@ -184,6 +184,17 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
+" relative filepath completion
+" https://github.com/whiteinge/dotfiles/blob/e728e33bd105b16aeef134eb12e1175e0c00ef0a/.vimrc#L235
+inoremap <C-f>
+  \ <C-o>:let b:oldpwd = getcwd() <bar>
+  \ lcd %:p:h<CR><C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ''<CR>
+au CompleteDone *
+  \ if exists('b:oldpwd') |
+  \   cd `=b:oldpwd` |
+  \   unlet b:oldpwd |
+  \ endif
+
 " fzf {{{
 nnoremap <leader>d :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
 nnoremap <silent> <leader>l :BLines<CR>
