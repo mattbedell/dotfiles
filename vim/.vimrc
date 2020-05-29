@@ -109,6 +109,7 @@ set laststatus=2
 set cursorline
 set cursorcolumn
 set diffopt=vertical,filler,closeoff
+set autoread
 
 " show relative filepath of the buffer always
 set statusline^=\ %{utils#truncatedpath()}%t\ %m
