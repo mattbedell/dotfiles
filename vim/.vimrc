@@ -164,11 +164,19 @@ let mapleader=" "
 nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
 
-" more natural movement around windows
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" https://github.com/whiteinge/dotfiles/blob/e728e33bd105b16aeef134eb12e1175e0c00ef0a/.vim/autoload/vimortmux.vim
+" Natural movement around splits, if tmux, movement seamlessly extends to tmux panes
+if !empty($TMUX)
+  nnoremap <silent> <C-J> :call vimortmux#VimOrTmuxNav('j')<cr>
+  nnoremap <silent> <C-K> :call vimortmux#VimOrTmuxNav('k')<cr>
+  nnoremap <silent> <C-L> :call vimortmux#VimOrTmuxNav('l')<cr>
+  nnoremap <silent> <C-H> :call vimortmux#VimOrTmuxNav('h')<cr>
+else
+  nnoremap <C-J> <C-W><C-J>
+  nnoremap <C-K> <C-W><C-K>
+  nnoremap <C-L> <C-W><C-L>
+  nnoremap <C-H> <C-W><C-H>
+endif
 
 " resize splits
 nnoremap <silent> <Right> :vertical resize +2<CR>
