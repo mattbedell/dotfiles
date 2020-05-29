@@ -203,6 +203,20 @@ au CompleteDone *
   \   unlet b:oldpwd |
   \ endif
 
+" vim-fugitive {{{
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>grb :Grebase 
+nnoremap <leader>gri :Grebase -i HEAD~
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gl :Glog<CR>
+nnoremap <leader>ge :Gedit<CR>
+" git log of current buffer
+nnoremap <leader>glb :0Glog<CR>
+
+"}}}
+
 " fzf {{{
 nnoremap <leader>fd :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
 nnoremap <silent> <leader>fl :BLines<CR>
