@@ -4,6 +4,9 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
+[diff]
+	tool = vimdiff
+	colorMoved = true
 [alias]
 	co = checkout
 	sw = switch
