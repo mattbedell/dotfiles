@@ -204,11 +204,11 @@ au CompleteDone *
   \ endif
 
 " fzf {{{
-nnoremap <leader>d :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
-nnoremap <silent> <leader>l :BLines<CR>
+nnoremap <leader>fd :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
+nnoremap <silent> <leader>fl :BLines<CR>
 nnoremap <silent> <leader><space> :Buffers<CR>
-nnoremap <leader>s :Rg<space>
-nnoremap <leader>f :GFiles<CR>
+nnoremap <leader>fs :Rg<space>
+nnoremap <leader>ff :GFiles<CR>
 
 " Use FZF for autocompletion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
