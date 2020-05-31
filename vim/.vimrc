@@ -236,6 +236,7 @@ nnoremap <silent> <leader>fl :BLines<CR>
 nnoremap <silent> <leader><space> :Buffers<CR>
 nnoremap <leader>fs :Rg<space>
 nnoremap <leader>ff :GFiles<CR>
+nnoremap <leader>fa :Files ~/
 
 " Use FZF for autocompletion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
