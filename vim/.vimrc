@@ -252,6 +252,14 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
+" general overrides applied to all themes
+augroup ThemeCust
+  autocmd!
+  autocmd ColorScheme *
+        \   highlight SpellBad       ctermbg=9 guibg=#770000
+        \ | highlight ALEErrorSign   ctermfg=0 ctermbg=9  guifg=#000000 guibg=#ff0000
+        \ | highlight ALEWarningSign ctermfg=0 ctermbg=11 guifg=#000000 guibg=#ffff00
+
 " gruvbox theme {{{
 let g:gruvbox_contrast_dark='hard'
 " set background color to black
