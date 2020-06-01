@@ -112,7 +112,8 @@ set diffopt=vertical,filler,closeoff
 set autoread
 
 " show relative filepath of the buffer always
-set statusline^=\ %{utils#truncatedpath()}%t\ %m
+set statusline^=\ %{utils#truncatedpath()}%t\ %1*%m%*%r
+
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ -g\ '!.git'
   set grepformat^=%f:%l:%c:%m
@@ -259,6 +260,7 @@ augroup ThemeCust
         \   highlight SpellBad       ctermbg=9 guibg=#770000
         \ | highlight ALEErrorSign   ctermfg=0 ctermbg=9  guifg=#000000 guibg=#ff0000
         \ | highlight ALEWarningSign ctermfg=0 ctermbg=11 guifg=#000000 guibg=#ffff00
+        \ |exe "highlight User1 guifg=#00ff00 ctermfg=9 guibg=" . synIDattr(hlID('StatusLine'),'fg', 'gui')
 
 " gruvbox theme {{{
 let g:gruvbox_contrast_dark='hard'
@@ -280,6 +282,7 @@ augroup END
 "}}}
 
 colorscheme gruvbox
+
 "}}}
 
 
