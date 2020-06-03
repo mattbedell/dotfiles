@@ -8,22 +8,23 @@ set statusline=""
 " }}}
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
-Plug 'dense-analysis/ale'              " use for linting only
-Plug 'junegunn/fzf'                    " fzf fuzzy finder wrapper
-Plug 'junegunn/fzf.vim'                " fzf fuzzy finder plugin
-Plug 'gruvbox-community/gruvbox'       " theme
-Plug 'tmsvg/pear-tree'                 " autopair parens, etc.
-Plug 'unblevable/quick-scope'          " highlight unique chars for 'f' and 't' motions
-Plug 'tpope/vim-commentary'            " comment code
-Plug 'romainl/vim-cool'                " auto highlight search, add search match count
-Plug 'tpope/vim-fugitive'              " git integration
-Plug 'ludovicchabant/vim-gutentags'    " ctag manager
-Plug 'takac/vim-hardtime'              " break bad habits
-Plug 'nathanaelkane/vim-indent-guides' " indent guides
-Plug 'sheerun/vim-polyglot'            " multi-language syntax support
-Plug 'yassinebridi/vim-purpura'        " theme, all purple because its fun
-Plug 'tpope/vim-repeat'                " make mappings repeatable
-Plug 'tpope/vim-surround'              " mappings for surrounding characters
+Plug 'dense-analysis/ale'                 " use for linting only
+Plug 'junegunn/fzf'                       " fzf fuzzy finder wrapper
+Plug 'junegunn/fzf.vim'                   " fzf fuzzy finder plugin
+Plug 'gruvbox-community/gruvbox'          " theme
+Plug 'tmsvg/pear-tree'                    " autopair parens, etc.
+Plug 'unblevable/quick-scope'             " highlight unique chars for 'f' and 't' motions
+Plug 'tpope/vim-commentary'               " comment code
+Plug 'romainl/vim-cool'                   " auto highlight search, add search match count
+Plug 'tpope/vim-fugitive'                 " git integration
+Plug 'ludovicchabant/vim-gutentags'       " ctag manager
+Plug 'takac/vim-hardtime'                 " break bad habits
+Plug 'nathanaelkane/vim-indent-guides'    " indent guides
+Plug 'sheerun/vim-polyglot'               " multi-language syntax support
+Plug 'yassinebridi/vim-purpura'           " theme, all purple because its fun
+Plug 'tpope/vim-repeat'                   " make mappings repeatable
+Plug 'tpope/vim-surround'                 " mappings for surrounding characters
+Plug 'tmux-plugins/vim-tmux-focus-events' " add support for FocusGained and FocusLost events (proposed patch for this has been in limbo for years)
 call plug#end()
 
 "}}}
@@ -109,11 +110,21 @@ set laststatus=2
 set cursorline
 set cursorcolumn
 set diffopt=vertical,filler,closeoff
-set autoread
 set nowrap
 
 " show relative filepath of the buffer always
 set statusline^=\ %{utils#truncatedpath()}%t\ %1*%m%*%r
+
+" use vim-tmux-focus-events plug and autoread to update buffers on external
+" changes to its file, the plugin makes focus events available in terminal vim
+set autoread
+" using vim-tmux-navigator like keybindings (<C-J>, etc) to navigate splits/panes
+" makes the vim-tmux-focus-events plugin leave behind a ^[[0 on FocusLost, this
+" autocmd fixes that
+augroup AutoAutoRead
+  autocmd!
+  autocmd FocusLost * silent redraw!
+augroup END
 
 if executable("rg")
   set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ -g\ '!.git'
