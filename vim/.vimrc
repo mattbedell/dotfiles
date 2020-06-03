@@ -167,6 +167,7 @@ let mapleader=" "
 nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
 nnoremap <leader>s :w<CR>
+nnoremap <C-W><C-F> <C-W>vgf
 
 " bindings ripped from vim-unimpaired
 nnoremap <silent> ]q :cnext<CR>
