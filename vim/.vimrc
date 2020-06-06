@@ -19,6 +19,7 @@ Plug 'romainl/vim-cool'                   " auto highlight search, add search ma
 Plug 'tpope/vim-fugitive'                 " git integration
 Plug 'ludovicchabant/vim-gutentags'       " ctag manager
 Plug 'takac/vim-hardtime'                 " break bad habits
+Plug 'machakann/vim-highlightedyank'      " briefly highlight yanked text
 Plug 'nathanaelkane/vim-indent-guides'    " indent guides
 Plug 'sheerun/vim-polyglot'               " multi-language syntax support
 Plug 'yassinebridi/vim-purpura'           " theme, all purple because its fun
@@ -82,6 +83,10 @@ let g:hardtime_ignore_quickfix = 1
 " vim-indent-guides {{{
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
+
+"}}}
+" vim-highlightedyank {{{
+let g:highlightedyank_highlight_duration = 300
 
 "}}}
 " vim-javascript {{{
