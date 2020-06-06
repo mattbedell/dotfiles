@@ -111,6 +111,7 @@ set cursorline
 set cursorcolumn
 set diffopt=vertical,filler,closeoff
 set nowrap
+set signcolumn=number
 
 " show relative filepath of the buffer always
 set statusline^=\ %{utils#truncatedpath()}%t\ %1*%m%*%r
