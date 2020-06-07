@@ -2,8 +2,6 @@
 " vim {{{
 packadd! cfilter " filter quickfix list, see :help CFilter
 filetype plugin indent on
-" reset statusline if vimrc is resourced
-set statusline=""
 
 " }}}
 " vim-plug {{{
@@ -68,7 +66,6 @@ let g:gutentags_define_advanced_commands = 1
 let g:gutentags_ctags_exclude = ['node_modules', 'dist', '*.spec.js', '**/fixtures', '*.stories.js', '*.spec-a11y.js', 'tests']
 let g:gutentags_ctags_extra_args = ['--map-typescript=+.tsx']
 let g:gutentags_generate_on_missing = 0
-set statusline+=%{gutentags#statusline('[',']')}
 
 if executable('fd')
   let g:gutentags_file_list_command = 'fd --type file'
@@ -117,9 +114,6 @@ set cursorcolumn
 set diffopt=vertical,filler,closeoff
 set nowrap
 set signcolumn=number
-
-" show relative filepath of the buffer always
-set statusline^=\ %{utils#truncatedpath()}%t\ %1*%m%*%r
 
 " use vim-tmux-focus-events plug and autoread to update buffers on external
 " changes to its file, the plugin makes focus events available in terminal vim
@@ -279,7 +273,6 @@ augroup ThemeCust
         \   highlight SpellBad       ctermbg=9 guibg=#770000
         \ | highlight ALEErrorSign   ctermfg=0 ctermbg=9  guifg=#000000 guibg=#ff0000
         \ | highlight ALEWarningSign ctermfg=0 ctermbg=11 guifg=#000000 guibg=#ffff00
-        \ |exe "highlight User1 guifg=#00ff00 ctermfg=9 guibg=" . synIDattr(hlID('StatusLine'),'fg', 'gui')
 
 " gruvbox theme {{{
 let g:gruvbox_contrast_dark='hard'
