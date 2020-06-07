@@ -1,4 +1,13 @@
 
+" TODO: Fixup this file because it is a mess
+
+highlight StatusLine   cterm=reverse      ctermfg=239 ctermbg=223 guifg=#272727 guibg=#ebdbb2
+highlight StatusLineNC cterm=reverse      ctermfg=237 ctermbg=246 guifg=#101010 guibg=#a49580
+highlight stlWarn      cterm=reverse,bold ctermfg=239 ctermbg=10  guifg=#272727 guibg=#00ff00
+highlight stlWarnNC    cterm=reverse,bold ctermfg=237 ctermbg=246 guifg=#101010 guibg=#ebdbb2
+highlight stlGit       cterm=reverse      ctermfg=109 ctermbg=223 guifg=#272727 guibg=#83a598
+highlight link stlGitNC StatusLineNC
+
 function! statusline#git() abort
   " https://github.com/milisims/vimfiles/blob/master/plugin/statusline.vim#L61
   let stltext = ''
@@ -37,12 +46,12 @@ function! statusline#truncatedpath() abort
   return ret
 endfunction
 
-function! statusline#get() abort
+function! statusline#active() abort
   let stltext = ' '
   let stltext .= '%{statusline#truncatedpath()}'
   let stltext .= '%t'
-  let stltext .= ' %{statusline#git()}'
-  let stltext .= '%1*%m%*%r'
+  let stltext .= ' %#stlGit#%{statusline#git()}%*'
+  let stltext .= '%#stlWarn#%m%*%r'
   let stltext .= statusline#gutentags()
 
   let stltext .= '%='
@@ -51,5 +60,24 @@ function! statusline#get() abort
   return stltext
 endfunction
 
-set statusline=%!statusline#get()
+function! statusline#inactive() abort
+  let stltext = ' '
+  let stltext .= '%{statusline#truncatedpath()}'
+  let stltext .= '%t'
+  let stltext .= ' %#stlGitNC#%{statusline#git()}%*'
+  let stltext .= '%#stlWarnNC#%m%*%r'
+  let stltext .= statusline#gutentags()
+
+  let stltext .= '%='
+  let stltext .= '%-4.(%P%)'
+
+  return stltext
+endfunction
+
+set statusline=%!statusline#inactive()
+augroup VimStatusline
+  autocmd!
+  autocmd WinLeave * setlocal statusline=%!statusline#inactive()
+  autocmd WinEnter,BufEnter * setlocal statusline=%!statusline#active()
+augroup END
 
