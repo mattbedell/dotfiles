@@ -182,7 +182,9 @@ let mapleader=" "
 nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
 nnoremap <leader>s :w<CR>
+
 nnoremap <C-W><C-F> <C-W>vgf
+noremap Y y$
 
 " bindings ripped from vim-unimpaired
 nnoremap <silent> ]q :cnext<CR>
@@ -193,7 +195,6 @@ nnoremap <silent> ]l :lnext<CR>
 nnoremap <silent> [l :lprevious<CR>
 nnoremap <silent> ]L :llast<CR>
 nnoremap <silent> [L :lfirst<CR>
-
 
 " https://github.com/whiteinge/dotfiles/blob/e728e33bd105b16aeef134eb12e1175e0c00ef0a/.vim/autoload/vimortmux.vim
 " Natural movement around splits, if tmux, movement seamlessly extends to tmux panes
