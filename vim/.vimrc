@@ -1,6 +1,7 @@
 " Plugins {{{
 " vim {{{
 packadd! cfilter " filter quickfix list, see :help CFilter
+packadd! matchit " extend %
 filetype plugin indent on
 
 " }}}
