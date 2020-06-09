@@ -95,6 +95,8 @@ let g:javascript_plugin_jsdoc = 1 " syntax highlighting for JSDOC
 " Settings {{{
 syntax on
 set directory^=$HOME/.vim/swp//
+set undofile
+set undodir^=$HOME/.vim/undo//
 set hidden
 set timeoutlen=1000 ttimeoutlen=5
 set ignorecase
