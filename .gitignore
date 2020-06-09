@@ -1,7 +1,5 @@
 # VIM
 vim/.vim/plugged
-vim/.vim/sessions
-vim/.vim/swp
 .netrwhist
 
 # Brew
