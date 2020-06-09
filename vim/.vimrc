@@ -104,7 +104,7 @@ set ignorecase
 set smartcase
 set hlsearch
 set list
-set listchars=trail:·
+set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
 set completeopt=longest,menuone
 set incsearch
 set ruler
@@ -118,6 +118,13 @@ set cursorcolumn
 set diffopt=vertical,filler,closeoff
 set nowrap
 set signcolumn=number
+set history=1000
+set scrolloff=1
+set sidescrolloff=5
+set sidescroll=1
+set complete-=i
+set sessionoptions-=options
+set viewoptions-=options
 
 " use vim-tmux-focus-events plug and autoread to update buffers on external
 " changes to its file, the plugin makes focus events available in terminal vim
