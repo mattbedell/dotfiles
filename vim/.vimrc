@@ -310,9 +310,9 @@ colorscheme gruvbox
 "}}}
 
 
-" auto source vimrc, must edit symlink at ~/.vimrc for this to work
+
 augroup VimrcAutoSrc
   autocmd!
-  autocmd BufWritePost $MYVIMRC nested source $MYVIMRC
+  autocmd BufWritePost *vimrc nested source $MYVIMRC
 augroup END
 
