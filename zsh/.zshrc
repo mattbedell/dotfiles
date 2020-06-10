@@ -106,7 +106,7 @@ function zle-line-init zle-keymap-select {
     echo -ne "\e[2 q"
     VIMODE="○"
   else
-    echo -ne "\e[0 q"
+    echo -ne "\e[6 q"
     VIMODE="►"
   fi
 
