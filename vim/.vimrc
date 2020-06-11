@@ -7,7 +7,7 @@ filetype plugin indent on
 " }}}
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
-Plug 'dense-analysis/ale'                 " use for linting only
+" Plug 'dense-analysis/ale'                 " use for linting only
 Plug 'junegunn/fzf'                       " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                   " fzf fuzzy finder plugin
 Plug 'gruvbox-community/gruvbox'          " theme
@@ -25,17 +25,20 @@ Plug 'yassinebridi/vim-purpura'           " theme, all purple because its fun
 Plug 'tpope/vim-repeat'                   " make mappings repeatable
 Plug 'tpope/vim-surround'                 " mappings for surrounding characters
 Plug 'tmux-plugins/vim-tmux-focus-events' " add support for FocusGained and FocusLost events (proposed patch for this has been in limbo for years)
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 "}}}
 " plugin configurations {{{
 " ale {{{
 " Only run linters named in ale_linters settings.
-let g:ale_linters_explicit = 1
+" let g:ale_linters_explicit = 1
 " only lint on enter and save
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 1
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_insert_leave = 0
+" let g:ale_lint_on_enter = 1
 
 "}}}
 " fzf {{{
@@ -284,8 +287,8 @@ augroup ThemeCust
   autocmd!
   autocmd ColorScheme *
         \   highlight SpellBad       ctermbg=9 guibg=#770000
-        \ | highlight ALEErrorSign   ctermfg=0 ctermbg=9  guifg=#000000 guibg=#ff0000
-        \ | highlight ALEWarningSign ctermfg=0 ctermbg=11 guifg=#000000 guibg=#ffff00
+        " \ | highlight ALEErrorSign   ctermfg=0 ctermbg=9  guifg=#000000 guibg=#ff0000
+        " \ | highlight ALEWarningSign ctermfg=0 ctermbg=11 guifg=#000000 guibg=#ffff00
 
 " gruvbox theme {{{
 let g:gruvbox_contrast_dark='hard'
