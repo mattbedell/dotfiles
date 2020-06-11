@@ -98,6 +98,7 @@ syntax on
 set directory^=$HOME/.vim/swp//
 set undofile
 set undodir^=$HOME/.vim/undo//
+set dictionary+=/usr/share/dict/words
 set hidden
 set timeoutlen=1000 ttimeoutlen=5
 set ignorecase
