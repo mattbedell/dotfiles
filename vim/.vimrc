@@ -323,7 +323,6 @@ colorscheme gruvbox
 "}}}
 
 
-
 augroup VimrcAutoSrc
   autocmd!
   autocmd BufWritePost *vimrc nested source $MYVIMRC

@@ -6,6 +6,7 @@
 "   autocmd QuickFixCmdPost [^l]* cwindow " auto open quickfix window
 " augroup END
 
-" ALE plugin linting
-let b:ale_linters = ['eslint']
+if exists('g:lsp_loaded')
+  setlocal omnifunc=lsp#complete
+endif
 
