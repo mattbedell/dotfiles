@@ -7,7 +7,7 @@ filetype plugin indent on
 " }}}
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
-Plug 'dense-analysis/ale'                 " use for linting only
+Plug 'prabirshrestha/async.vim'           " vim-lsp dependency, normalize async calls
 Plug 'junegunn/fzf'                       " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                   " fzf fuzzy finder plugin
 Plug 'gruvbox-community/gruvbox'          " theme
@@ -20,6 +20,8 @@ Plug 'ludovicchabant/vim-gutentags'       " ctag manager
 Plug 'takac/vim-hardtime'                 " break bad habits
 Plug 'machakann/vim-highlightedyank'      " briefly highlight yanked text
 Plug 'nathanaelkane/vim-indent-guides'    " indent guides
+Plug 'prabirshrestha/vim-lsp'             " enable use of language servers
+Plug 'mattn/vim-lsp-settings'             " easily configure new language servers
 Plug 'sheerun/vim-polyglot'               " multi-language syntax support
 Plug 'yassinebridi/vim-purpura'           " theme, all purple because its fun
 Plug 'tpope/vim-repeat'                   " make mappings repeatable
@@ -29,15 +31,6 @@ call plug#end()
 
 "}}}
 " plugin configurations {{{
-" ale {{{
-" Only run linters named in ale_linters settings.
-let g:ale_linters_explicit = 1
-" only lint on enter and save
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 1
-
-"}}}
 " fzf {{{
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'yoffset': 1, 'border': 'top' } }
 
@@ -83,6 +76,21 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 
 "}}}
+"vim-lsp {{{
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_highlight_references_enabled = 1
+let g:lsp_semantic_enabled = 1
+let g:lsp_signs_error = {'text': '>>'}
+let g:lsp_signs_warning = {'text': '!!'}
+let g:lsp_signs_hint = {'text': '>>'}
+
+highlight link LspHintText DiffText
+highlight link LspHintHighlight DiffText
+highlight link LspWarningText DiffText
+highlight link LspWarningHighlight DiffText
+highlight link lspReference ColorColumn
+
+"}}}
 " vim-highlightedyank {{{
 let g:highlightedyank_highlight_duration = 300
 
@@ -98,6 +106,7 @@ syntax on
 set directory^=$HOME/.vim/swp//
 set undofile
 set undodir^=$HOME/.vim/undo//
+set dictionary+=/usr/share/dict/words
 set hidden
 set timeoutlen=1000 ttimeoutlen=5
 set ignorecase
@@ -105,7 +114,7 @@ set smartcase
 set hlsearch
 set list
 set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
-set completeopt=longest,menuone
+set completeopt+=longest,menuone,preview
 set incsearch
 set ruler
 set wildmenu
@@ -242,6 +251,12 @@ au CompleteDone *
   \   unlet b:oldpwd |
   \ endif
 
+" vim-lsp {{{
+" put errors in the location list and close it
+nnoremap <silent> <leader>l :LspDocumentDiagnostics<cr>:lclose<cr>
+
+"}}}
+
 " vim-fugitive {{{
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
@@ -283,8 +298,6 @@ augroup ThemeCust
   autocmd!
   autocmd ColorScheme *
         \   highlight SpellBad       ctermbg=9 guibg=#770000
-        \ | highlight ALEErrorSign   ctermfg=0 ctermbg=9  guifg=#000000 guibg=#ff0000
-        \ | highlight ALEWarningSign ctermfg=0 ctermbg=11 guifg=#000000 guibg=#ffff00
 
 " gruvbox theme {{{
 let g:gruvbox_contrast_dark='hard'
@@ -308,7 +321,6 @@ augroup END
 colorscheme gruvbox
 
 "}}}
-
 
 
 augroup VimrcAutoSrc
