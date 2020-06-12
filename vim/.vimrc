@@ -318,7 +318,7 @@ augroup END
 
 "}}}
 
-colorscheme gruvbox
+silent! colorscheme gruvbox
 
 "}}}
 
