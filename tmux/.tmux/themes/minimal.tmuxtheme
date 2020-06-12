@@ -14,6 +14,7 @@ set -g pane-active-border-style fg=colour238
 set -g status-justify left
 set -g status-bg default
 set -g status-fg default
+set -g status-left-length 50
 # set -g status-interval 2
 
 # messaging
@@ -22,12 +23,15 @@ set -g message-command-style fg=blue,bg=black
 
 setw -g mode-style fg=colour6,bg=colour0
 
-# colors
+# indicate if the keytable = off and passing keys to inner tmux session
+is_keys_off="#(if [ \"$(tmux show-option -qv key-table)\" = 'off' ]; then echo '#[fg=colour196,bg=colour88]  OFF  '; else echo '#[default]       '; fi)#[default]"
+# is_keys_off="#[fg=colour196,bg=colour88]#([ $(tmux show-option -qv key-table) = 'off' ] && echo '  OFF  ')#[default]"
+
 setw -g window-status-format " #[fg=colour8]#W"
 setw -g window-status-current-format " #[fg=colour2]#W#F#[fg=colour8]"
 setw -g window-status-current-style dim
 set -g status-position bottom
 set -g status-justify centre
-set -g status-left "#{?client_prefix,#[bg=colour8],}  #[fg=colour3]#S #[fg=colour2]#I #[fg=colour4]#P  "
+set -g status-left "#{?client_prefix,#[bg=colour8],}  #[fg=colour3]#S #[fg=colour2]#I #[fg=colour4]#P  $is_keys_off"
 set -g status-right "#[fg=colour242]#(whoami)#[fg=colour4]@#[fg=colour6]#H  "
 
