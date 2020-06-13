@@ -67,6 +67,7 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '!'
 zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:git:*' formats "${git_prompt_lb}%b${git_prompt_dirty}${git_prompt_rb}"
+zstyle ':vcs_info:git:*' actionformats "${git_prompt_lb}%b${git_prompt_dirty}${git_prompt_rb}${git_prompt_lb}%{$fg[yellow]%}%a${git_prompt_rb}"
 
 PROMPT='${ret_status}${vimode} %{$fg[cyan]%}%~%{$reset_color%} ${vcs_info_msg_0_} '
 
