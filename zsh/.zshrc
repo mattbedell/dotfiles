@@ -14,17 +14,34 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --no-height --preview-window down:4:wrap"
 
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="custom.robbyrussell"
 
-plugins=(git git-extras colored-man-pages colorize brew osx zsh-syntax-highlighting node npm yarn encode64)
+autoload -U colors && colors
+autoload -Uz vcs_info
 
-source $ZSH/oh-my-zsh.sh
+# prompt {{{
+local git_prompt_lb="%{$fg_bold[blue]%}[%{$fg[red]%}"
+local git_prompt_rb="%{$fg_bold[blue]%}]%{$reset_color%}"
+local git_prompt_dirty="%{$fg_bold[yellow]%}%u%c"
+local ret_status="%(?:%{$fg_bold[blue]%}:%{$fg_bold[red]%})"
 
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '!'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:git:*' formats "${git_prompt_lb}%b${git_prompt_dirty}${git_prompt_rb}"
+precmd_vcs_info() { vcs_info }
+precmd_functions=( precmd_vcs_info )
 
-alias code="open -a '/Applications/Visual Studio Code.app/Contents/MacOS/Electron'"
-alias reload='source ~/.zshrc'
+# }}}
+
+setopt prompt_subst
+setopt inc_append_history
+setopt hist_save_no_dups
+setopt hist_reduce_blanks
+setopt share_history
+
+PROMPT='${ret_status}${VIMODE} %{$fg[cyan]%}%~%{$reset_color%} ${vcs_info_msg_0_} '
+
 
 # open vim with global variable set to local tty, for yanking to local machine's unnamed register
 alias vi='vim -c "let g:tty='\''$(tty)'\''"'
