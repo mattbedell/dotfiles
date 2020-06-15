@@ -17,9 +17,10 @@ setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing non-existent history.
 setopt PROMPT_SUBST
-setopt COMPLETE_IN_WORD    # Tries to complete in the word at the point of the cursor
-setopt PATH_DIRS           # Perform path search even on command names with slashes.
-unsetopt CASE_GLOB         # Case-insensitive matching
+setopt COMPLETE_IN_WORD          # Tries to complete in the word at the point of the cursor
+setopt PATH_DIRS                 # Perform path search even on command names with slashes.
+setopt EXTENDED_GLOB             # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation
+unsetopt CASE_GLOB               # Case-insensitive matching
 
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
