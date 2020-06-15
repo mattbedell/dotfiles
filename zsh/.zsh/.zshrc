@@ -110,10 +110,11 @@ function portkill() {
     kill -9 $(lsof -ti tcp:$1)
 }
 
-# bad sh that prepends [{ticket-project}-{ticket-number}] to a commit message
+# prepends [{ticket-project}-{ticket-number}] to a commit message
 #
 # usage: $ gmc this is a commit message
 # commit message: [abc-123] this is a commit message
+# @TODO make this cleaner
 #
 function gmc() {
     message=''
@@ -183,5 +184,12 @@ if (( $+commands[brew] )); then
   [ -d "$(brew --prefix)/share/zsh-completions" ] && FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   autoload -Uz compinit
   compinit
+fi
+
+# source optional configs eg. work specific env vars
+if [[ -d "$ZDOTDIR" ]] && [[ -d "$ZDOTDIR/opt" ]]; then
+  for file in "$ZDOTDIR"/opt/*.zsh; do
+    source "$file"
+  done
 fi
 
