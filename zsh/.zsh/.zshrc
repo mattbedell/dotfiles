@@ -43,6 +43,7 @@ precmd_functions=( precmd_vcs_info )
 # env {{{
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/python3.7:$PATH"
+export CLICOLORS=1 # color ls output on BSD ls
 
 # FZF config {{{
 FD_SEARCH_OPTS='--hidden --follow --exclude .git --exclude node_modules'
