@@ -253,7 +253,7 @@ au CompleteDone *
 
 " vim-lsp {{{
 " put errors in the location list and close it
-nnoremap <silent> <leader>l :LspDocumentDiagnostics<cr>:lclose<cr>
+nnoremap <silent> <leader>l :LspDocumentDiagnostics<cr>
 
 "}}}
 
