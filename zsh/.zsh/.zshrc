@@ -153,6 +153,7 @@ export NVM_DIR="$HOME/.nvm"
 # }}}
 # auto nvm use {{{
 load-nvmrc() {
+  if (( ! $+commands[nvm] )); return 0
   local node_version="$(nvm version)"
   local nvmrc_path="$(nvm_find_nvmrc)"
 
