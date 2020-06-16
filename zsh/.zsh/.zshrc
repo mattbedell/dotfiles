@@ -41,8 +41,6 @@ precmd_vcs_info() { vcs_info }
 precmd_functions=( precmd_vcs_info )
 
 # env {{{
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="/usr/local/opt/python/Frameworks/Python.framework/Versions/3.7/bin/python3.7:$PATH"
 export CLICOLORS=1 # color ls output on BSD ls
 
 # FZF config {{{
@@ -188,6 +186,14 @@ if (( $+commands[brew] )); then
   [ -d "$(brew --prefix)/share/zsh-completions" ] && FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
   autoload -Uz compinit
   compinit
+fi
+
+# use pyenv to manage python versions
+# disable this if you don't trust pyenv
+if (( $+commands[pyenv] )); then
+  eval "$(pyenv init -)"
+  # pyenv plugin for managing virtual envs
+  (( $+commands[pyenv-virtualenv] )) && eval "$(pyenv virtualenv-init -)"
 fi
 
 # source optional configs eg. work specific env vars
