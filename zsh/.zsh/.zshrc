@@ -191,7 +191,7 @@ fi
 
 # source optional configs eg. work specific env vars
 if [[ -d "$ZDOTDIR" ]] && [[ -d "$ZDOTDIR/opt" ]]; then
-  for file in "$ZDOTDIR"/opt/*.zsh; do
+  for file in "$ZDOTDIR"/opt/*.zsh(N); do
     source "$file"
   done
 fi
