@@ -134,6 +134,7 @@ set sidescroll=1
 set complete-=i
 set sessionoptions-=options
 set viewoptions-=options
+set iskeyword+=-
 
 " use vim-tmux-focus-events plug and autoread to update buffers on external
 " changes to its file, the plugin makes focus events available in terminal vim
