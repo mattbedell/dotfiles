@@ -107,6 +107,12 @@ zle -N zle-line-finish
 # alias {{{
 # open vim with global variable set to local tty, for yanking to local machine's unnamed register
 alias vi='vim -c "let g:tty='\''$(tty)'\''"'
+
+if (( $+commands[exa] )); then
+  alias ls='exa'
+fi
+
+alias la='ls -la'
 alias gs='git status'
 alias ga='git add .'
 
