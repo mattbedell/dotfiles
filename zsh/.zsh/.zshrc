@@ -31,6 +31,7 @@ autoload -U colors && colors
 autoload -U add-zsh-hook
 autoload -Uz vcs_info
 autoload -Uz edit-command-line
+autoload -Uz compinit
 
 set -o vi
 zle -N edit-command-line
@@ -184,8 +185,6 @@ if (( $+commands[brew] )); then
   source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" &> /dev/null
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH # homebrew managed autocompletions
   [ -d "$(brew --prefix)/share/zsh-completions" ] && FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-  autoload -Uz compinit
-  compinit
 fi
 
 # use pyenv to manage python versions
@@ -202,4 +201,6 @@ if [[ -d "$ZDOTDIR" ]] && [[ -d "$ZDOTDIR/opt" ]]; then
     source "$file"
   done
 fi
+
+compinit
 
