@@ -42,6 +42,8 @@ precmd_vcs_info() { vcs_info }
 precmd_functions=( precmd_vcs_info )
 
 # env {{{
+export PATH="$HOME/.cargo/bin:$PATH" # rust
+
 export CLICOLORS=1 # color ls output on BSD ls
 
 # FZF config {{{
