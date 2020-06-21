@@ -234,14 +234,6 @@ nnoremap <silent> <Left> :vertical resize -2<CR>
 nnoremap <silent> <Up> :resize +2<CR>
 nnoremap <silent> <Down> :resize -2<CR>
 
-" autocompletion popup menu enhancement
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
 " scroll the popup at the cursor
 inoremap <expr> <C-n> popup#scroll_cursor_popup(1) ? '' : '<C-n>'
 inoremap <expr> <C-p> popup#scroll_cursor_popup(0) ? '' : '<C-p>'
