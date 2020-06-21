@@ -242,6 +242,12 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
+" scroll the popup at the cursor
+inoremap <expr> <C-n> popup#scroll_cursor_popup(1) ? '' : '<C-n>'
+inoremap <expr> <C-p> popup#scroll_cursor_popup(0) ? '' : '<C-p>'
+nnoremap <expr> <C-n> popup#scroll_cursor_popup(1) ? '<esc>' : '<C-n>'
+nnoremap <expr> <C-p> popup#scroll_cursor_popup(0) ? '<esc>' : '<C-p>'
+
 " relative filepath completion
 " https://github.com/whiteinge/dotfiles/blob/e728e33bd105b16aeef134eb12e1175e0c00ef0a/.vimrc#L235
 inoremap <C-f>
