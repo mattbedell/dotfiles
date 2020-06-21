@@ -252,8 +252,11 @@ au CompleteDone *
   \ endif
 
 " vim-lsp {{{
-" put errors in the location list and close it
-nnoremap <silent> <leader>l :LspDocumentDiagnostics<cr>
+" put diagnostics in the location list
+nnoremap <silent> <leader>ll :LspDocumentDiagnostics<cr>
+nnoremap <silent> <leader>ld :LspDefinition<cr>
+nnoremap <silent> <leader>lf :LspFormat<cr>
+nnoremap <silent> <leader>lr :LspReferences<cr>
 
 "}}}
 
