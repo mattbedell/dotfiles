@@ -257,6 +257,7 @@ nnoremap <silent> <leader>ll :LspDocumentDiagnostics<cr>
 nnoremap <silent> <leader>ld :LspDefinition<cr>
 nnoremap <silent> <leader>lf :LspFormat<cr>
 nnoremap <silent> <leader>lr :LspReferences<cr>
+nnoremap <silent> <leader>lh :LspHover<cr>
 
 "}}}
 
