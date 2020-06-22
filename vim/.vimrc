@@ -115,7 +115,7 @@ set smartcase
 set hlsearch
 set list
 set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
-set completeopt+=longest,menuone,preview
+set completeopt+=longest,menuone,popup
 set incsearch
 set ruler
 set wildmenu
