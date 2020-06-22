@@ -2,7 +2,6 @@
 log/
 *.log
 .env
-*.swp
 
 # CTAGS
 /tags
@@ -22,3 +21,8 @@ dist/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Vim
+*.swp
+.vim-lsp-settings
+
