@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'prabirshrestha/async.vim'           " vim-lsp dependency, normalize async calls
 Plug 'junegunn/fzf'                       " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                   " fzf fuzzy finder plugin
+Plug 'rhysd/git-messenger.vim'            " fugitive Blame is slow, this is faster
 Plug 'gruvbox-community/gruvbox'          " theme
 Plug 'tmsvg/pear-tree'                    " autopair parens, etc.
 Plug 'unblevable/quick-scope'             " highlight unique chars for 'f' and 't' motions
