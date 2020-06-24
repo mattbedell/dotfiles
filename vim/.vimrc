@@ -238,6 +238,8 @@ nnoremap <silent> <Left> :vertical resize -2<CR>
 nnoremap <silent> <Up> :resize +2<CR>
 nnoremap <silent> <Down> :resize -2<CR>
 
+inoremap <expr> <S-tab> pumvisible() ? '<C-n>' : '<C-x><C-o>'
+
 " scroll the popup at the cursor
 inoremap <expr> <C-n> popup#scroll_cursor_popup(1) ? '' : '<C-n>'
 inoremap <expr> <C-p> popup#scroll_cursor_popup(0) ? '' : '<C-p>'
