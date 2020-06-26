@@ -84,13 +84,17 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_highlight_references_enabled = 1
 let g:lsp_semantic_enabled = 1
 let g:lsp_signs_error = {'text': '>>'}
-let g:lsp_signs_warning = {'text': '!!'}
-let g:lsp_signs_hint = {'text': '>>'}
+let g:lsp_signs_warning = {'text': '!>'}
+let g:lsp_signs_hint = {'text': '->'}
+let g:lsp_signs_information = {'text': '<>'}
 
+highlight clear LspErrorHighlight
 highlight link LspHintText DiffText
-highlight link LspHintHighlight DiffText
+" highlight link LspHintHighlight DiffText
 highlight link LspWarningText DiffText
-highlight link LspWarningHighlight DiffText
+" highlight link LspWarningHighlight DiffText
+highlight link LspInformationText DiffChange
+" highlight link LspInformationHighlight DiffChange
 highlight link lspReference ColorColumn
 
 "}}}
