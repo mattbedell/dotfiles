@@ -82,6 +82,13 @@ let g:hardtime_ignore_quickfix = 1
 
 "}}}
 "vim-lsp {{{
+augroup vim_lsp_installed
+  autocmd!
+  autocmd User lsp_buffer_enabled
+        \ setlocal omnifunc=lsp#complete |
+        \ if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+augroup END
+
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_highlight_references_enabled = 1
 let g:lsp_semantic_enabled = 1
@@ -265,13 +272,17 @@ au CompleteDone *
   \ endif
 
 " vim-lsp {{{
-" put diagnostics in the location list
-nnoremap <silent> <leader>ll :LspDocumentDiagnostics<cr>
-nnoremap <silent> <leader>ld :LspDefinition<cr>
-nnoremap <silent> <leader>lf :LspFormat<cr>
-nnoremap <silent> <leader>lr :LspReferences<cr>
-nnoremap <silent> <leader>lh :LspHover<cr>
-
+function! s:lsp_keymaps() abort
+  " put diagnostics in the location list
+  nmap <buffer> <leader>ll <plug>(lsp-document-diagnostics)
+  nmap <buffer> <leader>ld <plug>(lsp-definition)
+  nmap <buffer> <leader>lf <plug>(lsp-format)
+  nmap <buffer> <leader>lr <plug>(lsp-references)
+  nmap <buffer> <leader>lh <plug>(lsp-hover)
+endfunction
+augroup vim_lsp_installed
+  autocmd User lsp_buffer_enabled call s:lsp_keymaps()
+augroup END
 "}}}
 
 " vim-fugitive {{{
