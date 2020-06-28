@@ -15,6 +15,7 @@ Plug 'gruvbox-community/gruvbox'          " theme
 Plug 'Yggdroot/indentLine'                " minimal indent guides
 Plug 'tmsvg/pear-tree'                    " autopair parens, etc.
 Plug 'unblevable/quick-scope'             " highlight unique chars for 'f' and 't' motions
+Plug 'wellle/targets.vim'                 " enhanced text objects
 Plug 'tpope/vim-commentary'               " comment code
 Plug 'romainl/vim-cool'                   " auto highlight search, add search match count
 Plug 'tpope/vim-dispatch'                 " async make
