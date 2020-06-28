@@ -58,6 +58,7 @@ let g:CoolTotalMatches = 1
 
 " }}}
 " vim-gutentags {{{
+let g:gutentags_enabled = 0
 let g:gutentags_define_advanced_commands = 1
 let g:gutentags_ctags_exclude = ['node_modules', 'dist', '*.spec.js', '**/fixtures', '*.stories.js', '*.spec-a11y.js', 'tests']
 let g:gutentags_ctags_extra_args = ['--map-typescript=+.tsx']
