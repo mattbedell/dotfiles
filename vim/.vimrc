@@ -12,6 +12,7 @@ Plug 'junegunn/fzf'                       " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                   " fzf fuzzy finder plugin
 Plug 'rhysd/git-messenger.vim'            " fugitive Blame is slow, this is faster
 Plug 'gruvbox-community/gruvbox'          " theme
+Plug 'Yggdroot/indentLine'                " minimal indent guides
 Plug 'tmsvg/pear-tree'                    " autopair parens, etc.
 Plug 'unblevable/quick-scope'             " highlight unique chars for 'f' and 't' motions
 Plug 'tpope/vim-commentary'               " comment code
@@ -21,7 +22,6 @@ Plug 'tpope/vim-fugitive'                 " git integration
 Plug 'ludovicchabant/vim-gutentags'       " ctag manager
 Plug 'takac/vim-hardtime'                 " break bad habits
 Plug 'machakann/vim-highlightedyank'      " briefly highlight yanked text
-Plug 'nathanaelkane/vim-indent-guides'    " indent guides
 Plug 'prabirshrestha/vim-lsp'             " enable use of language servers
 Plug 'mattn/vim-lsp-settings'             " easily configure new language servers
 Plug 'sheerun/vim-polyglot'               " multi-language syntax support
@@ -41,6 +41,12 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --color=always --smart-case --hidden -g "!.git" '
   \  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
   \    fzf#vim#with_preview(), <bang>0)
+
+"}}}
+" indentline {{{
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+" let g:indentLine_leadingSpaceEnabled = 1
+let g:indentLine_bufTypeExclude = ['help', 'terminal']
 
 "}}}
 " quick-scope {{{
@@ -72,12 +78,6 @@ endif
 " vim-hardtime {{{
 " let g:hardtime_default_on = 1
 let g:hardtime_ignore_quickfix = 1
-
-"}}}
-" vim-indent-guides {{{
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
 
 "}}}
 "vim-lsp {{{
