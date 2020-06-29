@@ -9,6 +9,7 @@ let g:netrw_altfile = 1
 " }}}
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
+Plug 'dense-analysis/ale'                 " lsp/linting
 Plug 'prabirshrestha/async.vim'           " vim-lsp dependency, normalize async calls
 Plug 'junegunn/fzf'                       " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                   " fzf fuzzy finder plugin
@@ -84,6 +85,20 @@ endif
 let g:hardtime_ignore_quickfix = 1
 
 "}}}
+"ale {{{
+" lint on save, insert leave
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_insert_leave = 1
+
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '!>'
+let g:ale_sign_info = '<>'
+let g:ale_sign_style_error = '>>'
+let g:ale_sign_style_warning = '!>'
+
+"}}}
 "vim-lsp {{{
 augroup vim_lsp_installed
   autocmd!
@@ -92,21 +107,18 @@ augroup vim_lsp_installed
         \ if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 augroup END
 
-let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_enabled = 0
 let g:lsp_highlight_references_enabled = 1
 let g:lsp_semantic_enabled = 1
-let g:lsp_signs_error = {'text': '>>'}
-let g:lsp_signs_warning = {'text': '!>'}
-let g:lsp_signs_hint = {'text': '->'}
-let g:lsp_signs_information = {'text': '<>'}
+" let g:lsp_signs_error = {'text': '>>'}
+" let g:lsp_signs_warning = {'text': '!>'}
+" let g:lsp_signs_hint = {'text': '->'}
+" let g:lsp_signs_information = {'text': '<>'}
 
-highlight clear LspErrorHighlight
-highlight link LspHintText DiffText
-" highlight link LspHintHighlight DiffText
-highlight link LspWarningText DiffText
-" highlight link LspWarningHighlight DiffText
-highlight link LspInformationText DiffChange
-" highlight link LspInformationHighlight DiffChange
+" highlight clear LspErrorHighlight
+" highlight link LspHintText DiffText
+" highlight link LspWarningText DiffText
+" highlight link LspInformationText DiffChange
 highlight link lspReference ColorColumn
 
 "}}}
@@ -346,7 +358,12 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 augroup ThemeCust
   autocmd!
   autocmd ColorScheme *
-        \   highlight SpellBad       ctermbg=9 guibg=#770000
+    \   highlight SpellBad       ctermbg=9 guibg=#770000
+    \ | highlight link ALEErrorSign DiffDelete
+    \ | highlight link ALEWarningSign DiffText
+    \ | highlight link ALEInfoSign DiffChange
+    \ | highlight link ALEStyleErrorSign DiffDelete
+    \ | highlight link ALEStyleWarningSign DiffText
 
 " gruvbox theme {{{
 let g:gruvbox_contrast_dark='hard'
