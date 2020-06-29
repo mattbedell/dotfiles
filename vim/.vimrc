@@ -119,6 +119,7 @@ let g:javascript_plugin_jsdoc = 1 " syntax highlighting for JSDOC
 "}}}
 " Settings {{{
 syntax on
+set path+=src/**
 set directory^=$HOME/.vim/swp//
 set undofile
 set undodir^=$HOME/.vim/undo//
