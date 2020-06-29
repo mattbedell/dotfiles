@@ -6,9 +6,5 @@
 "   autocmd QuickFixCmdPost [^l]* cwindow " auto open quickfix window
 " augroup END
 
-if exists('g:lsp_loaded')
-  setlocal omnifunc=lsp#complete
-endif
-
 setlocal include=^\\s*[^\/]\\+\\(from\\\|require(['\"]\\)
 
