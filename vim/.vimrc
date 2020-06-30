@@ -4,6 +4,9 @@ packadd! cfilter " filter quickfix list, see :help CFilter
 packadd! matchit " extend %
 filetype plugin indent on
 
+let g:netrw_browse_split = 4
+let g:netrw_altfile = 1
+
 " }}}
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
@@ -246,6 +249,21 @@ else
   nnoremap <C-L> <C-W><C-L>
   nnoremap <C-H> <C-W><C-H>
 endif
+
+" unmap netrw keymaps so window navigation still works
+function! s:unmap_netrw_buffmaps() abort
+  if maparg('<C-L>', 'n', 0, 1)['buffer'] == 1
+      nunmap <buffer> <C-L>
+  endif
+  if maparg('<C-H>', 'n', 0, 1)['buffer'] == 1
+      nunmap <buffer> <C-H>
+  endif
+endfunction
+
+augroup netrw_unmap
+  autocmd!
+  autocmd filetype netrw call s:unmap_netrw_buffmaps()
+augroup END
 
 " resize splits
 nnoremap <silent> <Right> :vertical resize +2<CR>
