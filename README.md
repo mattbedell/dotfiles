@@ -10,6 +10,7 @@ $ brew bundle
 Use `GNU Stow` to symlink dotfiles. Clone this repo to your home directory and use `stow`:
 
 ```
+$ cd ~/dotfiles
 $ stow [PACKAGE]
 ```
 
