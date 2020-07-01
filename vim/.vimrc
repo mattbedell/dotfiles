@@ -283,7 +283,7 @@ nnoremap <expr> <C-p> popup#scroll_cursor_popup(0) ? '<esc>' : '<C-p>'
 " https://github.com/whiteinge/dotfiles/blob/e728e33bd105b16aeef134eb12e1175e0c00ef0a/.vimrc#L235
 inoremap <C-f>
   \ <C-o>:let b:oldpwd = getcwd() <bar>
-  \ lcd %:p:h<CR><C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ''<CR>
+  \ lcd %:p:h<CR><C-x><C-f>
 au CompleteDone *
   \ if exists('b:oldpwd') |
   \   cd `=b:oldpwd` |
