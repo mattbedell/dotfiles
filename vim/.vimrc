@@ -4,7 +4,6 @@ packadd! cfilter " filter quickfix list, see :help CFilter
 packadd! matchit " extend %
 filetype plugin indent on
 
-let g:netrw_browse_split = 4
 let g:netrw_altfile = 1
 
 " }}}
@@ -33,6 +32,7 @@ Plug 'yassinebridi/vim-purpura'           " theme, all purple because its fun
 Plug 'tpope/vim-repeat'                   " make mappings repeatable
 Plug 'tpope/vim-surround'                 " mappings for surrounding characters
 Plug 'tmux-plugins/vim-tmux-focus-events' " add support for FocusGained and FocusLost events (proposed patch for this has been in limbo for years)
+Plug 'tpope/vim-vinegar'                  " netrw small enhancements
 call plug#end()
 
 "}}}
