@@ -359,8 +359,8 @@ augroup GruvboxCust
   autocmd ColorScheme gruvbox highlight Normal guibg=#000000
     \ | highlight SpecialKey guifg='#ff00ff' ctermfg=201 cterm=bold
     \ | let g:fzf_colors.bg = ['bg', 'Normal']
-    \ | highlight CursorLine ctermbg=232 guibg=#101010
-    \ | highlight CursorLineNR cterm=bold ctermbg=232 guibg=#101010
+    \ | highlight CursorLine ctermbg=233 guibg=#121212
+    \ | highlight CursorLineNR cterm=bold ctermbg=233 guibg=#121212
     \ | highlight GruvboxRed guifg=#f6362f
 augroup END
 
