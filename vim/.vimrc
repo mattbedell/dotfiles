@@ -92,6 +92,9 @@ let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_insert_leave = 1
 
+let g:ale_linters_explicit = 1
+let g:ale_linters = {'javascript': ['eslint'], 'typescript': ['eslint']}
+
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '!>'
 let g:ale_sign_info = '<>'
@@ -107,18 +110,18 @@ augroup vim_lsp_installed
         \ if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 augroup END
 
-let g:lsp_diagnostics_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_highlight_references_enabled = 1
 let g:lsp_semantic_enabled = 1
-" let g:lsp_signs_error = {'text': '>>'}
-" let g:lsp_signs_warning = {'text': '!>'}
-" let g:lsp_signs_hint = {'text': '->'}
-" let g:lsp_signs_information = {'text': '<>'}
+let g:lsp_signs_error = {'text': '>>'}
+let g:lsp_signs_warning = {'text': '!>'}
+let g:lsp_signs_hint = {'text': '->'}
+let g:lsp_signs_information = {'text': '<>'}
 
-" highlight clear LspErrorHighlight
-" highlight link LspHintText DiffText
-" highlight link LspWarningText DiffText
-" highlight link LspInformationText DiffChange
+highlight clear LspErrorHighlight
+highlight link LspHintText DiffText
+highlight link LspWarningText DiffText
+highlight link LspInformationText DiffChange
 highlight link lspReference ColorColumn
 
 "}}}
