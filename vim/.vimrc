@@ -9,6 +9,7 @@ let g:netrw_altfile = 1
 " }}}
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
+Plug 'dense-analysis/ale'                 " lsp/linting
 Plug 'prabirshrestha/async.vim'           " vim-lsp dependency, normalize async calls
 Plug 'junegunn/fzf'                       " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                   " fzf fuzzy finder plugin
@@ -84,6 +85,23 @@ endif
 let g:hardtime_ignore_quickfix = 1
 
 "}}}
+"ale {{{
+" lint on save, insert leave
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_insert_leave = 1
+
+let g:ale_linters_explicit = 1
+let g:ale_linters = {'javascript': ['eslint'], 'typescript': ['eslint']}
+
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '!>'
+let g:ale_sign_info = '<>'
+let g:ale_sign_style_error = '>>'
+let g:ale_sign_style_warning = '!>'
+
+"}}}
 "vim-lsp {{{
 augroup vim_lsp_installed
   autocmd!
@@ -102,11 +120,8 @@ let g:lsp_signs_information = {'text': '<>'}
 
 highlight clear LspErrorHighlight
 highlight link LspHintText DiffText
-" highlight link LspHintHighlight DiffText
 highlight link LspWarningText DiffText
-" highlight link LspWarningHighlight DiffText
 highlight link LspInformationText DiffChange
-" highlight link LspInformationHighlight DiffChange
 highlight link lspReference ColorColumn
 
 "}}}
@@ -346,7 +361,12 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 augroup ThemeCust
   autocmd!
   autocmd ColorScheme *
-        \   highlight SpellBad       ctermbg=9 guibg=#770000
+    \   highlight SpellBad       ctermbg=9 guibg=#770000
+    \ | highlight link ALEErrorSign DiffDelete
+    \ | highlight link ALEWarningSign DiffText
+    \ | highlight link ALEInfoSign DiffChange
+    \ | highlight link ALEStyleErrorSign DiffDelete
+    \ | highlight link ALEStyleWarningSign DiffText
 
 " gruvbox theme {{{
 let g:gruvbox_contrast_dark='hard'
