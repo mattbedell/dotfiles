@@ -8,6 +8,17 @@ highlight stlWarnNC    cterm=reverse,bold ctermfg=237 ctermbg=246 guifg=#313131 
 highlight stlGit       cterm=reverse      ctermfg=109 ctermbg=223 guifg=#3b3b3b guibg=#83a598
 highlight link stlGitNC StatusLineNC
 
+augroup ColorStatusLine
+  autocmd!
+  autocmd Colorscheme *
+        \   highlight StatusLine   cterm=reverse      ctermfg=239 ctermbg=223 guifg=#3b3b3b guibg=#ebdbb2
+        \ | highlight StatusLineNC cterm=reverse      ctermfg=237 ctermbg=246 guifg=#313131 guibg=#a49580
+        \ | highlight stlWarn      cterm=reverse,bold ctermfg=239 ctermbg=10  guifg=#3b3b3b guibg=#00ff00
+        \ | highlight stlWarnNC    cterm=reverse,bold ctermfg=237 ctermbg=246 guifg=#313131 guibg=#ebdbb2
+        \ | highlight stlGit       cterm=reverse      ctermfg=109 ctermbg=223 guifg=#3b3b3b guibg=#83a598
+        \ | highlight link stlGitNC StatusLineNC
+augroup END
+
 function! statusline#git() abort
   " https://github.com/milisims/vimfiles/blob/master/plugin/statusline.vim#L61
   let stltext = ''

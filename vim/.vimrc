@@ -362,7 +362,6 @@ augroup GruvboxCust
     \ | highlight CursorLine ctermbg=232 guibg=#101010
     \ | highlight CursorLineNR cterm=bold ctermbg=232 guibg=#101010
     \ | highlight GruvboxRed guifg=#f6362f
-    \ | highlight StatusLineNC guifg=#262626
 augroup END
 
 "}}}
