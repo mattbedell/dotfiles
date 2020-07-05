@@ -31,6 +31,7 @@ Plug 'mattn/vim-lsp-settings'             " easily configure new language server
 Plug 'sheerun/vim-polyglot'               " multi-language syntax support
 Plug 'yassinebridi/vim-purpura'           " theme, all purple because its fun
 Plug 'tpope/vim-repeat'                   " make mappings repeatable
+Plug 'kshenoy/vim-signature'              " visual marks in gutter
 Plug 'tpope/vim-surround'                 " mappings for surrounding characters
 Plug 'tmux-plugins/vim-tmux-focus-events' " add support for FocusGained and FocusLost events (proposed patch for this has been in limbo for years)
 Plug 'tpope/vim-vinegar'                  " netrw small enhancements
