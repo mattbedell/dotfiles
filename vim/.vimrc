@@ -105,11 +105,18 @@ let g:ale_sign_style_warning = '!>'
 
 "}}}
 "vim-lsp {{{
+" buffer settings when language server is installed
+" - omnifunc
+" - tagfunc
+" - foldexpr (leaves foldmethod manual, but sets up for foldmethod=expr using the LS if wanted)
+" - foldtext
 augroup vim_lsp_installed
   autocmd!
   autocmd User lsp_buffer_enabled
-        \ setlocal omnifunc=lsp#complete |
-        \ if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+        \ setlocal omnifunc=lsp#complete
+        \ | if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+        \ | setlocal foldexpr=lsp#ui#vim#folding#foldexpr()
+        \ | setlocal foldtext=lsp#ui#vim#folding#foldtext()
 augroup END
 
 let g:lsp_diagnostics_echo_cursor = 1
