@@ -261,6 +261,10 @@ nnoremap <silent> ]l :lnext<CR>
 nnoremap <silent> [l :lprevious<CR>
 nnoremap <silent> ]L :llast<CR>
 nnoremap <silent> [L :lfirst<CR>
+nnoremap <silent> ]a :next<CR>
+nnoremap <silent> [a :previous<CR>
+nnoremap <silent> ]A :last<CR>
+nnoremap <silent> [A :first<CR>
 
 " https://github.com/whiteinge/dotfiles/blob/e728e33bd105b16aeef134eb12e1175e0c00ef0a/.vim/autoload/vimortmux.vim
 " Natural movement around splits, if tmux, movement seamlessly extends to tmux panes
