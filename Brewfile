@@ -10,6 +10,7 @@ brew "htop"                    # Better top
 brew "less"
 brew "pyenv"                   # python version manager
 brew "pyenv-virtualenv"        # virtual env manager plugin for pyenv
+brew "ranger"                  # Terminal file manager
 brew "ripgrep"                 # Better grep
 brew "stow"                    # Symlink farm manager
 brew "tmux"

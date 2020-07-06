@@ -47,6 +47,8 @@ export EDITOR="vim"
 
 export CLICOLORS=1 # color ls output on BSD ls
 
+export RANGER_LOAD_DEFAULT_RC=false
+
 # FZF config {{{
 FD_SEARCH_OPTS='--hidden --follow --exclude .git --exclude node_modules'
 export FZF_DEFAULT_COMMAND="fd --type f $FD_SEARCH_OPTS"
@@ -108,7 +110,7 @@ zle -N zle-line-finish
 # alias {{{
 # open vim with global variable set to local tty, for yanking to local machine's unnamed register
 alias vi='vim -c "let g:tty='\''$(tty)'\''"'
-
+alias ra='ranger'
 if (( $+commands[exa] )); then
   alias ls='exa'
 fi
