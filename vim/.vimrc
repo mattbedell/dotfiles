@@ -249,7 +249,10 @@ nnoremap <silent><leader>z :ZoomToggle<CR>
 nnoremap <C-Z> <C-A>
 vnoremap <C-Z> <C-A>
 
+" some window commands have two keymaps for opening horiz. splits, so take one of them for vertical splits
 nnoremap <C-W><C-F> <C-W>vgf
+nnoremap <C-W><C-]> <C-W>v<C-]>
+
 noremap Y y$
 
 " bindings ripped from vim-unimpaired
