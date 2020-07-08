@@ -24,7 +24,6 @@ Plug 'romainl/vim-cool'                   " auto highlight search, add search ma
 Plug 'tpope/vim-dispatch'                 " async make
 Plug 'tpope/vim-fugitive'                 " git integration
 Plug 'ludovicchabant/vim-gutentags'       " ctag manager
-Plug 'takac/vim-hardtime'                 " break bad habits
 Plug 'machakann/vim-highlightedyank'      " briefly highlight yanked text
 Plug 'prabirshrestha/vim-lsp'             " enable use of language servers
 Plug 'mattn/vim-lsp-settings'             " easily configure new language servers
@@ -79,11 +78,6 @@ let g:gutentags_generate_on_missing = 0
 if executable('fd')
   let g:gutentags_file_list_command = 'fd --type file'
 endif
-
-"}}}
-" vim-hardtime {{{
-" let g:hardtime_default_on = 1
-let g:hardtime_ignore_quickfix = 1
 
 "}}}
 "ale {{{
