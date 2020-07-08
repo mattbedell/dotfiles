@@ -18,6 +18,7 @@ Plug 'gruvbox-community/gruvbox'          " theme
 Plug 'Yggdroot/indentLine'                " minimal indent guides
 Plug 'tmsvg/pear-tree'                    " autopair parens, etc.
 Plug 'unblevable/quick-scope'             " highlight unique chars for 'f' and 't' motions
+Plug 'francoiscabrol/ranger.vim'          " ranger file browser in vim
 Plug 'wellle/targets.vim'                 " enhanced text objects
 Plug 'tpope/vim-commentary'               " comment code
 Plug 'romainl/vim-cool'                   " auto highlight search, add search match count
@@ -33,7 +34,6 @@ Plug 'tpope/vim-repeat'                   " make mappings repeatable
 Plug 'kshenoy/vim-signature'              " visual marks in gutter
 Plug 'tpope/vim-surround'                 " mappings for surrounding characters
 Plug 'tmux-plugins/vim-tmux-focus-events' " add support for FocusGained and FocusLost events (proposed patch for this has been in limbo for years)
-Plug 'tpope/vim-vinegar'                  " netrw small enhancements
 call plug#end()
 
 "}}}
@@ -62,6 +62,11 @@ augroup qs_colors
 augroup END
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T'] "Only highlight on keys
 let g:qs_lazy_highlight = 1 " autocmd event from CursorMoved to CursorHold (reduces slowdown)
+
+"}}}
+" ranger {{{
+let g:ranger_replace_netrw = 1
+let g:ranger_map_keys = 0
 
 "}}}
 " vim-cool {{{
@@ -249,6 +254,7 @@ nnoremap <C-W><C-F> <C-W>vgf
 nnoremap <C-W><C-]> <C-W>v<C-]>
 
 noremap Y y$
+nnoremap <silent>- :Ranger<CR>
 
 " bindings ripped from vim-unimpaired
 nnoremap <silent> ]q :cnext<CR>
