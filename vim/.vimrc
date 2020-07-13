@@ -246,6 +246,9 @@ nnoremap <leader>s :w<CR>
 nnoremap <silent><leader>z :ZoomToggle<CR>
 nmap <leader>bd <plug>Kwbd
 
+"close quickfix/location lists
+nnoremap <silent><leader>c :ccl<CR>:lcl<CR>
+
 " ctrl-a is bound to tmux toggle all bindings, a different binding is used for suspend (ctrl-z) so this is fine
 nnoremap <C-Z> <C-A>
 vnoremap <C-Z> <C-A>
