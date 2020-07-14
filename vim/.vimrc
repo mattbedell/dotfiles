@@ -169,6 +169,10 @@ set cursorline
 set cursorcolumn
 set diffopt=vertical,filler,closeoff
 set nowrap
+set linebreak
+set showbreak=>\ 
+set breakindent
+set breakindentopt=sbr
 set signcolumn=number
 set history=1000
 set scrolloff=1
