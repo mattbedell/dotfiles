@@ -248,6 +248,7 @@ nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <silent><leader>z :ZoomToggle<CR>
+nnoremap <leader>w <C-w>
 nmap <leader>bd <plug>Kwbd
 
 "close quickfix/location lists
