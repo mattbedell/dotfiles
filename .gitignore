@@ -7,4 +7,5 @@ Brewfile.lock.json
 
 #ZSH
 zsh/.zsh/.zcompdump*
+zsh/.zsh/.zsh_history
 

@@ -1,6 +1,6 @@
 
 # https://github.com/hanjianwei/zsh-sensible/blob/master/sensible.zsh
-HISTFILE="$HOME/.zsh_history"
+HISTFILE="$ZDOTDIR/.zsh_history"
 HISTSIZE=5000
 SAVEHIST=5000
 
@@ -26,6 +26,7 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+zstyle ':completion::complete:*' cache-path '$ZDOTDIR/.zcompcache'
 
 autoload -U colors && colors
 autoload -U add-zsh-hook
@@ -216,5 +217,5 @@ if [[ -d "$ZDOTDIR" ]] && [[ -d "$ZDOTDIR/opt" ]]; then
   done
 fi
 
-compinit
+compinit -d $ZDOTDIR/.zcompdump-${HOST:-'host'}-$ZSH_VERSION
 
