@@ -7,6 +7,6 @@ vim/.vim/plugged
 Brewfile.lock.json
 
 #ZSH
-zsh/.zsh/.zcompdump*
-zsh/.zsh/.zsh_history
+.zcompdump*
+.zsh_history
 
