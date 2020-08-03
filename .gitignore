@@ -1,5 +1,6 @@
 # VIM
 vim/.vim/plugged
+.viminfo
 .netrwhist
 
 # Brew

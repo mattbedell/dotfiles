@@ -149,6 +149,7 @@ set path+=src/**
 set directory^=$HOME/.vim/swp//
 set undofile
 set undodir^=$HOME/.vim/undo//
+set viminfo='100,s100,h,n$HOME/.vim/.viminfo
 set dictionary+=/usr/share/dict/words
 set hidden
 set timeoutlen=1000 ttimeoutlen=5
