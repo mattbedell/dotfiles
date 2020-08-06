@@ -207,7 +207,7 @@ schemes:
   iterm: &iterm
     primary:
       background: '#000000'
-      foreground: '#c7c7c7'
+      foreground: '#fce8c3'
 
     cursor:
       text: '#feffff'
