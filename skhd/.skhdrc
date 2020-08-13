@@ -42,10 +42,16 @@ cmd + alt - n : yabai -m space --create && \
 # destroy desktop
 shift + cmd + ctrl + alt - w : yabai -m space --destroy
 
-# focus desktop
+# focus desktop, only cycle spaces attached to the focused monitor
 ctrl + alt - i : yabai -m space --focus recent
-ctrl + alt - k : yabai -m space --focus prev
-ctrl + alt - j : yabai -m space --focus next
+ctrl + alt - k : spaces=$(yabai -m query --spaces --display) && \
+                        focused=$(echo $spaces | jq 'map(.focused) | index (1)') && \
+                        next_space_id=$(echo $spaces | jq 'map(.index) | .[if $focused > 0 then $focused - 1 else 0 end]' --argjson focused $focused) && \
+                        yabai -m space --focus "${next_space_id}"
+ctrl + alt - j : spaces=$(yabai -m query --spaces --display) && \
+                        focused=$(echo $spaces | jq 'map(.focused) | index (1)') && \
+                        next_space_id=$(echo $spaces | jq 'map(.index) | .[$focused + 1] // .[$focused]' --argjson focused $focused) && \
+                        yabai -m space --focus "${next_space_id}"
 
 # focus monitor
 ctrl + alt - o  : yabai -m display --focus recent
