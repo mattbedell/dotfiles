@@ -1,0 +1,32 @@
+# prepends [{ticket-project}-{ticket-number}] to a commit message
+#
+# usage: $ gmc this is a commit message
+# commit message: [abc-123] this is a commit message
+# @TODO make this cleaner
+#
+
+local message=''
+local branch="$(git rev-parse --abbrev-ref HEAD)"
+local branch=${branch:u}
+local ticket=''
+
+if [[ "$branch" =~ (^[[:alpha:]]{3,}-[[:digit:]]+) ]]; then
+  ticket="[${match[1]}] "
+fi
+
+local args=()
+
+# determine what args to pass to 'git commit'
+for i in $@; do
+  if [[ "$i" =~ ^- ]]; then
+    args+=($i)
+  else
+    message="$message $i"
+  fi
+done;
+
+# trim any leading whitespace
+message=$(expr "$message" : '[[:blank:]]*\(.*\)');
+
+git commit -m "$ticket$message" ${args[@]};
+

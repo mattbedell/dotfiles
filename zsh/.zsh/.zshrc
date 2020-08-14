@@ -123,71 +123,12 @@ alias bsa='brew services start'
 alias bso='brew services stop'
 alias bsr='brew services restart'
 
-function portkill() {
-    kill -9 $(lsof -ti tcp:$1)
-}
-
-# prepends [{ticket-project}-{ticket-number}] to a commit message
-#
-# usage: $ gmc this is a commit message
-# commit message: [abc-123] this is a commit message
-# @TODO make this cleaner
-#
-function gmc() {
-    message=''
-    branch="$(git rev-parse --abbrev-ref HEAD)"
-    branch=${branch:u}
-    ticket=''
-
-    if [[ "$branch" =~ (^[[:alpha:]]{3,}-[[:digit:]]+) ]]; then
-        ticket="[${match[1]}] "
-    fi
-
-    args=()
-    for i in $@; do
-        if [[ "$i" =~ ^- ]]; then
-            args+=($i)
-        else
-            message="$message $i"
-        fi
-    done;
-
-    # trim any leading whitespace
-    message=$(expr "$message" : '[[:blank:]]*\(.*\)');
-
-    git commit -m "$ticket$message" ${args[@]};
-}
-
 # }}}
 # nvm {{{
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 # NVM completion calls compinit for some reason, so it creates a new zcompdump if a custom compdump is used. It's also slow, don't use it for now.
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# }}}
-# auto nvm use {{{
-load-nvmrc() {
-  if (( ! $+commands[nvm] )); return 0
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
 # }}}
 
@@ -217,6 +158,14 @@ if [[ -d "$ZDOTDIR" ]] && [[ -d "$ZDOTDIR/opt" ]]; then
     source "$file"
   done
 fi
+
+# add user functions
+fpath+=$ZDOTDIR/zfunc
+autoload -Uz gmc load-nvmrc portkill
+
+# check for nvmrc and change node version on dir change
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 compinit -d $ZDOTDIR/.zcompdump-${HOST:-'host'}-$ZSH_VERSION
 
