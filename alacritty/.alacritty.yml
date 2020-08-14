@@ -389,8 +389,8 @@ shell:
   program: /usr/local/bin/zsh
   args:
     - --login
-    - -c
-    - "tmux attach -t dev || tmux new -s dev"
+    # - -c
+    # - "tmux attach -t dev || tmux new -s dev"
 
 # Startup directory
 #
@@ -582,6 +582,8 @@ key_bindings:
   # sending escape sequences for alt is supported but not working on osx, so map manually as needed
   - { key: Period,   mods: Alt,           chars: "\x1b."           }
 
+  # create a new terminal window
+  - { key: N, mods: Command, action: SpawnNewInstance }
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }
