@@ -185,6 +185,7 @@ set viewoptions-=options
 set iskeyword+=-
 set pastetoggle=<F1>
 set formatoptions-=cro
+set belloff=all
 
 " use vim-tmux-focus-events plug and autoread to update buffers on external
 " changes to its file, the plugin makes focus events available in terminal vim
