@@ -343,8 +343,8 @@ function! s:lsp_keymaps() abort
   nmap <buffer> <leader>lf <plug>(lsp-format)
   nmap <buffer> <leader>lr <plug>(lsp-references)
   nmap <buffer> <leader>lh <plug>(lsp-hover)
-  nmap <buffer> ]r <plug>lsp-next-reference
-  nmap <buffer> [r <plug>lsp-previous-reference
+  nmap <buffer> ]r <plug>(lsp-next-reference)
+  nmap <buffer> [r <plug>(lsp-previous-reference)
 endfunction
 augroup vim_lsp_installed
   autocmd User lsp_buffer_enabled call s:lsp_keymaps()
