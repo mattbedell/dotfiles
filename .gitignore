@@ -3,6 +3,11 @@ vim/.vim/plugged
 .viminfo
 .netrwhist
 
+# VIFM
+vifm/*/*.txt
+vifm/**/README
+vifminfo
+
 # Brew
 Brewfile.lock.json
 
