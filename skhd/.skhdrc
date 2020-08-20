@@ -1,8 +1,8 @@
 # focus window
-ctrl + cmd - h : yabai -m window --focus west
-ctrl + cmd - j : yabai -m window --focus south
-ctrl + cmd - k : yabai -m window --focus north
-ctrl + cmd - l : yabai -m window --focus east
+ctrl + alt - h : yabai -m window --focus west
+ctrl + alt - j : yabai -m window --focus south
+ctrl + alt - k : yabai -m window --focus north
+ctrl + alt - l : yabai -m window --focus east
 
 # swap window
 shift + alt - h : yabai -m window --swap west
@@ -43,20 +43,20 @@ cmd + alt - n : yabai -m space --create && \
 shift + cmd + ctrl + alt - w : yabai -m space --destroy
 
 # focus desktop, only cycle spaces attached to the focused monitor
-ctrl + alt - i : yabai -m space --focus recent
-ctrl + alt - k : spaces=$(yabai -m query --spaces --display) && \
+ctrl + cmd - i : yabai -m space --focus recent
+ctrl + cmd - k : spaces=$(yabai -m query --spaces --display) && \
                         focused=$(echo $spaces | jq 'map(.focused) | index (1)') && \
                         next_space_id=$(echo $spaces | jq 'map(.index) | .[if $focused > 0 then $focused - 1 else 0 end]' --argjson focused $focused) && \
                         yabai -m space --focus "${next_space_id}"
-ctrl + alt - j : spaces=$(yabai -m query --spaces --display) && \
+ctrl + cmd - j : spaces=$(yabai -m query --spaces --display) && \
                         focused=$(echo $spaces | jq 'map(.focused) | index (1)') && \
                         next_space_id=$(echo $spaces | jq 'map(.index) | .[$focused + 1] // .[$focused]' --argjson focused $focused) && \
                         yabai -m space --focus "${next_space_id}"
 
 # focus monitor
-ctrl + alt - o  : yabai -m display --focus recent
-ctrl + alt - h  : yabai -m display --focus prev
-ctrl + alt - l  : yabai -m display --focus next
+ctrl + cmd - o  : yabai -m display --focus recent
+ctrl + cmd - h  : yabai -m display --focus prev
+ctrl + cmd - l  : yabai -m display --focus next
 
 # send window to desktop and follow focus
 shift + cmd - o : yabai -m window --space recent; yabai -m space --focus recent
