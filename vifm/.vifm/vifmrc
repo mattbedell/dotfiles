@@ -355,7 +355,7 @@ filextype */
 " Or leave it for automatic detection
 "
 " fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
-fileviewer *[^/] env -uCOLORTERM bat -pp --color always --wrap never %c
+fileviewer *[^/] env -uCOLORTERM bat -pp --theme default --color always --wrap never %c
 fileviewer */ tree -L 1 -C -a
 
 " Displaying pictures in terminal
