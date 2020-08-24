@@ -55,8 +55,8 @@ ctrl + cmd - j : spaces=$(yabai -m query --spaces --display) && \
 
 # focus monitor
 ctrl + cmd - o  : yabai -m display --focus recent
-ctrl + cmd - h  : yabai -m display --focus prev
-ctrl + cmd - l  : yabai -m display --focus next
+ctrl + cmd - h  : yabai -m display --focus west
+ctrl + cmd - l  : yabai -m display --focus east
 
 # send window to desktop and follow focus
 shift + cmd - o : yabai -m window --space recent; yabai -m space --focus recent
@@ -65,8 +65,8 @@ shift + cmd - c : yabai -m window --space next; yabai -m space --focus next
 
 # send window to monitor and follow focus
 shift + alt - o  : yabai -m window --display recent; yabai -m display --focus recent
-shift + alt - z  : yabai -m window --display prev; yabai -m display --focus prev
-shift + alt - c  : yabai -m window --display next; yabai -m display --focus next
+shift + alt - z  : yabai -m window --display west; yabai -m display --focus west
+shift + alt - c  : yabai -m window --display east; yabai -m display --focus east
 
 # move window
 shift + ctrl - a : yabai -m window --move rel:-20:0
