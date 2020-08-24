@@ -383,9 +383,26 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
+function! BatTheme(bg) abort
+  " bat is the underlying syntax highlighter for FZF preview windows
+  " tell bat to use a theme that works with the current background setting
+  if !exists('g:bat_theme')
+    let g:bat_theme=$BAT_THEME
+  endif
+
+  if a:bg ==# 'light'
+    let $BAT_THEME='GitHub'
+  else
+    let $BAT_THEME=g:bat_theme
+  endif
+endfunction
+
+call BatTheme(&background)
+
 " general overrides applied to all themes
 augroup ThemeCust
   autocmd!
+  autocmd OptionSet background call BatTheme(v:option_new)
   autocmd ColorScheme *
     \   highlight SpellBad       ctermbg=9 guibg=#770000
     \ | highlight link ALEErrorSign DiffDelete
