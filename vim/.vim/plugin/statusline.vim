@@ -1,22 +1,17 @@
 
-" TODO: Fixup this file because it is a mess
+function! statusline#updateHighlighGroups() abort
+  call utils#extendHighlight('StatusLine', 'stlWarn',  'ctermbg=10 cterm=reverse,bold' . ' guibg=' . utils#getHighlightTerm('Question', 'guifg'))
+  call utils#extendHighlight('StatusLineNC', 'stlWarnNC', 'cterm=reverse,bold')
+  call utils#extendHighlight('StatusLine', 'stlGit', 'guibg=' . utils#getHighlightTerm('Identifier', 'guifg'))
+  highlight link stlGitNC StatusLineNC
+endfunction
 
-highlight StatusLine   cterm=reverse      ctermfg=239 ctermbg=223 guifg=#3b3b3b guibg=#ebdbb2
-highlight StatusLineNC cterm=reverse      ctermfg=237 ctermbg=246 guifg=#313131 guibg=#a49580
-highlight stlWarn      cterm=reverse,bold ctermfg=239 ctermbg=10  guifg=#3b3b3b guibg=#00ff00
-highlight stlWarnNC    cterm=reverse,bold ctermfg=237 ctermbg=246 guifg=#313131 guibg=#ebdbb2
-highlight stlGit       cterm=reverse      ctermfg=109 ctermbg=223 guifg=#3b3b3b guibg=#83a598
-highlight link stlGitNC StatusLineNC
+call statusline#updateHighlighGroups()
 
 augroup ColorStatusLine
   autocmd!
-  autocmd Colorscheme *
-        \   highlight StatusLine   cterm=reverse      ctermfg=239 ctermbg=223 guifg=#3b3b3b guibg=#ebdbb2
-        \ | highlight StatusLineNC cterm=reverse      ctermfg=237 ctermbg=246 guifg=#313131 guibg=#a49580
-        \ | highlight stlWarn      cterm=reverse,bold ctermfg=239 ctermbg=10  guifg=#3b3b3b guibg=#00ff00
-        \ | highlight stlWarnNC    cterm=reverse,bold ctermfg=237 ctermbg=246 guifg=#313131 guibg=#ebdbb2
-        \ | highlight stlGit       cterm=reverse      ctermfg=109 ctermbg=223 guifg=#3b3b3b guibg=#83a598
-        \ | highlight link stlGitNC StatusLineNC
+  autocmd Colorscheme * call statusline#updateHighlighGroups()
+  autocmd OptionSet background call statusline#updateHighlighGroups()
 augroup END
 
 function! statusline#git() abort
