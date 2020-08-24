@@ -198,6 +198,15 @@ if executable("rg")
   set grepformat^=%f:%l:%c:%m
 endif
 
+if has('mksession')
+  set viewdir=$HOME/.vim/view//
+  augroup AutoSaveFolds
+    autocmd!
+    autocmd BufWinLeave ?* mkview
+    autocmd BufWinEnter ?* silent! loadview
+  augroup END
+endif
+
 " Indentation
 set autoindent
 set tabstop=2
