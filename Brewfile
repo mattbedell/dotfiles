@@ -12,12 +12,12 @@ brew "jq"                      # Json processor
 brew "less"
 brew "pyenv"                   # Python version manager
 brew "pyenv-virtualenv"        # Virtual env manager plugin for pyenv
-brew "ranger"                  # Terminal file manager
 brew "ripgrep"                 # Better grep
 brew "skhd"                    # Hotkey daemon
 brew "stow"                    # Symlink farm manager
 brew "tmux"
 brew "tree"                    # Filesystem tree view
+brew "vifm"                    # Terminal file manager
 brew "vim"
 brew "yabai"                   # tiling window manager
 brew "zsh"
