@@ -247,6 +247,12 @@ augroup ActiveWindow
   autocmd WinLeave * call ToggleCursorLC(0)
 augroup END
 
+" general overrides for all filetype plugins
+augroup GeneralFiletype
+  autocmd!
+  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
+
 "}}}
 "}}}
 " Mappings {{{
