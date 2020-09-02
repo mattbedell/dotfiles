@@ -163,7 +163,7 @@ fi
 
 # add user functions
 fpath+=$ZDOTDIR/zfunc
-autoload -Uz gmc load-nvmrc portkill tmi
+autoload -Uz gmc load-nvmrc portkill tmi spell
 
 # check for nvmrc and change node version on dir change
 add-zsh-hook chpwd load-nvmrc
