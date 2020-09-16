@@ -12,6 +12,9 @@
 " you will need to change this setting.
 
 set vicmd=vim
+
+" always have left pane start as preview
+view!
 " set vicmd=elvis\ -G\ termcap
 " set vicmd=vile
 
