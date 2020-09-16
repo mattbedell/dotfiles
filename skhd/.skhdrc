@@ -59,14 +59,18 @@ ctrl + cmd - h  : yabai -m display --focus west
 ctrl + cmd - l  : yabai -m display --focus east
 
 # send window to desktop and follow focus
-shift + cmd - o : yabai -m window --space recent; yabai -m space --focus recent
-shift + cmd - z : yabai -m window --space prev; yabai -m space --focus prev
-shift + cmd - c : yabai -m window --space next; yabai -m space --focus next
+cmd - up : spaces=$(yabai -m query --spaces --display) && \
+                        focused=$(echo $spaces | jq 'map(.focused) | index (1)') && \
+                        next_space_id=$(echo $spaces | jq 'map(.index) | .[if $focused > 0 then $focused - 1 else 0 end]' --argjson focused $focused) && \
+                        yabai -m window --space "${next_space_id}"; yabai -m space --focus "${next_space_id}"
+cmd - down : spaces=$(yabai -m query --spaces --display) && \
+                        focused=$(echo $spaces | jq 'map(.focused) | index (1)') && \
+                        next_space_id=$(echo $spaces | jq 'map(.index) | .[$focused + 1] // .[$focused]' --argjson focused $focused) && \
+                        yabai -m window --space "${next_space_id}"; yabai -m space --focus "${next_space_id}"
 
 # send window to monitor and follow focus
-shift + alt - o  : yabai -m window --display recent; yabai -m display --focus recent
-shift + alt - z  : yabai -m window --display west; yabai -m display --focus west
-shift + alt - c  : yabai -m window --display east; yabai -m display --focus east
+cmd - left  : yabai -m window --display west; yabai -m display --focus west
+cmd - right  : yabai -m window --display east; yabai -m display --focus east
 
 # move window
 shift + ctrl - a : yabai -m window --move rel:-20:0
