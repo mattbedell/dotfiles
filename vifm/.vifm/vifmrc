@@ -15,6 +15,9 @@ set vicmd=vim
 
 " always have left pane start as preview
 view!
+
+" always show dotfiles
+windo normal zo
 " set vicmd=elvis\ -G\ termcap
 " set vicmd=vile
 
