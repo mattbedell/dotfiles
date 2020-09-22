@@ -37,7 +37,9 @@ call plug#end()
 " plugin configurations {{{
 " completion-nvim {{{
 let g:completion_enable_auto_popup = 0
-inoremap <silent><expr> <c-n> completion#trigger_completion()
+let g:completion_sorting="length"
+inoremap <silent><expr> <c-n> pumvisible() ? '<C-n>' : completion#trigger_completion()
+inoremap <expr> <S-tab> pumvisible() ? '<C-n>' : '<C-x><C-o>'
 "}}}
 " diagnostic-nvim {{{
 let g:diagnostic_insert_delay = 1
@@ -131,7 +133,8 @@ set smartcase
 set hlsearch
 set list
 set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
-set completeopt+=longest,menuone
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 set incsearch
 set ruler
 set wildmenu
