@@ -9,7 +9,7 @@ let g:netrw_altfile = 1
 
 " }}}
 " vim-plug {{{
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'prabirshrestha/async.vim'           " vim-lsp dependency, normalize async calls
 Plug 'nvim-lua/completion-nvim'           " completion with LSP
 Plug 'nvim-lua/diagnostic-nvim'           " diagnostic LSP configs
