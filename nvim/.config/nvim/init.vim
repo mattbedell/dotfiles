@@ -19,6 +19,7 @@ Plug 'rhysd/git-messenger.vim'            " fugitive Blame is slow, this is fast
 Plug 'gruvbox-community/gruvbox'          " theme
 Plug 'Yggdroot/indentLine'                " minimal indent guides
 Plug 'neovim/nvim-lspconfig'              " convenient configs for language servers
+Plug 'nvim-treesitter/nvim-treesitter'    " abstraction layer for neovim's treesitter integration
 Plug 'tmsvg/pear-tree'                    " autopair parens, etc.
 Plug 'unblevable/quick-scope'             " highlight unique chars for 'f' and 't' motions
 Plug 'wellle/targets.vim'                 " enhanced text objects
@@ -36,6 +37,7 @@ call plug#end()
 "}}}
 " lua user plugins {{{
 lua require('plugin.lsp')
+lua require('plugin.treesitter')
 "}}}
 " plugin configurations {{{
 " completion-nvim {{{
@@ -74,6 +76,14 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_bufTypeExclude = ['help', 'terminal']
 let g:indentLine_enabled = 0
 
+"}}}
+" nvim-treesitter {{{
+augroup TreesitterHi
+  autocmd!
+  autocmd ColorScheme *
+    \   highlight link TSDefinition DiffAdd
+    \ | highlight link TSDefinitionUsage StatusLine
+augroup END
 "}}}
 " quick-scope {{{
 augroup qs_colors
@@ -146,6 +156,7 @@ set showbreak=>\
 set breakindent
 set breakindentopt=sbr
 set noshowcmd
+set updatetime=750
 if has('nvim-0.5')
   set signcolumn=number
 endif
