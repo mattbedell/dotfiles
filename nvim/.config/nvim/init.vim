@@ -24,7 +24,7 @@ Plug 'unblevable/quick-scope'             " highlight unique chars for 'f' and '
 Plug 'wellle/targets.vim'                 " enhanced text objects
 Plug 'vifm/vifm.vim'                      " vifm file manager
 Plug 'tpope/vim-commentary'               " comment code
-" Plug 'romainl/vim-cool'                   " auto highlight search, add search match count
+Plug 'romainl/vim-cool'                   " auto highlight search, add search match count
 Plug 'tpope/vim-dispatch'                 " async make
 Plug 'tpope/vim-fugitive'                 " git integration
 Plug 'yassinebridi/vim-purpura'           " theme, all purple because its fun
