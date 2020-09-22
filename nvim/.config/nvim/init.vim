@@ -43,15 +43,15 @@ inoremap <expr> <S-tab> pumvisible() ? '<C-n>' : '<C-x><C-o>'
 "}}}
 " diagnostic-nvim {{{
 let g:diagnostic_insert_delay = 1
-let g:diagnostic_enable_virtual_text = 1
+" let g:diagnostic_enable_virtual_text = 1
 
 augroup LspDiagnostics
   autocmd!
   autocmd ColorScheme * \
-    highlight link LspDiagnosticsError stlWarn
-    \ | highlight link LspDiagnosticsWarning stlWarn
-    \ | highlight link LspDiagnosticsInformation stlWarnNc
-    \ | highlight link LspDiagnosticsHint stlWarnNc
+    highlight link LspDiagnosticsError DiffDelete
+    \ | highlight link LspDiagnosticsWarning DiffText
+    \ | highlight link LspDiagnosticsInformation DiffChange
+    \ | highlight link LspDiagnosticsHint DiffAdd
 augroup END
 
 " highlight link LspDiagnosticsError stlWarn
@@ -289,6 +289,9 @@ nnoremap <silent> ]a :next<CR>
 nnoremap <silent> [a :previous<CR>
 nnoremap <silent> ]A :last<CR>
 nnoremap <silent> [A :first<CR>
+
+nnoremap <silent> ]e :NextDiagnosticCycle<CR>
+nnoremap <silent> [e :PrevDiagnosticCycle<CR>
 
 " https://github.com/whiteinge/dotfiles/blob/e728e33bd105b16aeef134eb12e1175e0c00ef0a/.vim/autoload/vimortmux.vim
 " Natural movement around splits, if tmux, movement seamlessly extends to tmux panes
