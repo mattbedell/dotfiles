@@ -34,6 +34,9 @@ Plug 'tpope/vim-surround'                 " mappings for surrounding characters
 call plug#end()
 
 "}}}
+" lua user plugins {{{
+lua require('plugin.lsp')
+"}}}
 " plugin configurations {{{
 " completion-nvim {{{
 let g:completion_enable_auto_popup = 0
@@ -47,22 +50,13 @@ let g:diagnostic_insert_delay = 1
 
 augroup LspDiagnostics
   autocmd!
-  autocmd ColorScheme * \
-    highlight link LspDiagnosticsError DiffDelete
+  autocmd ColorScheme *
+    \   highlight link LspDiagnosticsError DiffDelete
     \ | highlight link LspDiagnosticsWarning DiffText
     \ | highlight link LspDiagnosticsInformation DiffChange
     \ | highlight link LspDiagnosticsHint DiffAdd
 augroup END
 
-" highlight link LspDiagnosticsError stlWarn
-" highlight link LspDiagnosticsWarning stlWarnNC
-" highlight link LspDiagnosticsInformation stlGit
-" highlight link LspDiagnosticsHint BufTabLineHidden
-
-call sign_define("LspDiagnosticsErrorSign", {"text" : ">>", "texthl" : "LspDiagnosticsError"})
-call sign_define("LspDiagnosticsWarningSign", {"text" : "!>", "texthl" : "LspDiagnosticsWarning"})
-call sign_define("LspDiagnosticsInformationSign", {"text" : "^>", "texthl" : "LspDiagnosticsInformation"})
-call sign_define("LspDiagnosticsHintSign", {"text" : "^^", "texthl" : "LspDiagnosticsHint"})
 "}}}
 " fzf {{{
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 1, 'yoffset': 1, 'border': 'top,bottom' } }
@@ -224,30 +218,6 @@ augroup GeneralFiletype
 augroup END
 
 "}}}
-" LSP {{{
-lua <<EOF
-  local nvim_lsp = require'nvim_lsp'
-  local on_attach_lsp = function(client)
-     require'completion'.on_attach(client)
-     require'diagnostic'.on_attach(client)
-     vim.fn.nvim_buf_set_keymap(0, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
-     vim.fn.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true})
-     vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
-  end
-
-  nvim_lsp.tsserver.setup{
-    root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
-    on_attach = on_attach_lsp
-  }
-
-  nvim_lsp.pyls_ms.setup{
-      on_attach = on_attach_lsp
-  }
-  nvim_lsp.rust_analyzer.setup{
-    on_attach = on_attach_lsp
-  }
-EOF
-"}}}
 "}}}
 " Mappings {{{
 let mapleader=" "
@@ -291,8 +261,6 @@ nnoremap <silent> [a :previous<CR>
 nnoremap <silent> ]A :last<CR>
 nnoremap <silent> [A :first<CR>
 
-nnoremap <silent> ]e :NextDiagnosticCycle<CR>
-nnoremap <silent> [e :PrevDiagnosticCycle<CR>
 
 " https://github.com/whiteinge/dotfiles/blob/e728e33bd105b16aeef134eb12e1175e0c00ef0a/.vim/autoload/vimortmux.vim
 " Natural movement around splits, if tmux, movement seamlessly extends to tmux panes
