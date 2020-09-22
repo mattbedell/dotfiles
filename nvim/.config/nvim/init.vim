@@ -78,6 +78,7 @@ command! -bang -nargs=* Rg
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_bufTypeExclude = ['help', 'terminal']
+let g:indentLine_enabled = 0
 
 "}}}
 " quick-scope {{{
