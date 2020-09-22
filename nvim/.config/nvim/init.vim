@@ -63,7 +63,7 @@ call sign_define("LspDiagnosticsInformationSign", {"text" : "^>", "texthl" : "Ls
 call sign_define("LspDiagnosticsHintSign", {"text" : "^^", "texthl" : "LspDiagnosticsHint"})
 "}}}
 " fzf {{{
-let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'yoffset': 1, 'border': 'top' } }
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 1, 'yoffset': 1, 'border': 'top,bottom' } }
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
