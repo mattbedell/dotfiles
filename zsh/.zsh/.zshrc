@@ -113,6 +113,7 @@ zle -N zle-line-finish
 # alias {{{
 # open vim with global variable set to local tty, for yanking to local machine's unnamed register
 alias vi='vim -c "let g:tty='\''$(tty)'\''"'
+alias ni='nvim -c "let g:tty='\''$(tty)'\''"'
 alias ra='ranger'
 if (( $+commands[exa] )); then
   alias ls='exa'
