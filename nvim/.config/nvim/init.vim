@@ -10,6 +10,7 @@ let g:netrw_altfile = 1
 " }}}
 " vim-plug {{{
 call plug#begin('~/.config/nvim/plugged')
+Plug 'dense-analysis/ale'                 " used just for eslint (for now)
 Plug 'prabirshrestha/async.vim'           " vim-lsp dependency, normalize async calls
 Plug 'nvim-lua/completion-nvim'           " completion with LSP
 Plug 'nvim-lua/diagnostic-nvim'           " diagnostic LSP configs
@@ -40,6 +41,34 @@ lua require('plugin.lsp')
 lua require('plugin.treesitter')
 "}}}
 " plugin configurations {{{
+"ale {{{
+" lint on save, insert leave
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_insert_leave = 1
+
+let g:ale_linters_explicit = 1
+let g:ale_disable_lsp = 1
+let g:ale_linters = {'javascript': ['eslint'], 'typescript': ['eslint']}
+
+let g:ale_set_highlights = 0
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '!>'
+let g:ale_sign_info = '<>'
+let g:ale_sign_style_error = '>>'
+let g:ale_sign_style_warning = '!>'
+
+augroup AleHi
+  autocmd!
+  autocmd ColorScheme *
+    \ | highlight link ALEErrorSign DiffDelete
+    \ | highlight link ALEWarningSign DiffText
+    \ | highlight link ALEInfoSign DiffChange
+    \ | highlight link ALEStyleErrorSign DiffDelete
+    \ | highlight link ALEStyleWarningSign DiffText
+augroup END
+"}}}
 " completion-nvim {{{
 let g:completion_enable_auto_popup = 0
 let g:completion_sorting="length"

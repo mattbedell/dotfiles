@@ -31,10 +31,10 @@ vim.fn.sign_define("LspDiagnosticsWarningSign", {
   texthl = "LspDiagnosticsWarning",
 })
 vim.fn.sign_define("LspDiagnosticsInformationSign", {
-  text = "^>",
+  text = "<>",
   texthl = "LspDiagnosticsInformation",
 })
 vim.fn.sign_define("LspDiagnosticsHintSign", {
-  text = "^^",
+  text = "<>",
   texthl = "LspDiagnosticsHint",
 })
