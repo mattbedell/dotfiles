@@ -7,6 +7,7 @@ on_attach_lsp = function(client)
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>NextDiagnosticCycle<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>PrevDiagnosticCycle<CR>', {noremap = true, silent = true})
+  vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>ld', '<cmd>OpenDiagnostic<CR>', {noremap = true, silent = true})
 end
 
 nvim_lsp.tsserver.setup{
