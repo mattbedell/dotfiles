@@ -455,6 +455,7 @@ augroup ThemeCust
     \ | highlight link ALEInfoSign DiffChange
     \ | highlight link ALEStyleErrorSign DiffDelete
     \ | highlight link ALEStyleWarningSign DiffText
+augroup END
 
 " gruvbox theme {{{
 let g:gruvbox_contrast_dark='hard'
