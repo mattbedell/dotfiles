@@ -45,7 +45,7 @@ precmd_functions=( precmd_vcs_info )
 
 # env {{{
 export PATH="$HOME/.cargo/bin:$PATH" # rust
-export EDITOR="vim"
+export EDITOR="nvim"
 export BAT_THEME
 
 export CLICOLORS=1 # color ls output on BSD ls
