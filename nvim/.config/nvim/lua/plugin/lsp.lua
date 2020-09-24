@@ -8,6 +8,9 @@ on_attach_lsp = function(client)
   vim.fn.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>NextDiagnosticCycle<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>PrevDiagnosticCycle<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>ld', '<cmd>OpenDiagnostic<CR>', {noremap = true, silent = true})
+
+  vim.api.nvim_win_set_option(0, "foldmethod", "expr")
+  vim.api.nvim_win_set_option(0, "foldexpr", "nvim_treesitter#foldexpr()")
 end
 
 nvim_lsp.tsserver.setup{

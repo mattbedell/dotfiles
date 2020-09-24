@@ -202,6 +202,7 @@ set pastetoggle=<F1>
 set formatoptions-=cro
 set belloff=all
 set noshowmode
+set foldlevelstart=99
 
 set autoread
 
