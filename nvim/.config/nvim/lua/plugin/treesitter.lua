@@ -13,7 +13,7 @@ require'nvim-treesitter.configs'.setup{
     "typescript",
   },
   highlight = {
-    enable = true
+    enable = true,
   },
   refactor = {
     highlight_definitions = { enable = true },
@@ -23,6 +23,12 @@ require'nvim-treesitter.configs'.setup{
       keymaps = {
         goto_next_usage = "]r",
         goto_previous_usage = "[r",
+      },
+    },
+    smart_rename = {
+      enable = true,
+      keymaps = {
+        smart_rename = "grr",
       },
     },
   },
