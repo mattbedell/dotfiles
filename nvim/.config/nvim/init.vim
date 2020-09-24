@@ -241,8 +241,8 @@ endfunction
 
 augroup ActiveWindow
   autocmd!
-  autocmd WinEnter * call ToggleCursorLC(1)
-  autocmd WinLeave * call ToggleCursorLC(0)
+  autocmd WinEnter * call ToggleCursorLC(1) | set signcolumn=number
+  autocmd WinLeave * call ToggleCursorLC(0) | set signcolumn=no
 augroup END
 
 augroup highlight_yank
@@ -376,17 +376,14 @@ endfunction
 
 call BatTheme(&background)
 
-" general overrides applied to all themes
-augroup ThemeCust
-  autocmd!
-  autocmd OptionSet background call BatTheme(v:option_new)
-  autocmd ColorScheme *
-    \   highlight SpellBad       ctermbg=9 guibg=#770000
-
 " gruvbox theme {{{
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
 
+" set background color to black
+" gruvbox overrides fzf popup colors, set black background
+" override cursorline color with something more subtle on black background
+" override red color to be less orange
 function! GruvCust() abort
   if exists('g:gruvbox_contrast_dark') && &background ==# 'dark'
     let g:fzf_colors.bg = ['bg', 'Normal']
@@ -400,13 +397,20 @@ function! GruvCust() abort
     highlight GruvboxPurple guifg=#ff5c8f
   endif
 endfunction
-" set background color to black
-" gruvbox overrides fzf popup colors, set black background
-" override cursorline color with something more subtle on black background
-" override red color to be less orange
-augroup GruvboxCust
+
+function! UpdateNormalNC() abort
+  call utils#extendHighlight('NormalNC', 'NormalNCCust', 'guibg=' . utils#getHighlightTerm('StatusLine', 'guifg'))
+  let custBg = synIDattr(hlID('StatusLine'),'fg')
+  exec 'hi NormalNC guibg=' . custBg
+  exec 'hi VertSplit guibg=' . custBg
+endfunction
+
+augroup ThemeCustom
   autocmd!
   autocmd ColorScheme gruvbox call GruvCust()
+  autocmd OptionSet background call BatTheme(v:option_new)
+  autocmd ColorScheme * highlight SpellBad ctermbg=9 guibg=#770000
+  autocmd ColorScheme * call UpdateNormalNC()
 augroup END
 
 "}}}
