@@ -17,6 +17,7 @@ Plug 'nvim-lua/diagnostic-nvim'           " diagnostic LSP configs
 Plug 'junegunn/fzf'                       " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                   " fzf fuzzy finder plugin
 Plug 'rhysd/git-messenger.vim'            " fugitive Blame is slow, this is faster
+Plug 'iautom8things/gitlink-vim'          " Generate a github link to current line
 Plug 'gruvbox-community/gruvbox'          " theme
 Plug 'Yggdroot/indentLine'                " minimal indent guides
 Plug 'neovim/nvim-lspconfig'              " convenient configs for language servers
@@ -342,6 +343,8 @@ nnoremap <leader>ge :Gedit<CR>
 " git log of current buffer
 nnoremap <leader>glb :0Glog<CR>
 
+nnoremap <leader>gh :call gitlink#copygitlink()<CR>
+vnoremap <leader>gh :call gitlink#copygitlink(1)<CR>
 "}}}
 
 " fzf {{{
