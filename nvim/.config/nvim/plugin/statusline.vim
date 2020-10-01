@@ -1,9 +1,11 @@
 
 function! statusline#updateHighlighGroups() abort
-  call utils#extendHighlight('StatusLine', 'stlWarn',  'ctermbg=10 cterm=reverse,bold' . ' guibg=' . utils#getHighlightTerm('Question', 'guifg'))
-  call utils#extendHighlight('StatusLineNC', 'stlWarnNC', 'cterm=reverse,bold')
-  call utils#extendHighlight('StatusLine', 'stlGit', 'guibg=' . utils#getHighlightTerm('Identifier', 'guifg'))
+  call utils#extendHighlight('StatusLine', 'stlWarn',  'ctermbg=10 cterm=reverse,bold gui=reverse,bold' . ' guibg=' . utils#getHighlightTerm('Question', 'guifg') . ' guifg=' . synIDattr(hlID('PmenuThumb'), 'bg'))
+  call utils#extendHighlight('StatusLineNC', 'stlWarnNC', 'cterm=reverse,bold gui=reverse,bold')
+  call utils#extendHighlight('StatusLine', 'stlGit', 'cterm=reverse gui=reverse guibg=' . utils#getHighlightTerm('Identifier', 'guifg') . ' guifg=' . synIDattr(hlID('PmenuThumb'), 'bg'))
+
   highlight link stlGitNC StatusLineNC
+  exec 'hi StatusLine cterm=reverse gui=reverse guifg=' . synIDattr(hlID('PmenuThumb'), 'bg')
 endfunction
 
 call statusline#updateHighlighGroups()
@@ -51,8 +53,7 @@ endfunction
 
 function! statusline#inactive() abort
   let stltext = ' '
-  let stltext .= '%{statusline#truncatedpath()}'
-  let stltext .= ' %#stlGitNC#%{statusline#git()}%*'
+  let stltext .= '%{expand("%:~:.")} '
   let stltext .= '%#stlWarnNC#%m%*%r'
   let stltext .= statusline#gutentags()
 

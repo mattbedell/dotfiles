@@ -406,8 +406,7 @@ function! GruvCust() abort
 endfunction
 
 function! UpdateNormalNC() abort
-  call utils#extendHighlight('NormalNC', 'NormalNCCust', 'guibg=' . utils#getHighlightTerm('StatusLine', 'guifg'))
-  let custBg = synIDattr(hlID('StatusLine'),'fg')
+  let custBg = synIDattr(hlID('StatusLine'),'fg#')
   exec 'hi NormalNC guibg=' . custBg
   exec 'hi VertSplit guibg=' . custBg
 endfunction
