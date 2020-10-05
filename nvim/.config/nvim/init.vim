@@ -258,6 +258,7 @@ augroup END
 augroup GeneralFiletype
   autocmd!
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  autocmd FileType qf wincmd J
 augroup END
 
 "}}}
