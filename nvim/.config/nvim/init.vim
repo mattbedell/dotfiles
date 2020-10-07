@@ -10,30 +10,31 @@ let g:netrw_altfile = 1
 " }}}
 " vim-plug {{{
 call plug#begin('~/.config/nvim/plugged')
-Plug 'dense-analysis/ale'                 " used just for eslint (for now)
-Plug 'prabirshrestha/async.vim'           " vim-lsp dependency, normalize async calls
-Plug 'nvim-lua/completion-nvim'           " completion with LSP
-Plug 'nvim-lua/diagnostic-nvim'           " diagnostic LSP configs
-Plug 'junegunn/fzf'                       " fzf fuzzy finder wrapper
-Plug 'junegunn/fzf.vim'                   " fzf fuzzy finder plugin
-Plug 'rhysd/git-messenger.vim'            " fugitive Blame is slow, this is faster
-Plug 'iautom8things/gitlink-vim'          " Generate a github link to current line
-Plug 'gruvbox-community/gruvbox'          " theme
-Plug 'Yggdroot/indentLine'                " minimal indent guides
-Plug 'neovim/nvim-lspconfig'              " convenient configs for language servers
-Plug 'nvim-treesitter/nvim-treesitter'    " abstraction layer for neovim's treesitter integration
-Plug 'tmsvg/pear-tree'                    " autopair parens, etc.
-Plug 'unblevable/quick-scope'             " highlight unique chars for 'f' and 't' motions
-Plug 'wellle/targets.vim'                 " enhanced text objects
-Plug 'vifm/vifm.vim'                      " vifm file manager
-Plug 'tpope/vim-commentary'               " comment code
-Plug 'romainl/vim-cool'                   " auto highlight search, add search match count
-Plug 'tpope/vim-dispatch'                 " async make
-Plug 'tpope/vim-fugitive'                 " git integration
-Plug 'yassinebridi/vim-purpura'           " theme, all purple because its fun
-Plug 'tpope/vim-repeat'                   " make mappings repeatable
-Plug 'kshenoy/vim-signature'              " visual marks in gutter
-Plug 'tpope/vim-surround'                 " mappings for surrounding characters
+Plug 'dense-analysis/ale'                                         " used just for eslint (for now)
+Plug 'prabirshrestha/async.vim'                                   " vim-lsp dependency, normalize async calls
+Plug 'nvim-lua/completion-nvim'                                   " completion with LSP
+Plug 'nvim-lua/diagnostic-nvim'                                   " diagnostic LSP configs
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " use a neovim instance for text inputs in web pages (chrome/firefox)
+Plug 'junegunn/fzf'                                               " fzf fuzzy finder wrapper
+Plug 'junegunn/fzf.vim'                                           " fzf fuzzy finder plugin
+Plug 'rhysd/git-messenger.vim'                                    " fugitive Blame is slow, this is faster
+Plug 'iautom8things/gitlink-vim'                                  " Generate a github link to current line
+Plug 'gruvbox-community/gruvbox'                                  " theme
+Plug 'Yggdroot/indentLine'                                        " minimal indent guides
+Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers
+Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
+Plug 'tmsvg/pear-tree'                                            " autopair parens, etc.
+Plug 'unblevable/quick-scope'                                     " highlight unique chars for 'f' and 't' motions
+Plug 'wellle/targets.vim'                                         " enhanced text objects
+Plug 'vifm/vifm.vim'                                              " vifm file manager
+Plug 'tpope/vim-commentary'                                       " comment code
+Plug 'romainl/vim-cool'                                           " auto highlight search, add search match count
+Plug 'tpope/vim-dispatch'                                         " async make
+Plug 'tpope/vim-fugitive'                                         " git integration
+Plug 'yassinebridi/vim-purpura'                                   " theme, all purple because its fun
+Plug 'tpope/vim-repeat'                                           " make mappings repeatable
+Plug 'kshenoy/vim-signature'                                      " visual marks in gutter
+Plug 'tpope/vim-surround'                                         " mappings for surrounding characters
 call plug#end()
 
 "}}}
