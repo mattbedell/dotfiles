@@ -195,7 +195,7 @@ endif
 
 set history=1000
 set scrolloff=1
-set sidescrolloff=5
+set sidescrolloff=15
 set sidescroll=1
 set complete-=i
 set sessionoptions-=options
