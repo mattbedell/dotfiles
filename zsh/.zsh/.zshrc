@@ -45,6 +45,7 @@ precmd_functions=( precmd_vcs_info )
 
 # env {{{
 export PATH="$HOME/.cargo/bin:$PATH" # rust
+export PATH="/usr/local/sbin:$PATH" #brew
 export EDITOR="nvim"
 export BAT_THEME
 
