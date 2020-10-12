@@ -6,6 +6,7 @@ brew "coreutils"               # GNU coreutils instead of BSD
 brew "exa"                     # Better ls
 brew "fd"                      # Better find
 brew "fzf"                     # Fuzzy finder
+brew "gh"                      # Github CLI
 brew "git"
 brew "htop"                    # Better top
 brew "jq"                      # Json processor
