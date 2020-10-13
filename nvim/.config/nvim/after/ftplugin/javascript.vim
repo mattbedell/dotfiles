@@ -6,5 +6,5 @@
 "   autocmd QuickFixCmdPost [^l]* cwindow " auto open quickfix window
 " augroup END
 
-setlocal include=^\\s*[^\/]\\+\\(from\\\|require(['\"]\\)
+" setlocal include=^\\s*[^\/]\\+\\(from\\\|require(['\"]\\)
 
