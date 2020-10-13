@@ -1,3 +1,3 @@
 
-setlocal include=^\\s*[^\/]\\+\\(from\\\|require(['\"]\\)
+" setlocal include=^\\s*[^\/]\\+\\(from\\\|require(['\"]\\)
 
