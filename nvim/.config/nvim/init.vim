@@ -24,8 +24,11 @@ Plug 'Yggdroot/indentLine'                                        " minimal inde
 Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers
 Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
 Plug 'tmsvg/pear-tree'                                            " autopair parens, etc.
+Plug 'nvim-lua/plenary.nvim'                                      " dep of telescope.nvim
+Plug 'nvim-lua/popup.nvim'                                        " dep of telescope.nvim
 Plug 'unblevable/quick-scope'                                     " highlight unique chars for 'f' and 't' motions
 Plug 'wellle/targets.vim'                                         " enhanced text objects
+Plug 'nvim-lua/telescope.nvim'                                    " fuzzy finder/prompt
 Plug 'vifm/vifm.vim'                                              " vifm file manager
 Plug 'tpope/vim-commentary'                                       " comment code
 Plug 'romainl/vim-cool'                                           " auto highlight search, add search match count
@@ -350,14 +353,21 @@ nnoremap <leader>glb :0Glog<CR>
 nnoremap <leader>gh :call gitlink#copygitlink()<CR>
 vnoremap <leader>gh :call gitlink#copygitlink(1)<CR>
 "}}}
-
+" telescope {{{
+nnoremap <silent> <leader><space> <cmd>lua require'telescope.builtin'.buffers{}<CR>
+nnoremap <leader>fg <cmd>lua require'telescope.builtin'.live_grep{}<CR>
+nnoremap <leader>ff <cmd>lua require'telescope.builtin'.git_files{}<CR>
+nnoremap <leader>fa <cmd>lua require'telescope.builtin'.find_files{ cwd = "~", find_command = { "fd", "-follow", "--hidden", "--type", "f", "--exclude", ".git", "--exclude", "node_modules" } }<CR>
+nnoremap <leader>fw <cmd>lua require'telescope.builtin'.lsp_workspace_symbols{}<CR>
+nnoremap <leader>fs <cmd>lua require'telescope.builtin'.lsp_document_symbols{}<CR>
+"}}}
 " fzf {{{
-nnoremap <leader>fd :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
-nnoremap <silent> <leader>fl :BLines<CR>
-nnoremap <silent> <leader><space> :Buffers<CR>
-nnoremap <leader>fs :Rg<space>
-nnoremap <leader>ff :GFiles<CR>
-nnoremap <leader>fa :Files
+" nnoremap <leader>fd :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
+" nnoremap <silent> <leader>fl :BLines<CR>
+" nnoremap <silent> <leader><space> :Buffers<CR>
+" nnoremap <leader>fs :Rg<space>
+" nnoremap <leader>ff :GFiles<CR>
+" nnoremap <leader>fa :Files
 
 " Use FZF for autocompletion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
