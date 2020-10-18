@@ -11,7 +11,6 @@ let g:netrw_altfile = 1
 " vim-plug {{{
 call plug#begin('~/.config/nvim/plugged')
 Plug 'dense-analysis/ale'                                         " used just for eslint (for now)
-Plug 'prabirshrestha/async.vim'                                   " vim-lsp dependency, normalize async calls
 Plug 'nvim-lua/completion-nvim'                                   " completion with LSP
 Plug 'nvim-lua/diagnostic-nvim'                                   " diagnostic LSP configs
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " use a neovim instance for text inputs in web pages (chrome/firefox)
@@ -23,6 +22,8 @@ Plug 'gruvbox-community/gruvbox'                                  " theme
 Plug 'Yggdroot/indentLine'                                        " minimal indent guides
 Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers
 Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
+Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " nvim-treesitter dependency
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'                " nvim-treesitter dependency
 Plug 'tmsvg/pear-tree'                                            " autopair parens, etc.
 Plug 'unblevable/quick-scope'                                     " highlight unique chars for 'f' and 't' motions
 Plug 'wellle/targets.vim'                                         " enhanced text objects
