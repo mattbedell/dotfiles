@@ -1,7 +1,7 @@
 nvim_lsp = require'nvim_lsp'
 on_attach_lsp = function(client)
   require'completion'.on_attach(client)
-  require'diagnostic'.on_attach(client)
+  require'usr.diagnostic'.on_attach(client)
   vim.fn.nvim_buf_set_keymap(0, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})

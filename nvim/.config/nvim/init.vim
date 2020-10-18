@@ -12,7 +12,6 @@ let g:netrw_altfile = 1
 call plug#begin('~/.config/nvim/plugged')
 Plug 'dense-analysis/ale'                                         " used just for eslint (for now)
 Plug 'nvim-lua/completion-nvim'                                   " completion with LSP
-Plug 'nvim-lua/diagnostic-nvim'                                   " diagnostic LSP configs
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " use a neovim instance for text inputs in web pages (chrome/firefox)
 Plug 'junegunn/fzf'                                               " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                                           " fzf fuzzy finder plugin
