@@ -329,11 +329,15 @@ inoremap <expr> <S-tab> pumvisible() ? '<C-n>' : '<C-x><C-o>'
 inoremap <C-f>
   \ <C-o>:let b:oldpwd = getcwd() <bar>
   \ lcd %:p:h<CR><C-x><C-f>
-au CompleteDone *
+
+augroup RelativeFilepathComp
+  autocmd!
+  autocmd CompleteDone *
   \ if exists('b:oldpwd') |
   \   cd `=b:oldpwd` |
   \   unlet b:oldpwd |
   \ endif
+augroup END
 
 " vim-fugitive {{{
 nnoremap <leader>gs :Gstatus<CR>
