@@ -114,7 +114,7 @@ augroup TreesitterHi
   autocmd!
   autocmd ColorScheme *
     \   highlight link TSDefinition DiffAdd
-    \ | highlight link TSDefinitionUsage StatusLine
+    \ | highlight link TSDefinitionUsage Search
 augroup END
 "}}}
 " quick-scope {{{
@@ -281,7 +281,15 @@ nnoremap <silent><leader>c :ccl<CR>:lcl<CR>
 nnoremap <C-Z> <C-A>
 vnoremap <C-Z> <C-A>
 
+" quickly switch to alternate buffer
 nnoremap <CR> <C-^>
+
+" remove alternate buffer switch keymap for quick/loc list and command histroy bufs
+augroup AltBufSwitch
+  autocmd!
+  autocmd Filetype qf nnoremap <buffer><CR> <CR>
+  autocmd CmdwinEnter * nnoremap <buffer><CR> <CR>
+augroup END
 
 " some window commands have two keymaps for opening horiz. splits, so take one of them for vertical splits
 nnoremap <C-W><C-F> <C-W>vgf
