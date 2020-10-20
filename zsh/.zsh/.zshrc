@@ -20,6 +20,7 @@ setopt PROMPT_SUBST
 setopt COMPLETE_IN_WORD          # Tries to complete in the word at the point of the cursor
 setopt PATH_DIRS                 # Perform path search even on command names with slashes.
 setopt EXTENDED_GLOB             # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation
+setopt GLOB_DOTS                 # Do not require a leading '.' in a filename to be matched explicitly
 unsetopt CASE_GLOB               # Case-insensitive matching
 unsetopt BEEP                    # Turn off beep
 
