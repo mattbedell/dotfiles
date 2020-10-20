@@ -9,7 +9,7 @@ let g:netrw_altfile = 1
 
 " }}}
 " vim-plug {{{
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'dense-analysis/ale'                                         " used just for eslint (for now)
 Plug 'nvim-lua/completion-nvim'                                   " completion with LSP
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " use a neovim instance for text inputs in web pages (chrome/firefox)
