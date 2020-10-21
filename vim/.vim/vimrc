@@ -286,7 +286,7 @@ let mapleader=" "
 
 nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
-nnoremap <leader>s :update<CR>
+nnoremap <silent><leader>s :update<CR>
 nnoremap <silent><leader>z :ZoomToggle<CR>
 nnoremap <leader>w <C-w>
 nmap <leader>bd <plug>Kwbd
