@@ -182,7 +182,6 @@ set laststatus=2
 set cursorline
 set cursorcolumn
 set diffopt=vertical,filler
-set nowrap
 set linebreak
 set showbreak=>\ 
 set breakindent
@@ -277,6 +276,9 @@ nmap <leader>bd <plug>Kwbd
 
 "close quickfix/location lists
 nnoremap <silent><leader>c :ccl<CR>:lcl<CR>
+
+nnoremap j gj
+nnoremap k gk
 
 " ctrl-a is bound to tmux toggle all bindings, a different binding is used for suspend (ctrl-z) so this is fine
 nnoremap <C-Z> <C-A>
