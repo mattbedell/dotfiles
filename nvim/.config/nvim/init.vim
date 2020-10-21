@@ -259,7 +259,8 @@ augroup END
 augroup GeneralFiletype
   autocmd!
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-  autocmd FileType qf wincmd J
+  " this was causing some weird redraw/broken window issues when the lsp opened a qf
+  " autocmd FileType qf wincmd J
 augroup END
 
 "}}}
