@@ -28,6 +28,10 @@ nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach_lsp,
 }
 
+nvim_lsp.jsonls.setup{
+  on_attach = on_attach_lsp,
+}
+
 -- nvim_lsp.diagnosticls.setup{
 --   on_attach = on_attach_lsp,
 --   filetypes={'javascript'},
