@@ -32,6 +32,11 @@ nvim_lsp.jsonls.setup{
   on_attach = on_attach_lsp,
 }
 
+nvim_lsp.sumneko_lua.setup{
+  root_dir = nvim_lsp.util.root_pattern(".git"),
+  on_attach = on_attach_lsp,
+}
+
 -- nvim_lsp.diagnosticls.setup{
 --   on_attach = on_attach_lsp,
 --   filetypes={'javascript'},
