@@ -10,7 +10,7 @@ on_attach_lsp = function(client)
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lw', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>le', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', {noremap = true, silent = true})
-  vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lc', '<cmd>lua vim.lsp.util.code_action()<CR>', {noremap = true, silent = true})
+  vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
 
   vim.api.nvim_win_set_option(0, "foldmethod", "expr")
   vim.api.nvim_win_set_option(0, "foldexpr", "nvim_treesitter#foldexpr()")
