@@ -4,8 +4,10 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
+[difftool "nvim"]
+	cmd = "nvim -d ${LOCAL} ${REMOTE}"
 [diff]
-	tool = vimdiff
+	tool = nvim
 	colorMoved = true
 [pull]
 	ff = only
