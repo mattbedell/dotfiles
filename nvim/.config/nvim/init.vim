@@ -287,7 +287,7 @@ vnoremap <C-Z> <C-A>
 " quickly switch to alternate buffer
 nnoremap <CR> <C-^>
 
-" remove alternate buffer switch keymap for quick/loc list and command histroy bufs
+" remove alternate buffer switch keymap for quick/loc list and command history bufs
 augroup AltBufSwitch
   autocmd!
   autocmd Filetype qf nnoremap <buffer><CR> <CR>
@@ -296,7 +296,6 @@ augroup END
 
 " some window commands have two keymaps for opening horiz. splits, so take one of them for vertical splits
 nnoremap <C-W><C-F> <C-W>vgf
-nnoremap <C-W><C-]> <C-W>v<C-]>
 
 noremap Y y$
 nnoremap <silent>- :Vifm<CR>
