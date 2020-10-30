@@ -240,7 +240,7 @@ function! ToggleCursorLC(isEnter)
   if a:isEnter && &g:cursorline | setlocal cursorline | endif
   if a:isEnter && &g:cursorcolumn | setlocal cursorcolumn | endif
 
-  if !a:isEnter && &g:cursorline | setlocal nocursorline | endif
+  " if !a:isEnter && &g:cursorline | setlocal nocursorline | endif
   if !a:isEnter && &g:cursorcolumn | setlocal nocursorcolumn | endif
 endfunction
 
