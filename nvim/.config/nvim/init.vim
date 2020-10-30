@@ -75,6 +75,8 @@ augroup END
 " completion-nvim {{{
 let g:completion_enable_auto_popup = 0
 let g:completion_sorting="length"
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+let g:completion_matching_smart_case = 1
 inoremap <silent><expr> <c-n> pumvisible() ? '<C-n>' : completion#trigger_completion()
 inoremap <expr> <S-tab> pumvisible() ? '<C-n>' : '<C-x><C-o>'
 "}}}
