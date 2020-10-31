@@ -41,6 +41,7 @@ call plug#end()
 " lua user plugins {{{
 lua require('plugin.lsp')
 lua require('plugin.treesitter')
+lua require('usr.statusline')
 "}}}
 " plugin configurations {{{
 "ale {{{
@@ -240,7 +241,7 @@ function! ToggleCursorLC(isEnter)
   if a:isEnter && &g:cursorline | setlocal cursorline | endif
   if a:isEnter && &g:cursorcolumn | setlocal cursorcolumn | endif
 
-  " if !a:isEnter && &g:cursorline | setlocal nocursorline | endif
+  if !a:isEnter && &g:cursorline | setlocal nocursorline | endif
   if !a:isEnter && &g:cursorcolumn | setlocal nocursorcolumn | endif
 endfunction
 
