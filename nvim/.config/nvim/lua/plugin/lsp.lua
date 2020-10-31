@@ -1,5 +1,5 @@
-nvim_lsp = require'nvim_lsp'
-on_attach_lsp = function(client)
+local nvim_lsp = require'nvim_lsp'
+local on_attach_lsp = function(client)
   require'completion'.on_attach(client)
   require'usr.diagnostic'.on_attach(client)
   require'usr.lsp'.on_attach(client)
