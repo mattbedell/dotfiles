@@ -39,9 +39,9 @@ call plug#end()
 
 "}}}
 " lua user plugins {{{
-lua require('plugin.lsp')
-lua require('plugin.treesitter')
-lua require('usr.statusline')
+lua require('usr.plugin.lsp')
+lua require('usr.plugin.treesitter')
+lua require('usr.plugin.statusline')
 "}}}
 " plugin configurations {{{
 "ale {{{

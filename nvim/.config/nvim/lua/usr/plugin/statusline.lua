@@ -82,10 +82,10 @@ M.update_highlights = update_highlights
 
 usr_util.create_augroups({
   UsrStatusLine = {
-    {'WinLeave', '*', [[lua require'usr.statusline'.status_inactive()]]},
-    {'WinEnter,BufEnter', '*', [[lua require'usr.statusline'.status_active()]]},
-    {'ColorScheme', '*', [[lua require'usr.statusline'.update_highlights()]]},
-    {'OptionSet', 'background', [[lua require'usr.statusline'.update_highlights()]]},
+    {'WinLeave', '*', [[lua require'usr.plugin.statusline'.status_inactive()]]},
+    {'WinEnter,BufEnter', '*', [[lua require'usr.plugin.statusline'.status_active()]]},
+    {'ColorScheme', '*', [[lua require'usr.plugin.statusline'.update_highlights()]]},
+    {'OptionSet', 'background', [[lua require'usr.plugin.statusline'.update_highlights()]]},
   }
 })
 
