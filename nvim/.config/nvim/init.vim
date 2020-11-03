@@ -42,6 +42,7 @@ call plug#end()
 lua require('usr.plugin.lsp')
 lua require('usr.plugin.treesitter')
 lua require('usr.plugin.statusline')
+lua require('usr.plugin.linenumbers')
 "}}}
 " plugin configurations {{{
 "ale {{{
@@ -135,6 +136,7 @@ let g:CoolTotalMatches = 1
 
 " }}}
 " vim-signature {{{
+let g:SignatureMarkTextHL = 'Identifier'
       let g:SignatureMap = {
         \ 'Leader'             :  "m",
         \ 'PlaceNextMark'      :  "",
@@ -208,6 +210,7 @@ set formatoptions-=cro
 set belloff=all
 set noshowmode
 set foldlevelstart=99
+set signcolumn=yes
 
 set autoread
 
@@ -224,13 +227,6 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
-" toggle hybrid line numbers based on mode
-set number relativenumber
-augroup numbertoggle
-  autocmd!
-  autocmd WinEnter,BufEnter,FocusGained,InsertLeave * if &l:buftype !=# 'help' | set relativenumber
-  autocmd WinLeave,BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
 
 " cursor related settings {{{
 " toggle cursor line and cursor column on active window, if it is enabled for
@@ -247,8 +243,8 @@ endfunction
 
 augroup ActiveWindow
   autocmd!
-  autocmd WinEnter * call ToggleCursorLC(1) | set signcolumn=number
-  autocmd WinLeave * call ToggleCursorLC(0) | set signcolumn=no
+  autocmd WinEnter * call ToggleCursorLC(1)
+  autocmd WinLeave * call ToggleCursorLC(0)
 augroup END
 
 augroup highlight_yank
@@ -423,6 +419,7 @@ function! GruvCust() abort
     highlight GruvboxPurple guifg=#ff5c8f
   endif
   highlight clear Pmenu
+  highlight clear SignColumn
   highlight link Pmenu PmenuThumb
 endfunction
 
