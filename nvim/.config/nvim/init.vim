@@ -418,9 +418,7 @@ function! GruvCust() abort
     highlight GruvboxBlue guifg=#0aaeb3
     highlight GruvboxPurple guifg=#ff5c8f
   endif
-  highlight clear Pmenu
   highlight clear SignColumn
-  highlight link Pmenu PmenuThumb
 endfunction
 
 function! UpdateNormalNC() abort
