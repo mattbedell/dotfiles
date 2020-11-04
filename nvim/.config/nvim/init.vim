@@ -300,8 +300,8 @@ noremap Y y$
 nnoremap <silent>- :Vifm<CR>
 
 " make character-wise search repeat keys always jump in the same direction. Ex. repeating Fa and fa, ; always jumps cursor to next 'a' character to the right
-nnoremap <expr>; getcharsearch().forward ? ';' : ','
-nnoremap <expr>, getcharsearch().forward ? ',' : ';'
+" nnoremap <expr>; getcharsearch().forward ? ';' : ','
+" nnoremap <expr>, getcharsearch().forward ? ',' : ';'
 
 " bindings ripped from vim-unimpaired
 nnoremap <silent> ]q :cnext<CR>
