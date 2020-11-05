@@ -1,5 +1,6 @@
 local vim = vim
 local usr_util = require'usr.util'
+local sl = require'usr.plugin.statusline.external'
 
 local M = {}
 
@@ -32,14 +33,14 @@ usr_util.create_augroups({
   }
 })
 
-local function git()
-  local stl_text = ''
-  if vim.fn.exists('g:loaded_fugitive') and vim.bo.modifiable then
-    local git_head = vim.fn['fugitive#head']()
-    stl_text = string.len(git_head) > 0 and '%#stlGit#[' .. git_head .. ']%*' or ''
-  end
-  return stl_text
-end
+-- local function git()
+--   local stl_text = ''
+--   if vim.fn.exists('g:loaded_fugitive') and vim.bo.modifiable then
+--     local git_head = vim.fn['fugitive#head']()
+--     stl_text = string.len(git_head) > 0 and '%#stlGit#[' .. git_head .. ']%*' or ''
+--   end
+--   return stl_text
+-- end
 
 local function buf_path(is_active)
   local path = vim.fn.expand('%:~:.')
@@ -62,10 +63,13 @@ local function status_inactive()
 end
 
 local function status_active()
+  local winnr = vim.api.nvim_get_current_win()
+  local bufnr = vim.api.nvim_win_get_buf(winnr)
+
   local stl_text = ' '
   ..buf_path(true)
   ..' ' .. '%h%w%q'
-  .. git()
+  .. sl.get_external_value(winnr, bufnr, 'git_branch', '[', ']')
   ..'%#stlWarn#%m%*%r'
   ..'%='
   ..'%-10.(%l:%c%)'
@@ -74,16 +78,24 @@ local function status_active()
   vim.wo.statusline = stl_text
 end
 
+local function update_status(isActive)
+  if isActive == true then
+    return status_active()
+  else
+    return status_inactive()
+  end
+end
+
 update_highlights()
 
-M.status_active = status_active
-M.status_inactive = status_inactive
 M.update_highlights = update_highlights
+M.update_status = update_status
 
 usr_util.create_augroups({
   UsrStatusLine = {
-    {'WinLeave', '*', [[lua require'usr.plugin.statusline'.status_inactive()]]},
-    {'WinEnter,BufEnter', '*', [[lua require'usr.plugin.statusline'.status_active()]]},
+    {'WinLeave', '*', [[lua require'usr.plugin.statusline'.update_status(false)]]},
+    {'WinEnter,BufEnter', '*', [[lua require'usr.plugin.statusline'.update_status(false)]]},
+    {'User', 'StatusLineUpdateActive', [[lua require'usr.plugin.statusline'.update_status(true)]]},
     {'ColorScheme', '*', [[lua require'usr.plugin.statusline'.update_highlights()]]},
     {'OptionSet', 'background', [[lua require'usr.plugin.statusline'.update_highlights()]]},
   }
