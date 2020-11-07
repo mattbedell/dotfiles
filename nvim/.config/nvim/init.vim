@@ -276,8 +276,8 @@ nmap <leader>bd <plug>Kwbd
 "close quickfix/location lists
 nnoremap <silent><leader>c :ccl<CR>:lcl<CR>
 
-nnoremap j gj
-nnoremap k gk
+nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 
 " ctrl-a is bound to tmux toggle all bindings, a different binding is used for suspend (ctrl-z) so this is fine
 nnoremap <C-Z> <C-A>
