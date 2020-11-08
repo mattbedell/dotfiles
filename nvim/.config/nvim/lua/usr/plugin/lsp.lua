@@ -1,8 +1,15 @@
 local nvim_lsp = require'nvim_lsp'
+local lsp_status = require'lsp-status'
+
+local diagnostic_sign = require'usr.lsp'.diagnostic_sign
+
+lsp_status.register_progress()
+
 local on_attach_lsp = function(client)
   require'completion'.on_attach(client)
   require'usr.diagnostic'.on_attach(client)
   require'usr.lsp'.on_attach(client)
+  lsp_status.on_attach(client)
 
   vim.fn.nvim_buf_set_keymap(0, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<c-w><c-]>', '<c-w>v<c-]>', {noremap = false, silent = true})
@@ -21,22 +28,27 @@ end
 nvim_lsp.tsserver.setup{
   root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
   on_attach = on_attach_lsp,
+  capabilities = lsp_status.capabilities,
 }
 
 nvim_lsp.pyls_ms.setup{
   on_attach = on_attach_lsp,
+  capabilities = lsp_status.capabilities,
 }
 nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach_lsp,
+  capabilities = lsp_status.capabilities,
 }
 
 nvim_lsp.jsonls.setup{
   on_attach = on_attach_lsp,
+  capabilities = lsp_status.capabilities,
 }
 
 nvim_lsp.sumneko_lua.setup{
   root_dir = nvim_lsp.util.root_pattern(".git"),
   on_attach = on_attach_lsp,
+  capabilities = lsp_status.capabilities,
   settings = {
     Lua = {
       diagnostics = {
@@ -50,6 +62,7 @@ nvim_lsp.sumneko_lua.setup{
 
 -- nvim_lsp.diagnosticls.setup{
 --   on_attach = on_attach_lsp,
+--   capabilities = lsp_status.capabilities,
 --   filetypes={'javascript'},
 --   init_options = {
 --     linters = {
@@ -96,18 +109,18 @@ nvim_lsp.sumneko_lua.setup{
 -- }
 
 vim.fn.sign_define("LspDiagnosticsErrorSign", {
-  text = ">>",
+  text = diagnostic_sign.error,
   texthl = "LspDiagnosticsError",
 })
 vim.fn.sign_define("LspDiagnosticsWarningSign", {
-  text = "!>",
+  text = diagnostic_sign.warning,
   texthl = "LspDiagnosticsWarning",
 })
 vim.fn.sign_define("LspDiagnosticsInformationSign", {
-  text = "<>",
+  text = diagnostic_sign.info,
   texthl = "LspDiagnosticsInformation",
 })
 vim.fn.sign_define("LspDiagnosticsHintSign", {
-  text = "<>",
+  text = diagnostic_sign.hint,
   texthl = "LspDiagnosticsHint",
 })

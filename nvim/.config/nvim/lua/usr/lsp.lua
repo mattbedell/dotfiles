@@ -4,6 +4,14 @@ local api = vim.api
 local vim = vim
 local M = {}
 
+M.diagnostic_sign = {
+  error = '>>',
+  warning = '!>',
+  info = '<>',
+  hint = '?>',
+}
+
+
 -- the default callback as of NVIM v0.5.0-763-geaee3d929 for:
 -- - textDocument/declaration
 -- - textDocument/definition
