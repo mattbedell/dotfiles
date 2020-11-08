@@ -31,7 +31,7 @@ local function diagnostics()
   end
 
   if buf_diagnostics.hints and buf_diagnostics.hints > 0 then
-    all_diagnostics.hint = buf_diagnostics.hint
+    all_diagnostics.hint = buf_diagnostics.hints
   end
 
   local diagnostic_display = {}
@@ -43,7 +43,7 @@ local function diagnostics()
     table.insert(diagnostic_display, hiLevel ..  value )
   end
 
-  if #diagnostic_display then
+  if #diagnostic_display > 0 then
     local spacer = hiGroup .. ' %*'
     return '%4.10(' .. spacer .. usr_util.join(diagnostic_display, hiGroup .. ' %*') .. spacer .. '%)'
   end
