@@ -19,6 +19,7 @@ Plug 'rhysd/git-messenger.vim'                                    " fugitive Bla
 Plug 'iautom8things/gitlink-vim'                                  " Generate a github link to current line
 Plug 'gruvbox-community/gruvbox'                                  " theme
 Plug 'Yggdroot/indentLine'                                        " minimal indent guides
+Plug 'nvim-lua/lsp-status.nvim'                                   " statusline library for lsp information
 Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers
 Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " nvim-treesitter dependency
@@ -39,6 +40,8 @@ call plug#end()
 
 "}}}
 " lua user plugins {{{
+lua require('usr.highlights')
+
 lua require('usr.plugin.lsp')
 lua require('usr.plugin.treesitter')
 lua require('usr.plugin.statusline')
@@ -81,20 +84,6 @@ let g:completion_sorting="length"
 let g:completion_matching_smart_case = 1
 inoremap <silent><expr> <c-n> pumvisible() ? '<C-n>' : completion#trigger_completion()
 inoremap <expr> <S-tab> pumvisible() ? '<C-n>' : '<C-x><C-o>'
-"}}}
-" diagnostic-nvim {{{
-let g:diagnostic_insert_delay = 1
-" let g:diagnostic_enable_virtual_text = 1
-
-augroup LspDiagnostics
-  autocmd!
-  autocmd ColorScheme *
-    \   highlight link LspDiagnosticsError DiffDelete
-    \ | highlight link LspDiagnosticsWarning DiffText
-    \ | highlight link LspDiagnosticsInformation DiffChange
-    \ | highlight link LspDiagnosticsHint DiffAdd
-augroup END
-
 "}}}
 " fzf {{{
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 1, 'yoffset': 1, 'border': 'top,bottom' } }
