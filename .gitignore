@@ -6,7 +6,7 @@ vim/.vim/plugged
 # VIFM
 vifm/*/*.txt
 vifm/**/README
-vifminfo
+vifminfo*
 
 # Brew
 Brewfile.lock.json
