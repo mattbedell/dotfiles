@@ -86,7 +86,7 @@ inoremap <silent><expr> <c-n> pumvisible() ? '<C-n>' : completion#trigger_comple
 inoremap <expr> <S-tab> pumvisible() ? '<C-n>' : '<C-x><C-o>'
 "}}}
 " fzf {{{
-let g:fzf_layout = { 'window': { 'width': 1, 'height': 1, 'yoffset': 1, 'border': 'top,bottom' } }
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 1, 'border': 'bottom' } }
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
@@ -359,7 +359,7 @@ nnoremap <silent> <leader>fl :BLines<CR>
 nnoremap <silent> <leader><space> :Buffers<CR>
 nnoremap <leader>fs :Rg<space>
 nnoremap <leader>ff :GFiles<CR>
-nnoremap <leader>fa :Files
+nnoremap <leader>fa :Files<space>
 
 " Use FZF for autocompletion
 " imap <c-x><c-k> <plug>(fzf-complete-word)
