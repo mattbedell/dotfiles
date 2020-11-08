@@ -25,15 +25,16 @@ local function extend_hi_gui(super_hl, highlight_name, opts)
   local term_gui_attrs = {"bold", "underline", "undercurl", "strikethrough", "reverse", "inverse", "italic", "standout"}
   local hi_tg_attrs = {}
 
-  local super_id = fn.synIDtrans(fn.hlID(super_hl))
-  local bg = opts.bg ~= nil and opts.bg or get_hi_attr(super_id, 'bg#', 'gui') or nil
-  local fg = opts.fg ~= nil and opts.fg or get_hi_attr(super_id, 'fg#', 'gui') or nil
+  local bg = opts.bg ~= nil and opts.bg or get_hi_attr(super_hl, 'bg#', 'gui') or nil
+  local fg = opts.fg ~= nil and opts.fg or get_hi_attr(super_hl, 'fg#', 'gui') or nil
 
   for _, attr in ipairs(term_gui_attrs) do
-    if opts[attr] then
-      table.insert(hi_tg_attrs, attr)
+    if opts[attr] ~= nil then
+      if opts[attr] == true then
+        table.insert(hi_tg_attrs, attr)
+      end
     else
-      local has_attr = vim.fn.synIDattr(super_id, attr)
+      local has_attr = get_hi_attr(super_hl, attr, 'gui')
       if has_attr == '1' then
         table.insert(hi_tg_attrs, attr)
       end
@@ -41,10 +42,13 @@ local function extend_hi_gui(super_hl, highlight_name, opts)
   end
 
   hi_tg_attrs = join(hi_tg_attrs, ',')
+  local hasAttrs = string.len(hi_tg_attrs) > 0
+  local gui = hasAttrs and ' gui=' .. hi_tg_attrs or ''
+  local cterm = hasAttrs and ' cterm=' .. hi_tg_attrs or ''
   local hi = 'highlight '
   .. highlight_name
-  .. ' gui=' .. hi_tg_attrs
-  .. ' cterm=' .. hi_tg_attrs
+  .. gui
+  .. cterm
   .. ' guifg=' .. fg
   .. ' guibg=' .. bg
   vim.api.nvim_command(hi)
@@ -71,6 +75,7 @@ local function create_augroups(definitions)
   end
 end
 
+M.join = join
 M.create_augroups = create_augroups
 M.extend_hi_gui = extend_hi_gui
 M.get_hi_attr = get_hi_attr
