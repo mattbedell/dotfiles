@@ -55,6 +55,11 @@ local function update_highlights()
     inverse = false,
     bg = usr_util.get_hi_attr('Pmenu', 'bg', 'gui'),
   })
+
+  vim.api.nvim_command('highlight link LspDiagnosticsFloatingError stlLspError')
+  vim.api.nvim_command('highlight link LspDiagnosticsFloatingWarning stlLspWarning')
+  vim.api.nvim_command('highlight link LspDiagnosticsFloatingInfo stlLspInfo')
+  vim.api.nvim_command('highlight link LspDiagnosticsFloatingHint stlLspHint')
 end
 
 local M = {}

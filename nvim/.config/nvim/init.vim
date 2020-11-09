@@ -10,7 +10,7 @@ let g:netrw_altfile = 1
 " }}}
 " vim-plug {{{
 call plug#begin('~/.local/share/nvim/site/plugged')
-Plug 'dense-analysis/ale'                                         " used just for eslint (for now)
+" Plug 'dense-analysis/ale'                                         " used just for eslint (for now)
 Plug 'nvim-lua/completion-nvim'                                   " completion with LSP
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } } " use a neovim instance for text inputs in web pages (chrome/firefox)
 Plug 'junegunn/fzf'                                               " fzf fuzzy finder wrapper
@@ -19,7 +19,7 @@ Plug 'rhysd/git-messenger.vim'                                    " fugitive Bla
 Plug 'iautom8things/gitlink-vim'                                  " Generate a github link to current line
 Plug 'gruvbox-community/gruvbox'                                  " theme
 Plug 'Yggdroot/indentLine'                                        " minimal indent guides
-Plug 'nvim-lua/lsp-status.nvim'                                   " statusline library for lsp information
+" Plug 'nvim-lua/lsp-status.nvim'                                   " statusline library for lsp information
 Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers
 Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " nvim-treesitter dependency

@@ -1,15 +1,12 @@
 local nvim_lsp = require'nvim_lsp'
-local lsp_status = require'lsp-status'
 
-local diagnostic_sign = require'usr.lsp'.diagnostic_sign
-
-lsp_status.register_progress()
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = false,
+})
 
 local on_attach_lsp = function(client)
   require'completion'.on_attach(client)
-  require'usr.diagnostic'.on_attach(client)
-  require'usr.lsp'.on_attach(client)
-  lsp_status.on_attach(client)
+
 
   vim.fn.nvim_buf_set_keymap(0, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<c-w><c-]>', '<c-w>v<c-]>', {noremap = false, silent = true})
@@ -17,7 +14,9 @@ local on_attach_lsp = function(client)
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lw', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', {noremap = true, silent = true})
-  vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>le', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', {noremap = true, silent = true})
+  vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>le', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', {noremap = true, silent = true})
+  vim.fn.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
+  vim.fn.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {noremap = true, silent = true})
 
@@ -28,27 +27,22 @@ end
 nvim_lsp.tsserver.setup{
   root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
   on_attach = on_attach_lsp,
-  capabilities = lsp_status.capabilities,
 }
 
 nvim_lsp.pyls_ms.setup{
   on_attach = on_attach_lsp,
-  capabilities = lsp_status.capabilities,
 }
 nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach_lsp,
-  capabilities = lsp_status.capabilities,
 }
 
 nvim_lsp.jsonls.setup{
   on_attach = on_attach_lsp,
-  capabilities = lsp_status.capabilities,
 }
 
 nvim_lsp.sumneko_lua.setup{
   root_dir = nvim_lsp.util.root_pattern(".git"),
   on_attach = on_attach_lsp,
-  capabilities = lsp_status.capabilities,
   settings = {
     Lua = {
       diagnostics = {
@@ -62,7 +56,6 @@ nvim_lsp.sumneko_lua.setup{
 
 -- nvim_lsp.diagnosticls.setup{
 --   on_attach = on_attach_lsp,
---   capabilities = lsp_status.capabilities,
 --   filetypes={'javascript'},
 --   init_options = {
 --     linters = {
@@ -108,19 +101,19 @@ nvim_lsp.sumneko_lua.setup{
 --   },
 -- }
 
-vim.fn.sign_define("LspDiagnosticsErrorSign", {
-  text = diagnostic_sign.error,
+vim.fn.sign_define("LspDiagnosticsSignError", {
+  text = '>>',
   texthl = "LspDiagnosticsError",
 })
-vim.fn.sign_define("LspDiagnosticsWarningSign", {
-  text = diagnostic_sign.warning,
+vim.fn.sign_define("LspDiagnosticsSignWarning", {
+  text = '!>',
   texthl = "LspDiagnosticsWarning",
 })
-vim.fn.sign_define("LspDiagnosticsInformationSign", {
-  text = diagnostic_sign.info,
+vim.fn.sign_define("LspDiagnosticsSignInfo", {
+  text = '<>',
   texthl = "LspDiagnosticsInformation",
 })
-vim.fn.sign_define("LspDiagnosticsHintSign", {
-  text = diagnostic_sign.hint,
+vim.fn.sign_define("LspDiagnosticsSignHint", {
+  text = '?>',
   texthl = "LspDiagnosticsHint",
 })
