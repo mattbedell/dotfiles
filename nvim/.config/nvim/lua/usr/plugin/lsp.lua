@@ -109,7 +109,7 @@ vim.fn.sign_define("LspDiagnosticsSignWarning", {
   text = '!>',
   texthl = "LspDiagnosticsWarning",
 })
-vim.fn.sign_define("LspDiagnosticsSignInfo", {
+vim.fn.sign_define("LspDiagnosticsSignInformation", {
   text = '<>',
   texthl = "LspDiagnosticsInformation",
 })

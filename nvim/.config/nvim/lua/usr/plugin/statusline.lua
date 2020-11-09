@@ -9,7 +9,7 @@ local M = {}
 local severity_levels = {
   'Error',
   'Warning',
-  'Info',
+  'Information',
   'Hint',
 }
 
@@ -53,31 +53,6 @@ local function status_inactive()
   vim.wo.statusline = stl_text
 end
 
--- local function diagnostics()
---   if #vim.lsp.buf_get_clients() == 0 then
---     return ''
---   end
-
---   local buf_diagnostics = get_all_diagnostics()
-
---   local diagnostic_display = {}
-
---   local hiGroup = '%#Pmenu#'
---   for _, level in ipairs(severity_levels) do
---     local count = buf_diagnostics[level]
---     if count > 0 then
---       local hiLevel = '%#stlLsp' .. level .. '#'
---       table.insert(diagnostic_display, hiLevel ..  buf_diagnostics[level])
---     end
---   end
-
---   if #diagnostic_display > 0 then
---     local spacer = hiGroup .. ' %*'
---     return '%4.10(' .. spacer .. usr_util.join(diagnostic_display, hiGroup .. ' %*') .. spacer .. '%)'
---   end
-
---   return ''
--- end
 
 local function diagnostics(level)
   if #vim.lsp.buf_get_clients() == 0 then
@@ -90,7 +65,7 @@ local function diagnostics(level)
     return ' '..count..' '
   end
 
-  return ''
+  return ' _ '
 end
 
 local function status_active()
@@ -106,8 +81,9 @@ local function status_active()
   ..'%= '
   ..'%#stlLspError#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Error')")}]]
   ..'%#stlLspWarning#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Warning')")}]]
-  ..'%#stlLspInfo#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Info')")}]]
-  ..'%#stlLspHint#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Hint')")}]] .. '%*'
+  ..'%#stlLspInformation#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Information')")}]]
+  ..'%#stlLspHint#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Hint')")}]]
+  .. '%*'
   ..' %6.(%l:%c%)'
   ..' %-4.(%P%)'
 
