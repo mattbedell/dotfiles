@@ -4,6 +4,8 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
+[init]
+	defaultBranch = main
 [difftool "nvim"]
 	cmd = "nvim -d ${LOCAL} ${REMOTE}"
 [diff]
