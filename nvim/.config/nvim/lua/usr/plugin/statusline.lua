@@ -6,22 +6,6 @@ local vim = vim
 local usr_util = require'usr.util'
 
 local M = {}
-local severity_levels = {
-  'Error',
-  'Warning',
-  'Information',
-  'Hint',
-}
-
-local function get_all_diagnostics()
-  local result = {}
-  -- local bufnr = vim.api.nvim_get_current_buf()
-
-  for _, level in ipairs(severity_levels) do
-    result[level] = vim.lsp.diagnostic.get_count(0, level)
-  end
-  return result
-end
 
 local function git()
   local stl_text = ''
@@ -31,7 +15,6 @@ local function git()
   end
   return stl_text
 end
-
 
 local function buf_path(is_active)
   local path = vim.fn.expand('%:~:.')
