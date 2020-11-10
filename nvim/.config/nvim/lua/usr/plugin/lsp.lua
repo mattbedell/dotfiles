@@ -4,9 +4,19 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
   virtual_text = false,
 })
 
-local on_attach_lsp = function(client)
+local on_attach_lsp = function(client, bufnr)
   require'completion'.on_attach(client)
 
+  if not bufnr or bufnr == 0 then
+    bufnr = vim.api.nvim_get_current_buf()
+  end
+
+  vim.cmd('augroup LspAttach')
+  vim.cmd('au!')
+  vim.cmd(
+    string.format('autocmd BufLeave,InsertEnter <buffer=%s> :lua vim.lsp.diagnostic.clear(%s)', bufnr, bufnr)
+  )
+  vim.cmd('augroup END')
 
   vim.fn.nvim_buf_set_keymap(0, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<c-w><c-]>', '<c-w>v<c-]>', {noremap = false, silent = true})
