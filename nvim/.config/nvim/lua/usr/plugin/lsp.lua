@@ -11,10 +11,13 @@ local on_attach_lsp = function(client, bufnr)
     bufnr = vim.api.nvim_get_current_buf()
   end
 
-  vim.cmd('augroup LspAttach')
+  vim.cmd(string.format('augroup LspAttach:%s:%s', bufnr, client.id))
   vim.cmd('au!')
   vim.cmd(
     string.format('autocmd BufLeave,InsertEnter <buffer=%s> :lua vim.lsp.diagnostic.clear(%s)', bufnr, bufnr)
+  )
+  vim.cmd(
+    string.format('autocmd BufEnter,InsertLeave <buffer=%s> :lua vim.lsp.diagnostic.display(nil, %s, %s, { virtual_text = false })', bufnr, bufnr, client.id)
   )
   vim.cmd('augroup END')
 
