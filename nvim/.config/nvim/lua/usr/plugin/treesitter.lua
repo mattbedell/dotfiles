@@ -44,6 +44,13 @@ require'nvim-treesitter.configs'.setup{
     },
   },
   textobjects = {
+    lsp_interop = {
+      enable = true,
+      peek_definition_code = {
+        ["<leader>lp"] = "@function.outer",
+        ["<leader>lP"] = "@class.outer",
+      },
+    },
     select = {
       enable = true,
       keymaps = {
