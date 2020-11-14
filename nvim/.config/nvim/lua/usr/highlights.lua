@@ -35,24 +35,28 @@ local function update_highlights()
   usr_util.extend_hi_gui('LspDiagnosticsError', 'stlLspError', {
     reverse = false,
     inverse = false,
+    bold = true,
     bg = usr_util.get_hi_attr('Pmenu', 'bg', 'gui'),
   })
 
   usr_util.extend_hi_gui('LspDiagnosticsWarning', 'stlLspWarning', {
     reverse = false,
     inverse = false,
+    bold = true,
     bg = usr_util.get_hi_attr('Pmenu', 'bg', 'gui'),
   })
 
   usr_util.extend_hi_gui('LspDiagnosticsInformation', 'stlLspInformation', {
     reverse = false,
     inverse = false,
+    bold = true,
     bg = usr_util.get_hi_attr('Pmenu', 'bg', 'gui'),
   })
 
   usr_util.extend_hi_gui('LspDiagnosticsHint', 'stlLspHint', {
     reverse = false,
     inverse = false,
+    bold = true,
     bg = usr_util.get_hi_attr('Pmenu', 'bg', 'gui'),
   })
 
