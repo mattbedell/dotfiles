@@ -15,6 +15,9 @@ require'nvim-treesitter.configs'.setup{
   highlight = {
     enable = true,
   },
+  indent = {
+    enable = true,
+  },
   refactor = {
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = false },
