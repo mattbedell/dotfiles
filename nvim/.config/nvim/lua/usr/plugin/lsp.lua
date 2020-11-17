@@ -33,6 +33,7 @@ local on_attach_lsp = function(client, bufnr)
   vim.fn.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
   vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {noremap = true, silent = true})
+  vim.fn.nvim_buf_set_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap = true, silent = true})
 
   vim.api.nvim_win_set_option(0, "foldmethod", "expr")
   vim.api.nvim_win_set_option(0, "foldexpr", "nvim_treesitter#foldexpr()")
@@ -70,7 +71,7 @@ nvim_lsp.sumneko_lua.setup{
 
 nvim_lsp.diagnosticls.setup{
   on_attach = on_attach_lsp,
-  filetypes={'javascript', 'jsx', 'ts', 'tsx'},
+  filetypes={'javascript', 'jsx', 'ts', 'tsx', 'python'},
   init_options = {
     linters = {
       eslint = {
@@ -106,11 +107,16 @@ nvim_lsp.diagnosticls.setup{
     formatters = {
       prettier = {
         command = "./node_modules/.bin/prettier",
-        args = {"--stdin-filepath" ,"%filepath", '--single-quote', '--print-width 120'},
+        args = {'--stdin-filepath' ,'%filepath', '--single-quote', '--print-width 120'},
+      },
+      black = {
+        command = './env/bin/black',
+        args = {'--code', '%text'},
       },
     },
     formatFiletypes = {
-      javascript = "prettier",
+      javascript = 'prettier',
+      python = 'black',
     },
   },
 }
