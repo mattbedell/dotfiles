@@ -16,6 +16,8 @@
 [alias]
 	co = checkout
 	sw = switch
+	re = restore
+	cm = commit
 	br = branch
 	st = status
 	diffc = diff --cached
