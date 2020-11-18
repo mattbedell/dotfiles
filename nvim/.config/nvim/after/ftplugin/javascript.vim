@@ -7,4 +7,5 @@
 " augroup END
 
 " setlocal include=^\\s*[^\/]\\+\\(from\\\|require(['\"]\\)
+setlocal suffixesadd+=.js,.jsx
 
