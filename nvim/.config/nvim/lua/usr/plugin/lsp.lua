@@ -71,7 +71,7 @@ nvim_lsp.sumneko_lua.setup{
 
 nvim_lsp.diagnosticls.setup{
   on_attach = on_attach_lsp,
-  filetypes={'javascript', 'jsx', 'ts', 'tsx', 'python'},
+  filetypes={'javascript', 'typescript', 'python'},
   init_options = {
     linters = {
       eslint = {
@@ -102,7 +102,8 @@ nvim_lsp.diagnosticls.setup{
       },
     },
     filetypes = {
-      javascript = 'eslint'
+      javascript = 'eslint',
+      typescript = 'eslint',
     },
     formatters = {
       prettier = {
@@ -116,6 +117,7 @@ nvim_lsp.diagnosticls.setup{
     },
     formatFiletypes = {
       javascript = 'prettier',
+      typescript = 'prettier',
       python = 'black',
     },
   },
