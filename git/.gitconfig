@@ -2,14 +2,14 @@
 	name = Matt Bedell
 	email = matt@bedell.co
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore_global
 [init]
 	defaultBranch = main
 [difftool "nvim"]
 	cmd = "nvim -d ${LOCAL} ${REMOTE}"
 [diff]
-	tool = nvim
+	tool = vimdiff
 	colorMoved = true
 [pull]
 	ff = only
