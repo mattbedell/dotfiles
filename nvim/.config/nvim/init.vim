@@ -174,7 +174,6 @@ set splitbelow
 set splitright
 set laststatus=2
 set cursorline
-set cursorcolumn
 set diffopt=vertical,filler
 set linebreak
 set showbreak=>\ 
