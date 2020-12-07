@@ -1,4 +1,4 @@
-local nvim_lsp = require'nvim_lsp'
+local nvim_lsp = require'lspconfig'
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = false,
@@ -18,7 +18,7 @@ local on_attach_lsp = function(client, bufnr)
     string.format('autocmd BufLeave,InsertEnter <buffer=%s> :lua vim.lsp.diagnostic.clear(%s)', bufnr, bufnr)
   )
   vim.cmd(
-    string.format('autocmd BufEnter,InsertLeave <buffer=%s> :lua vim.lsp.diagnostic.display(nil, %s, %s, { virtual_text = false })', bufnr, bufnr, client.id)
+    string.format('autocmd BufEnter,InsertLeave <buffer=%s> :lua vim.lsp.diagnostic.display(nil, %s, %s, { virtual_text = false, underline = false })', bufnr, bufnr, client.id)
   )
   vim.cmd('augroup END')
 
