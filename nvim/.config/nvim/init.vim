@@ -155,6 +155,7 @@ let g:SignatureMarkTextHL = 'Identifier'
 " Settings {{{
 syntax on
 set path+=src/**
+set path+=packages/*/src/**
 set undofile
 set dictionary+=/usr/share/dict/words
 set hidden
