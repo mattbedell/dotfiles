@@ -46,6 +46,7 @@ lua require('usr.plugin.lsp')
 lua require('usr.plugin.treesitter')
 lua require('usr.plugin.statusline')
 lua require('usr.plugin.linenumbers')
+lua require('usr.plugin.notes')
 "}}}
 " plugin configurations {{{
 "ale {{{
