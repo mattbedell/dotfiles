@@ -27,6 +27,7 @@
 	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 	pushb = push --set-upstream origin HEAD
 	undo = reset HEAD~1 --mixed
+	dt = diff-tree --no-commit-id --name-only -r
 	wt = worktree
 	wta = "!f() { git worktree add $(git rev-parse --show-toplevel)/../${1-TMP}; }; f"
 	wtr = "!f() { git worktree remove $(git rev-parse --show-toplevel)/../${1-TMP}; }; f"
