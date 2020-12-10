@@ -47,7 +47,12 @@ nvim_lsp.tsserver.setup{
 nvim_lsp.pyls_ms.setup{
   on_attach = on_attach_lsp,
 }
+
 nvim_lsp.rust_analyzer.setup{
+  on_attach = on_attach_lsp,
+}
+
+nvim_lsp.gopls.setup{
   on_attach = on_attach_lsp,
 }
 
