@@ -262,6 +262,7 @@ nnoremap <silent><leader>s :update<CR>
 nnoremap <silent><leader>z :ZoomToggle<CR>
 nnoremap <leader>w <C-w>
 nmap <leader>bd <plug>Kwbd
+nmap <leader>bf :let @* = expand('%:p')<CR>:echo 'Filepath copied to clipboard'<CR>
 
 "close quickfix/location lists
 nnoremap <silent><leader>c :ccl<CR>:lcl<CR>
