@@ -75,7 +75,9 @@ local function fzf_rg_note_link(fullscreen, ...)
   local notes_dir = vim.fn.expand('$NOTES_DIR')
   local is_notes_dir = vim.fn.fnamemodify(notes_dir, ':~') == vim.fn.fnamemodify(vim.fn.expand('%'), ':~:h')
   if is_notes_dir then
-    local with_preview = vim.fn['fzf#vim#with_preview']({ sink = 'NLink' })
+    local with_preview = vim.fn['fzf#vim#with_preview']()
+    -- passing in an object with a lua funcref to with_preview causes an error, but doing it this way works
+    with_preview.sink = fzf_rg_note_link_handle
     vim.fn['fzf#vim#grep'](search_cmd, 1, with_preview, fullscreen)
   end
 
@@ -99,9 +101,6 @@ usr_util.create_augroups({
 
 vim.api.nvim_command([[command NoteNew lua require'usr.plugin.notes'.new_note()]])
 vim.api.nvim_command([[command! -bang -nargs=* NoteLink lua require'usr.plugin.notes'.fzf_rg_note_link(<bang>0, <f-args>)]])
-
--- this command is executed by FZF when the user makes a choice from the NRg command above
-vim.api.nvim_command([[command! -bang -nargs=* NLink lua require'usr.plugin.notes'.fzf_rg_note_link_handle(<f-args>)]])
 
 -- this is called before <leader> is set, so just hardcode it to <Space> for now
 vim.fn.nvim_set_keymap('n', '<Space>nn', [[<cmd>NoteNew<CR>]], {noremap = true, silent = true})
