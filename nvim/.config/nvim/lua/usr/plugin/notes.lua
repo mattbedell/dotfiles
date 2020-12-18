@@ -1,6 +1,8 @@
 local usr_util = require'usr.util'
 
-local notes_glob = vim.fn.expand('$NOTES_DIR') .. '/*.md'
+local notes_src = vim.fn.expand('$NOTES_DIR') .. '/src'
+local notes_glob = notes_src .. '/*.md'
+local make_prg = '$NOTES_DIR/scripts/ctags.sh'
 
 local function get_relative_filepath(from_filepath)
   local rel_path_cmd = string.format('realpath --relative-to=%s %s', vim.fn.shellescape(vim.fn.expand('%:h')), vim.fn.shellescape(from_filepath))
@@ -24,12 +26,11 @@ end
 
 local function new_note(with_link)
   local filename = vim.fn.strftime('%Y%m%d%H%M') .. '.md'
-  local notes_dir = vim.fn.expand('$NOTES_DIR')
-  local filepath =  notes_dir .. '/' .. filename
+  local filepath =  notes_src .. '/' .. filename
 
   -- create a new note and link to it from the current note
   if with_link then
-    local is_notes_dir = vim.fn.fnamemodify(notes_dir, ':~') == vim.fn.fnamemodify(vim.fn.expand('%'), ':~:h')
+    local is_notes_dir = vim.fn.fnamemodify(notes_src, ':~') == vim.fn.fnamemodify(vim.fn.expand('%'), ':~:h')
 
     if is_notes_dir then
       local relative_filepath = get_relative_filepath(filepath)
@@ -45,7 +46,7 @@ local function handle_buf_enter()
     vim.w.original_dir = vim.fn.getcwd()
   end
 
-  vim.api.nvim_command('lcd ' .. vim.fn.expand('$NOTES_DIR'))
+  vim.api.nvim_command('lcd ' .. notes_src)
 end
 
 local function handle_buf_leave()
@@ -72,8 +73,7 @@ local function fzf_rg_note_link(fullscreen, ...)
     search_cmd = search_cmd .. ' ""'
   end
 
-  local notes_dir = vim.fn.expand('$NOTES_DIR')
-  local is_notes_dir = vim.fn.fnamemodify(notes_dir, ':~') == vim.fn.fnamemodify(vim.fn.expand('%'), ':~:h')
+  local is_notes_dir = vim.fn.fnamemodify(notes_src, ':~') == vim.fn.fnamemodify(vim.fn.expand('%'), ':~:h')
   if is_notes_dir then
     local with_preview = vim.fn['fzf#vim#with_preview']()
     -- passing in an object with a lua funcref to with_preview causes an error, but doing it this way works
@@ -93,7 +93,7 @@ M.fzf_rg_note_link_handle = fzf_rg_note_link_handle
 
 usr_util.create_augroups({
   UsrNotes = {
-    {'BufEnter', notes_glob, [[setlocal makeprg=cd\ $NOTES_DIR/..\ &&\ ctags\ -R\ $NOTES_DIR]]},
+    {'BufEnter', notes_glob, string.format([[setlocal makeprg=%s]], make_prg)},
     {'BufEnter,BufRead', notes_glob, [[lua require'usr.plugin.notes'.handle_buf_enter()]]},
     {'BufLeave', notes_glob, [[lua require'usr.plugin.notes'.handle_buf_leave()]]},
   }
@@ -106,6 +106,6 @@ vim.api.nvim_command([[command! -bang -nargs=* NoteLink lua require'usr.plugin.n
 vim.fn.nvim_set_keymap('n', '<Space>nn', [[<cmd>NoteNew<CR>]], {noremap = true, silent = true})
 vim.fn.nvim_set_keymap('n', '<Space>nl', [[:NoteLink ]], {noremap = true})
 vim.fn.nvim_set_keymap('n', '<Space>na', [[<cmd>lua require'usr.plugin.notes'.new_note(true)<CR>]], {noremap = true})
-vim.fn.nvim_set_keymap('n', '<Space>ng', [[<cmd>tabnew|setlocal bufhidden=wipe|setlocal nobuflisted|setlocal nomodifiable|tcd $NOTES_DIR<CR>]], {noremap = true})
+vim.fn.nvim_set_keymap('n', '<Space>ng', string.format([[<cmd>tabnew|setlocal bufhidden=wipe|setlocal nobuflisted|setlocal nomodifiable|setlocal makeprg=%s|tcd %s<CR>]], make_prg, notes_src), {noremap = true})
 
 return M
