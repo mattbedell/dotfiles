@@ -64,7 +64,7 @@ end
 
 local function fzf_rg_note_link(fullscreen, ...)
   local args = {...}
-  local search_cmd = 'rg --column --line-number --no-heading --color=always --smart-case --hidden -g "!.git"'
+  local search_cmd = 'rg --column --line-number --no-heading --color=always '
   if #args > 0 then
     for _,v in ipairs(args) do
       search_cmd = search_cmd .. ' ' .. v

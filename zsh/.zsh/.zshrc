@@ -50,6 +50,7 @@ export PATH="/usr/local/sbin:$PATH" #brew
 export NOTES_DIR=~/Documents/notes
 export EDITOR="nvim"
 export BAT_THEME
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 
 export CLICOLORS=1 # color ls output on BSD ls
 

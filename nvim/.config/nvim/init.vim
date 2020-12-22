@@ -91,7 +91,7 @@ let g:fzf_layout = { 'window': { 'width': 1, 'height': 1, 'border': 'bottom' } }
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case --hidden -g "!.git" '
+  \   'rg --column --line-number --no-heading --color=always '
   \  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
   \    fzf#vim#with_preview(), <bang>0)
 
