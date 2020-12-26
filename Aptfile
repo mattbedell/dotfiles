@@ -1,0 +1,29 @@
+# Better cat
+## might install as batcat, symlink to bat if needed
+bat
+
+# Better ls
+exa
+
+# Better find
+## symlink to fd
+fd-find
+
+# Fuzzy finder
+fzf
+
+neovim
+
+# Better grep
+ripgrep
+
+# Symlink farm manager
+stow
+
+# Filesystem tree view
+tree
+
+# Terminal file manager
+vifm
+
+zsh
