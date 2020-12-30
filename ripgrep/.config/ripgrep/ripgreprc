@@ -6,3 +6,5 @@ tests:*.{spec,test}.*
 tests
 --glob
 !.git
+--glob
+!node_modules
