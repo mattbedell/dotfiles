@@ -41,12 +41,19 @@ local function new_note(with_link)
   vim.api.nvim_command('e ' .. filepath)
 end
 
+local function tagfunc(pattern, _, _)
+  return vim.fn.taglist(pattern)
+end
+
 local function handle_buf_enter()
   if not vim.w.original_dir then
     vim.w.original_dir = vim.fn.getcwd()
   end
 
   vim.api.nvim_command('lcd ' .. notes_src)
+  vim.bo.makeprg = make_prg
+  -- vim.bo.tagfunc = tagfunc
+  vim.bo.tagfunc = 'NotesTagFunc'
 end
 
 local function handle_buf_leave()
@@ -80,7 +87,6 @@ local function fzf_rg_note_link(fullscreen, ...)
     with_preview.sink = fzf_rg_note_link_handle
     vim.fn['fzf#vim#grep'](search_cmd, 1, with_preview, fullscreen)
   end
-
 end
 
 local M = {}
@@ -90,10 +96,10 @@ M.handle_buf_enter = handle_buf_enter
 M.handle_buf_leave = handle_buf_leave
 M.fzf_rg_note_link = fzf_rg_note_link
 M.fzf_rg_note_link_handle = fzf_rg_note_link_handle
+M.tagfunc = tagfunc
 
 usr_util.create_augroups({
   UsrNotes = {
-    {'BufEnter', notes_glob, string.format([[setlocal makeprg=%s]], make_prg)},
     {'BufEnter,BufRead', notes_glob, [[lua require'usr.plugin.notes'.handle_buf_enter()]]},
     {'BufLeave', notes_glob, [[lua require'usr.plugin.notes'.handle_buf_leave()]]},
   }
@@ -107,5 +113,11 @@ vim.fn.nvim_set_keymap('n', '<Space>nn', [[<cmd>NoteNew<CR>]], {noremap = true, 
 vim.fn.nvim_set_keymap('n', '<Space>nl', [[:NoteLink ]], {noremap = true})
 vim.fn.nvim_set_keymap('n', '<Space>na', [[<cmd>lua require'usr.plugin.notes'.new_note(true)<CR>]], {noremap = true})
 vim.fn.nvim_set_keymap('n', '<Space>ng', string.format([[<cmd>tabnew|setlocal bufhidden=wipe|setlocal nobuflisted|setlocal nomodifiable|setlocal makeprg=%s|tcd %s<CR>]], make_prg, notes_src), {noremap = true})
+
+vim.api.nvim_exec(
+[[function! NotesTagFunc(pattern, flags, info) abort
+return luaeval('require("usr.plugin.notes").tagfunc(_A[1], _A[2], _A[3])', [a:pattern, a:flags, a:info])
+endfunction]]
+, false)
 
 return M
