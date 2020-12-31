@@ -1,5 +1,6 @@
 # Better cat
 ## might install as batcat, symlink to bat if needed
+## sudo ln -s /usr/bin/batcat /usr/local/bin/bat
 bat
 
 # Better ls
@@ -7,6 +8,7 @@ exa
 
 # Better find
 ## symlink to fd
+## sudo ln -s /usr/bin/fd-find /usr/local/bin/fd
 fd-find
 
 # Fuzzy finder
