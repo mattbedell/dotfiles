@@ -142,6 +142,12 @@ export NVM_DIR="$HOME/.nvm"
 # fuzzy autocompletion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# fzf keybindings/autocompletion on linux machines
+if [[ "$(uname 2> /dev/null)" == "Linux" ]]; then
+  source "/usr/share/doc/fzf/examples/key-bindings.zsh" &> /dev/null
+  source "/usr/share/doc/fzf/examples/completion.zsh" &> /dev/null
+fi
+
 # zsh QOL
 if (( $+commands[brew] )); then
   brew_prefix=$(brew --prefix)
