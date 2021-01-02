@@ -71,7 +71,7 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --no-height --preview-window down:4:
 # }}}
 # }}}
 # prompt {{{
-local git_prompt_lb="%{$fg_bold[blue]%}[%{$fg[red]%}"
+local git_prompt_lb="%{$fg_bold[blue]%} [%{$fg[red]%}"
 local git_prompt_rb="%{$fg_bold[blue]%}]%{$reset_color%}"
 local git_prompt_dirty="%{$fg_bold[yellow]%}%u%c"
 local ret_status="%(?:%{$fg_bold[blue]%}:%{$fg_bold[red]%})"
@@ -83,7 +83,13 @@ zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:git*:*' formats "${git_prompt_lb}%b${git_prompt_dirty}${git_prompt_rb}"
 zstyle ':vcs_info:git*:*' actionformats "${git_prompt_lb}%b${git_prompt_dirty}${git_prompt_rb}${git_prompt_lb}%{$fg[yellow]%}%a${git_prompt_rb}"
 
-PROMPT='${ret_status}${vimode} %{$fg[cyan]%}%~%{$reset_color%}%(1j.$fg[yellow](%j).) ${vcs_info_msg_0_} '
+PROMPT='${ret_status}${vimode} '
+PROMPT+="%F{cyan}%~"
+PROMPT+="%F{reset_color}"
+PROMPT+="%(1j.$fg[yellow](%j).)"
+PROMPT+='${vcs_info_msg_0_} '
+
+RPROMPT="%F{242}%n@%m"
 
 # vim shell cursor and prompt {{{
 export KEYTIMEOUT=1
