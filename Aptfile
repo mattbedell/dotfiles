@@ -22,6 +22,9 @@ ripgrep
 # Symlink farm manager
 stow
 
+# CLI todo list
+taskwarrior
+
 # Filesystem tree view
 tree
 

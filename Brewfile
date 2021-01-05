@@ -19,6 +19,8 @@ brew "pyenv-virtualenv"        # Virtual env manager plugin for pyenv
 brew "ripgrep"                 # Better grep
 brew "skhd"                    # Hotkey daemon
 brew "stow"                    # Symlink farm manager
+brew "task"                    # Taskwarrior CLI todo list
+brew "tasksh"                  # Taskwarrior shell
 brew "tmux"
 brew "tree"                    # Filesystem tree view
 brew "vifm"                    # Terminal file manager
