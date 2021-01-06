@@ -11,6 +11,7 @@ require'nvim-treesitter.configs'.setup{
     "python",
     "regex",
     "rust",
+    "toml",
     "typescript",
   },
   highlight = {
