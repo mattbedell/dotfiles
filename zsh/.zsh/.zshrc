@@ -158,7 +158,7 @@ fi
 if (( $+commands[brew] )); then
   brew_prefix=$(brew --prefix)
   source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" &> /dev/null
-  source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" &> /dev/null
+  # source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" &> /dev/null
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH # homebrew managed autocompletions
   [ -d "$(brew --prefix)/share/zsh-completions" ] && FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
