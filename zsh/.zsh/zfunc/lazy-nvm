@@ -1,0 +1,24 @@
+# lazy load nvm, npm, npx, node
+# https://tommckenzie.dev/posts/reduce-shell-startup-time-by-lazy-loading-nvm.html
+
+nvm () { load-nvm; nvm "$@"; }
+npm () { load-nvm; npm "$@"; }
+npx () { load-nvm; npx "$@"; }
+node () { load-nvm; node "$@"; }
+
+load-nvm () {
+  unset -f nvm
+  unset -f npm
+  unset -f npx
+  unset -f node
+
+  if [ -d "${HOME}/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  fi
+}
+
+# define the above functions and then do nothing on subsequent calls
+# https://unix.stackexchange.com/a/33898
+lazy-nvm () {}
+

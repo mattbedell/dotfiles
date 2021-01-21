@@ -1,4 +1,3 @@
-
 # https://github.com/hanjianwei/zsh-sensible/blob/master/sensible.zsh
 HISTFILE="$ZDOTDIR/.zsh_history"
 HISTSIZE=5000
@@ -28,9 +27,9 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-zstyle ':completion::complete:*' cache-path '$ZDOTDIR/.zcompcache'
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path $ZDOTDIR/.zcompcache
 
-autoload -U colors && colors
 autoload -U add-zsh-hook
 autoload -Uz vcs_info
 autoload -Uz edit-command-line
@@ -71,22 +70,21 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --no-height --preview-window down:4:
 # }}}
 # }}}
 # prompt {{{
-local git_prompt_lb="%{$fg_bold[blue]%} [%{$fg[red]%}"
-local git_prompt_rb="%{$fg_bold[blue]%}]%{$reset_color%}"
-local git_prompt_dirty="%{$fg_bold[yellow]%}%u%c"
-local ret_status="%(?:%{$fg_bold[blue]%}:%{$fg_bold[red]%})"
+local git_prompt_lb='%B%F{blue} [%%b%F{red}'
+local git_prompt_rb="%B%F{blue}]%%b%f"
+local git_prompt_dirty="%F{yellow}%u%c"
+local ret_status="%(?:%F{blue}:%F{red})"
 
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '!'
 zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:git*:*' formats "${git_prompt_lb}%b${git_prompt_dirty}${git_prompt_rb}"
-zstyle ':vcs_info:git*:*' actionformats "${git_prompt_lb}%b${git_prompt_dirty}${git_prompt_rb}${git_prompt_lb}%{$fg[yellow]%}%a${git_prompt_rb}"
+zstyle ':vcs_info:git*:*' actionformats "${git_prompt_lb}%b${git_prompt_dirty}${git_prompt_rb}${git_prompt_lb}%F{yellow}%a${git_prompt_rb}"
 
 PROMPT='${ret_status}${vimode} '
-PROMPT+="%F{cyan}%~"
-PROMPT+="%F{reset_color}"
-PROMPT+="%(1j.$fg[yellow](%j).)"
+PROMPT+="%F{cyan}%~%f"
+PROMPT+="%F{yellow}%(1j.(%j).)"
 PROMPT+='${vcs_info_msg_0_} '
 
 RPROMPT="%F{242}%n@%m"
@@ -137,13 +135,6 @@ alias bso='brew services stop'
 alias bsr='brew services restart'
 
 # }}}
-# nvm {{{
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm
-# NVM completion calls compinit for some reason, so it creates a new zcompdump if a custom compdump is used. It's also slow, don't use it for now.
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# }}}
 
 # fuzzy autocompletion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -158,7 +149,6 @@ fi
 if (( $+commands[brew] )); then
   brew_prefix=$(brew --prefix)
   source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" &> /dev/null
-  # source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" &> /dev/null
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH # homebrew managed autocompletions
   [ -d "$(brew --prefix)/share/zsh-completions" ] && FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 fi
@@ -180,11 +170,9 @@ fi
 
 # add user functions
 fpath+=$ZDOTDIR/zfunc
-autoload -Uz load-nvmrc portkill tmi spell
+autoload -Uz portkill tmi spell lazy-nvm
 
-# check for nvmrc and change node version on dir change
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+lazy-nvm
 
 compinit -d $ZDOTDIR/.zcompdump-${HOST:-'host'}-$ZSH_VERSION
 
