@@ -171,7 +171,7 @@ fi
 
 # add user functions
 fpath+=$ZDOTDIR/zfunc
-autoload -Uz portkill tmi spell lazy-nvm
+autoload -Uz portkill tmi spell lazy-nvm yankrtf
 
 lazy-nvm
 

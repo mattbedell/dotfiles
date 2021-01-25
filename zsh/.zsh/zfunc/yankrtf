@@ -1,0 +1,9 @@
+# https://unix.stackexchange.com/a/84952
+# https://www.ostricher.com/2015/08/from-markdown-to-pastable-formatted-text-in-os-x-terminal/
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  pandoc --from markdown "$1" | xclip -t text/html -selection clipboard
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  pandoc --from markdown --to html "$1" | textutil -convert rtf -stdin -stdout -format html | pbcopy -Prefer rtf
+fi
+
