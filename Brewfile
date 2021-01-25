@@ -14,6 +14,7 @@ brew "jq"                      # Json processor
 brew "less"
 brew "mdrender"                # mattbedell/mdrender Render markdown files in the terminal
 brew "neovim"
+brew "pandoc"                  # File format converter
 brew "pyenv"                   # Python version manager
 brew "pyenv-virtualenv"        # Virtual env manager plugin for pyenv
 brew "ripgrep"                 # Better grep

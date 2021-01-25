@@ -16,6 +16,9 @@ fzf
 
 neovim
 
+# File format converter
+pandoc
+
 # Better grep
 ripgrep
 
