@@ -27,7 +27,6 @@ brew "vifm"                    # Terminal file manager
 brew "vim"
 brew "yabai"                   # tiling window manager
 brew "zsh"
-brew "zsh-autosuggestions"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
