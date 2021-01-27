@@ -133,6 +133,11 @@ nvim_lsp.cssls.setup{
   on_attach = on_attach_lsp,
 }
 
+nvim_lsp.html.setup{
+  root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
+  on_attach = on_attach_lsp,
+}
+
 vim.fn.sign_define("LspDiagnosticsSignError", {
   text = '>>',
   texthl = "LspDiagnosticsError",
