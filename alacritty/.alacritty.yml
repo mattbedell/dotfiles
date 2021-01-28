@@ -182,15 +182,22 @@ schemes:
     primary:
       background: '#000000'
       foreground: '#ebdbb2'
+    cursor:
+      text: '#feffff'
+      cursor: '#ff00ff'
+
+    selection:
+      text: '#000000'
+      background: '#c1ddff'
     # Normal colors
     normal:
       black:   '#282828'
       red:     '#cc241d'
       green:   '#98971a'
       yellow:  '#d79921'
-      blue:    '#458588'
+      blue:    '#076678'
       magenta: '#b16286'
-      cyan:    '#689d6a'
+      cyan:    '#0aaeb3'
       white:   '#a89984'
 
     # Bright colors
@@ -200,8 +207,8 @@ schemes:
       green:   '#b8bb26'
       yellow:  '#fabd2f'
       blue:    '#83a598'
-      magenta: '#d3869b'
-      cyan:    '#8ec07c'
+      magenta: '#b16286'
+      cyan:    '#5ffdff'
       white:   '#ebdbb2'
 
   iterm: &iterm
@@ -240,7 +247,7 @@ schemes:
       cyan:    '#5ffdff'
       white:   '#feffff'
 
-colors: *iterm
+colors: *gruv
 # Colors (Tomorrow Night Bright)
 #colors:
   # Default colors
