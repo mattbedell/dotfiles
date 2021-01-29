@@ -27,11 +27,11 @@ setw -g mode-style fg=colour6,bg=colour0
 is_keys_off="#(if [ \"$(tmux show-option -qv key-table)\" = 'off' ]; then echo '#[fg=colour196,bg=colour88]  OFF  '; else echo '#[default]       '; fi)#[default]"
 # is_keys_off="#[fg=colour196,bg=colour88]#([ $(tmux show-option -qv key-table) = 'off' ] && echo '  OFF  ')#[default]"
 
-setw -g window-status-format " #[fg=colour8]#W[#I]"
-setw -g window-status-current-format " #[fg=colour2]#W#F#[fg=colour8]"
-setw -g window-status-current-style dim
+setw -g window-status-format " #[fg=colour242]#W[#[fg=green]#I#[fg=colour242]]"
+setw -g window-status-current-format " #[fg=magenta]#W#F#[fg=colour242]"
+setw -g window-status-style dim
 set -g status-position bottom
 set -g status-justify centre
-set -g status-left "#{?client_prefix,#[bg=colour8],}  #[fg=colour3]#S #[fg=colour2]#I #[fg=colour4]#P  $is_keys_off"
-set -g status-right "#[fg=colour242]#(whoami)#[fg=colour4]@#[fg=colour6]#H  "
+set -g status-left "#{?client_prefix,#[bg=white],}  #[fg=yellow]#S #[fg=green]#I #[fg=blue]#P  $is_keys_off"
+set -g status-right "#[fg=colour242]#(whoami)#[fg=white]@#[fg=magenta]#H  "
 
