@@ -164,7 +164,6 @@ set smartcase
 set hlsearch
 set list
 set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
-set fillchars+=vert:\ 
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set incsearch
