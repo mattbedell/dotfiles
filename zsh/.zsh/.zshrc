@@ -84,7 +84,7 @@ zstyle ':vcs_info:git*:*' actionformats "${git_prompt_lb}%b${git_prompt_dirty}${
 
 PROMPT='${ret_status}${vimode} '
 PROMPT+="%F{cyan}%~%f"
-PROMPT+="%F{yellow}%(1j.(%j).)"
+PROMPT+="%F{yellow}%(1j.(%j).)%f"
 PROMPT+='${vcs_info_msg_0_} '
 
 RPROMPT="%F{242}%n@%m"
