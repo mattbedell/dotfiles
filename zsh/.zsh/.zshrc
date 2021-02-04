@@ -46,6 +46,7 @@ precmd_functions=( precmd_vcs_info )
 # env {{{
 export PATH="$HOME/.cargo/bin:$PATH" # rust
 export PATH="/usr/local/sbin:$PATH" #brew
+export PATH="$PATH:/usr/local/share/git-core/contrib/diff-highlight:/usr/share/doc/git/contrib/diff-highlight" # git inline diff, contributor script
 export NOTES_DIR=~/Documents/notes
 export EDITOR="nvim"
 export BAT_THEME
