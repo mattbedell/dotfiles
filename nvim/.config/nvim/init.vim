@@ -11,7 +11,8 @@ let g:netrw_altfile = 1
 " vim-plug {{{
 call plug#begin('~/.local/share/nvim/site/plugged')
 " Plug 'dense-analysis/ale'                                         " used just for eslint (for now)
-Plug 'nvim-lua/completion-nvim'                                   " completion with LSP
+Plug 'hrsh7th/nvim-compe'                                         " completion
+Plug 'hrsh7th/vim-vsnip'                                          " lsp snippet support
 Plug 'junegunn/fzf'                                               " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                                           " fzf fuzzy finder plugin
 Plug 'rhysd/git-messenger.vim'                                    " fugitive Blame is slow, this is faster
@@ -42,6 +43,7 @@ lua require('usr.highlights')
 
 lua require('usr.plugin.lsp')
 lua require('usr.plugin.treesitter')
+lua require('usr.plugin.completion')
 lua require('usr.plugin.statusline')
 lua require('usr.plugin.linenumbers')
 lua require('usr.plugin.notes')
@@ -75,14 +77,6 @@ augroup AleHi
     \ | highlight link ALEStyleErrorSign DiffDelete
     \ | highlight link ALEStyleWarningSign DiffText
 augroup END
-"}}}
-" completion-nvim {{{
-let g:completion_enable_auto_popup = 0
-let g:completion_sorting="length"
-" let g:completion_matching_strategy_list = ['exact', 'fuzzy']
-let g:completion_matching_smart_case = 1
-inoremap <silent><expr> <c-n> pumvisible() ? '<C-n>' : completion#trigger_completion()
-inoremap <expr> <S-tab> pumvisible() ? '<C-n>' : '<C-x><C-o>'
 "}}}
 " fzf {{{
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 1, 'border': 'bottom' } }
@@ -164,7 +158,7 @@ set smartcase
 set hlsearch
 set list
 set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 set shortmess+=c
 set incsearch
 set ruler

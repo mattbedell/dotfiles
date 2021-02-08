@@ -1,12 +1,14 @@
 local nvim_lsp = require'lspconfig'
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = false,
   virtual_text = false,
 })
 
 local on_attach_lsp = function(client, bufnr)
-  require'completion'.on_attach(client)
 
   if not bufnr or bufnr == 0 then
     bufnr = vim.api.nvim_get_current_buf()
@@ -42,27 +44,33 @@ end
 nvim_lsp.tsserver.setup{
   root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
   on_attach = on_attach_lsp,
+  capabilities = capabilities,
 }
 
 nvim_lsp.pyls_ms.setup{
   on_attach = on_attach_lsp,
+  capabilities = capabilities,
 }
 
 nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach_lsp,
+  capabilities = capabilities,
 }
 
 nvim_lsp.gopls.setup{
   on_attach = on_attach_lsp,
+  capabilities = capabilities,
 }
 
 nvim_lsp.jsonls.setup{
   on_attach = on_attach_lsp,
+  capabilities = capabilities,
 }
 
 nvim_lsp.sumneko_lua.setup{
   root_dir = nvim_lsp.util.root_pattern(".git"),
   on_attach = on_attach_lsp,
+  capabilities = capabilities,
   settings = {
     Lua = {
       diagnostics = {
@@ -76,6 +84,7 @@ nvim_lsp.sumneko_lua.setup{
 
 nvim_lsp.diagnosticls.setup{
   on_attach = on_attach_lsp,
+  capabilities = capabilities,
   filetypes={'javascript', 'typescript', 'python'},
   init_options = {
     linters = {
@@ -131,11 +140,13 @@ nvim_lsp.diagnosticls.setup{
 nvim_lsp.cssls.setup{
   root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
   on_attach = on_attach_lsp,
+  capabilities = capabilities,
 }
 
 nvim_lsp.html.setup{
   root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
   on_attach = on_attach_lsp,
+  capabilities = capabilities,
 }
 
 vim.fn.sign_define("LspDiagnosticsSignError", {
