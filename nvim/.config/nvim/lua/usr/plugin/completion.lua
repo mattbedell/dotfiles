@@ -22,7 +22,7 @@ require'compe'.setup{
     treesitter = true;
     spell = true;
     tags = true;
-    snippets_nvim = true;
+    snippets_nvim = false;
   };
 }
 
