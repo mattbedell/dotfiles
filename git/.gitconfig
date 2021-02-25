@@ -1,6 +1,6 @@
 [user]
 	name = Matt Bedell
-	email = matt@bedell.co
+	email = matt_bedell@condenast.com
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore_global
