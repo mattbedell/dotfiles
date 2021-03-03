@@ -22,6 +22,7 @@
 	cm = commit
 	br = branch
 	st = status
+	rb = rebase
 	diffc = diff --cached
 	assume = update-index --assume-unchanged
 	unassume = update-index --no-assume-unchanged
