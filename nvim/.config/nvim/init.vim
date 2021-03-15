@@ -400,6 +400,8 @@ function! GruvCust() abort
     highlight GruvboxOrange guifg=#ff5f00
     highlight GruvboxBlue guifg=#0aaeb3
     highlight GruvboxPurple guifg=#ff5c8f
+  else
+    highlight MatchParen guibg=#736a57 guifg=#a89984
   endif
   highlight clear SignColumn
 endfunction
