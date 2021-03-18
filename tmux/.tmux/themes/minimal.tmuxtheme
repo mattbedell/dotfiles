@@ -8,7 +8,7 @@
 
 # panes
 set -g pane-border-style fg=colour0
-set -g pane-active-border-style fg=colour238
+set -g pane-active-border-style fg=colour005
 
 # status line
 set -g status-justify left
