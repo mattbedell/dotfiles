@@ -10,15 +10,13 @@ let g:netrw_altfile = 1
 " }}}
 " vim-plug {{{
 call plug#begin('~/.local/share/nvim/site/plugged')
-" Plug 'dense-analysis/ale'                                         " used just for eslint (for now)
-Plug 'hrsh7th/nvim-compe'                                         " completion
-Plug 'hrsh7th/vim-vsnip'                                          " lsp snippet support
 Plug 'junegunn/fzf'                                               " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                                           " fzf fuzzy finder plugin
 Plug 'rhysd/git-messenger.vim'                                    " fugitive Blame is slow, this is faster
 Plug 'iautom8things/gitlink-vim'                                  " Generate a github link to current line
 Plug 'gruvbox-community/gruvbox'                                  " theme
-Plug 'Yggdroot/indentLine'                                        " minimal indent guides
+Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }   " indent lines w/ treesitter context awareness
+Plug 'hrsh7th/nvim-compe'                                         " completion
 Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers
 Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " nvim-treesitter dependency
@@ -35,6 +33,7 @@ Plug 'yassinebridi/vim-purpura'                                   " theme, all p
 Plug 'tpope/vim-repeat'                                           " make mappings repeatable
 Plug 'kshenoy/vim-signature'                                      " visual marks in gutter
 Plug 'tpope/vim-surround'                                         " mappings for surrounding characters
+Plug 'hrsh7th/vim-vsnip'                                          " lsp snippet support
 call plug#end()
 
 "}}}
@@ -47,6 +46,7 @@ lua require('usr.plugin.completion')
 lua require('usr.plugin.statusline')
 lua require('usr.plugin.linenumbers')
 lua require('usr.plugin.notes')
+lua require('vendor.plugin.indent-blankline')
 "}}}
 " plugin configurations {{{
 "ale {{{
@@ -86,13 +86,6 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --color=always '
   \  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
   \    fzf#vim#with_preview(), <bang>0)
-
-"}}}
-" indentline {{{
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-" let g:indentLine_leadingSpaceEnabled = 1
-let g:indentLine_bufTypeExclude = ['help', 'terminal']
-let g:indentLine_enabled = 0
 
 "}}}
 " nvim-treesitter {{{

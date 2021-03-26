@@ -109,10 +109,10 @@ vim.api.nvim_command([[command NoteNew lua require'usr.plugin.notes'.new_note()]
 vim.api.nvim_command([[command! -bang -nargs=* NoteLink lua require'usr.plugin.notes'.fzf_rg_note_link(<bang>0, <f-args>)]])
 
 -- this is called before <leader> is set, so just hardcode it to <Space> for now
-vim.fn.nvim_set_keymap('n', '<Space>nn', [[<cmd>NoteNew<CR>]], {noremap = true, silent = true})
-vim.fn.nvim_set_keymap('n', '<Space>nl', [[:NoteLink ]], {noremap = true})
-vim.fn.nvim_set_keymap('n', '<Space>na', [[<cmd>lua require'usr.plugin.notes'.new_note(true)<CR>]], {noremap = true})
-vim.fn.nvim_set_keymap('n', '<Space>ng', string.format([[<cmd>tabnew|setlocal bufhidden=wipe|setlocal nobuflisted|setlocal nomodifiable|setlocal makeprg=%s|tcd %s<CR>]], make_prg, notes_src), {noremap = true})
+vim.api.nvim_set_keymap('n', '<Space>nn', [[<cmd>NoteNew<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Space>nl', [[:NoteLink ]], {noremap = true})
+vim.api.nvim_set_keymap('n', '<Space>na', [[<cmd>lua require'usr.plugin.notes'.new_note(true)<CR>]], {noremap = true})
+vim.api.nvim_set_keymap('n', '<Space>ng', string.format([[<cmd>tabnew|setlocal bufhidden=wipe|setlocal nobuflisted|setlocal nomodifiable|setlocal makeprg=%s|tcd %s<CR>]], make_prg, notes_src), {noremap = true})
 
 vim.api.nvim_exec(
 [[function! NotesTagFunc(pattern, flags, info) abort
