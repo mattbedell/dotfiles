@@ -26,5 +26,5 @@ require'compe'.setup{
   };
 }
 
-vim.fn.nvim_set_keymap('i', '<c-n>', [[pumvisible() ? '<c-n>' : compe#complete()]], {noremap = true, silent = true, expr = true})
+vim.api.nvim_set_keymap('i', '<c-n>', [[pumvisible() ? '<c-n>' : compe#complete()]], {noremap = true, silent = true, expr = true})
 
