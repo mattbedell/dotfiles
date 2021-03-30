@@ -30,6 +30,7 @@ Plug 'romainl/vim-cool'                                           " auto highlig
 Plug 'tpope/vim-dispatch'                                         " async make
 Plug 'tpope/vim-fugitive'                                         " git integration
 Plug 'yassinebridi/vim-purpura'                                   " theme, all purple because its fun
+Plug 'vimjas/vim-python-pep8-indent'                              " python treesitter indent is a WIP, use this until it's ready
 Plug 'tpope/vim-repeat'                                           " make mappings repeatable
 Plug 'kshenoy/vim-signature'                                      " visual marks in gutter
 Plug 'tpope/vim-surround'                                         " mappings for surrounding characters
