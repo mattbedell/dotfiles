@@ -6,6 +6,11 @@ local function update_indent_hi()
   if string.len(ident_fg) == 0 then
     ident_fg = 'None'
   end
+
+  if vim.g.colors_name == 'gruvbox' and vim.api.nvim_get_option('background') == 'light' then
+    ident_fg = '#ebe6c7'
+  end
+
   vim.api.nvim_command('highlight IndentBlanklineChar guifg=' ..ident_fg)
 end
 
