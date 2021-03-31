@@ -47,7 +47,13 @@ nvim_lsp.tsserver.setup{
   capabilities = capabilities,
 }
 
-nvim_lsp.pyls_ms.setup{
+-- microsoft pyls requires dotnet and is annoying to build and install, to use the evil palantir LS
+-- nvim_lsp.pyls_ms.setup{
+--   on_attach = on_attach_lsp,
+--   capabilities = capabilities,
+-- }
+
+nvim_lsp.pyls.setup{
   on_attach = on_attach_lsp,
   capabilities = capabilities,
 }
