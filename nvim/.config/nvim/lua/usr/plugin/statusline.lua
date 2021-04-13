@@ -66,8 +66,9 @@ local function status_active()
   ..'%#stlLspWarning#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Warning')")}]]
   ..'%#stlLspInformation#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Information')")}]]
   ..'%#stlLspHint#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Hint')")}]]
-  .. '%*'
-  ..' %6.(%l:%c%)'
+  ..'%*'
+  ..'%='
+  ..'%-6.(%l:%c%)'
   ..' %-4.(%P%)'
 
   vim.wo.statusline = stl_text
