@@ -24,17 +24,17 @@ local function buf_path(is_active)
   return path
 end
 
-local function status_inactive()
-  local stl_text = ' '
-  ..buf_path(false)
-  ..' ' .. '%h%w%q'
-  ..'%m'
-  ..'%='
-  ..'%-6.(%l:%c%)'
-  ..' %-4.(%P%)'
+-- local function status_inactive()
+--   local stl_text = ' '
+--   ..buf_path(false)
+--   ..' ' .. '%h%w%q'
+--   ..'%m'
+--   ..'%='
+--   ..'%-6.(%l:%c%)'
+--   ..' %-4.(%P%)'
 
-  vim.wo.statusline = stl_text
-end
+--   vim.wo.statusline = stl_text
+-- end
 
 
 local function diagnostics(level)
@@ -51,15 +51,20 @@ local function diagnostics(level)
   return ' _ '
 end
 
-local function status_active()
+local function get_status(full_path, git_branch)
 
   -- @TODO: this is bad, refactor
   -- local diagnostic_display = diagnostics()
 
+  local git_branch_str = ''
+  if git_branch then
+    git_branch_str = git()
+  end
+
   local stl_text = ' '
-  ..buf_path(true)
+  ..buf_path(full_path)
   ..' ' .. '%h%w%q'
-  .. git()
+  .. git_branch_str
   ..'%#stlWarn#%m%*%r'
   ..'%= '
   ..'%#stlLspError#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Error')")}]]
@@ -67,21 +72,19 @@ local function status_active()
   ..'%#stlLspInformation#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Information')")}]]
   ..'%#stlLspHint#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Hint')")}]]
   ..'%*'
-  ..'%='
-  ..'%-6.(%l:%c%)'
+  ..' %-6.(%l:%c%)'
   ..' %-4.(%P%)'
 
   vim.wo.statusline = stl_text
 end
 
-M.status_active = status_active
-M.status_inactive = status_inactive
+M.get_status = get_status
 M.diagnostics = diagnostics
 
 usr_util.create_augroups({
   UsrStatusLine = {
-    {'WinLeave', '*', [[lua require'usr.plugin.statusline'.status_inactive()]]},
-    {'WinEnter,BufEnter', '*', [[lua require'usr.plugin.statusline'.status_active()]]},
+    {'WinLeave', '*', [[lua require'usr.plugin.statusline'.get_status(false, false)]]},
+    {'WinEnter,BufEnter', '*', [[lua require'usr.plugin.statusline'.get_status(true, true)]]},
     {'User', 'LspDiagnosticsChanged', 'redrawstatus!'}
   }
 })
