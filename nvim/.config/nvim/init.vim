@@ -401,7 +401,7 @@ function! GruvCust() abort
 endfunction
 
 function! UpdateNormalNC() abort
-  let custBg = synIDattr(hlID('StatusLine'),'fg#')
+  let custBg = synIDattr(hlID('CursorLine'),'bg#')
   exec 'hi NormalNC guibg=' . custBg
   exec 'hi VertSplit guibg=' . custBg
 endfunction
