@@ -28,6 +28,7 @@ local function update_highlights()
 
   local statusline_fg = usr_util.get_hi_attr('PmenuThumb', 'bg#', 'gui')
   vim.api.nvim_command('highlight StatusLine cterm=reverse gui=reverse guifg=' ..statusline_fg)
+  usr_util.extend_hi_gui('StatusLine', 'StatusLineNC', { reverse = true })
 
 
   vim.api.nvim_command(hl_diagnostics)
