@@ -3,6 +3,7 @@ require'nvim-treesitter.configs'.setup{
     "bash",
     "c",
     "css",
+    "graphql",
     "html",
     "javascript",
     "jsdoc",
