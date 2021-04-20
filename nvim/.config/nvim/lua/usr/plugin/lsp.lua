@@ -73,6 +73,11 @@ nvim_lsp.jsonls.setup{
   capabilities = capabilities,
 }
 
+nvim_lsp.yamlls.setup{
+  on_attach = on_attach_lsp,
+  capabilities = capabilities,
+}
+
 nvim_lsp.graphql.setup{
   on_attach = on_attach_lsp,
   capabilities = capabilities,
