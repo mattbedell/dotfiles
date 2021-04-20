@@ -73,6 +73,11 @@ nvim_lsp.jsonls.setup{
   capabilities = capabilities,
 }
 
+nvim_lsp.graphql.setup{
+  on_attach = on_attach_lsp,
+  capabilities = capabilities,
+}
+
 nvim_lsp.sumneko_lua.setup{
   root_dir = nvim_lsp.util.root_pattern(".git"),
   on_attach = on_attach_lsp,

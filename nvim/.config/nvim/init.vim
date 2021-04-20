@@ -3,7 +3,6 @@
 " vim {{{
 packadd! cfilter " filter quickfix list, see :help CFilter
 packadd! matchit " extend %
-filetype plugin indent on
 
 let g:netrw_altfile = 1
 
@@ -232,6 +231,7 @@ augroup END
 " general overrides for all filetype plugins
 augroup GeneralFiletype
   autocmd!
+  autocmd BufNewFile,BufRead *.graphql setfiletype graphql
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   " this was causing some weird redraw/broken window issues when the lsp opened a qf
   " autocmd FileType qf wincmd J
