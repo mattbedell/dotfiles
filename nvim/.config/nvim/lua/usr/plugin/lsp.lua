@@ -141,7 +141,7 @@ nvim_lsp.diagnosticls.setup{
         args = {'--stdin-filepath' ,'%filepath', '--single-quote', '--print-width 120'},
       },
       black = {
-        command = './env/bin/black',
+        command = './.venv/bin/black',
         args = {'--code', '%text'},
       },
     },
