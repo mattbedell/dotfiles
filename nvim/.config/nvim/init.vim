@@ -46,6 +46,7 @@ lua require('usr.plugin.completion')
 lua require('usr.plugin.statusline')
 lua require('usr.plugin.linenumbers')
 lua require('usr.plugin.notes')
+lua require('usr.plugin.autocmd')
 lua require('vendor.plugin.indent-blankline')
 "}}}
 " plugin configurations {{{
