@@ -329,7 +329,7 @@ augroup END
 " vim-fugitive {{{
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gb :Git blame -C<CR>
 nnoremap <leader>grb :Grebase 
 nnoremap <leader>gri :Grebase -i HEAD~
 nnoremap <leader>gd :Gdiff<CR>
