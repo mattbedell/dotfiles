@@ -12,7 +12,7 @@ set -g pane-active-border-style fg=colour005
 
 # status line
 set -g status-justify left
-set -g status-bg default
+set -g status-bg black
 set -g status-fg default
 set -g status-left-length 50
 # set -g status-interval 2
