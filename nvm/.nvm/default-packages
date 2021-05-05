@@ -1,5 +1,6 @@
 diagnostic-languageserver
 eslint
+eslint_d
 graphql
 graphql-language-service-cli
 prettier

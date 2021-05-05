@@ -43,7 +43,10 @@ end
 
 nvim_lsp.tsserver.setup{
   root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
-  on_attach = on_attach_lsp,
+  on_attach = function (client)
+    client.resolved_capabilities.document_formatting = false
+    on_attach_lsp(client)
+  end,
   capabilities = capabilities,
 }
 
@@ -54,7 +57,10 @@ nvim_lsp.tsserver.setup{
 -- }
 
 nvim_lsp.pyls.setup{
-  on_attach = on_attach_lsp,
+  on_attach = function (client)
+    client.resolved_capabilities.document_formatting = false
+    on_attach_lsp(client)
+  end,
   capabilities = capabilities,
 }
 
@@ -69,7 +75,10 @@ nvim_lsp.gopls.setup{
 }
 
 nvim_lsp.jsonls.setup{
-  on_attach = on_attach_lsp,
+  on_attach = function (client)
+    client.resolved_capabilities.document_formatting = false
+    on_attach_lsp(client)
+  end,
   capabilities = capabilities,
 }
 
@@ -98,71 +107,77 @@ nvim_lsp.sumneko_lua.setup{
   }
 }
 
-nvim_lsp.diagnosticls.setup{
-  on_attach = on_attach_lsp,
-  capabilities = capabilities,
-  filetypes={'javascript', 'typescript', 'python'},
-  init_options = {
-    linters = {
-      eslint = {
-        command = './node_modules/.bin/eslint',
-        rootPatterns = {'.git'},
-        debounce = 100,
-        args = {
-          '--stdin',
-          '--stdin-filename',
-          '%filepath',
-          '--format',
-          'json',
-        },
-        sourceName = 'eslint',
-        parseJson = {
-          errorsRoot = '[0].messages',
-          line = 'line',
-          column = 'column',
-          endLine = 'endLine',
-          endColumn = 'endColumn',
-          message = 'eslint: ${message} [${ruleId}]',
-          security = 'severity',
-        },
-        securities = {
-          [2] = 'error',
-          [1] = 'warning',
-        },
-      },
-    },
-    filetypes = {
-      javascript = 'eslint',
-      typescript = 'eslint',
-    },
-    formatters = {
-      prettier = {
-        command = "./node_modules/.bin/prettier",
-        args = {'--stdin-filepath' ,'%filepath', '--single-quote', '--print-width 120'},
-      },
-      black = {
-        command = './.venv/bin/black',
-        args = {'--code', '%text'},
-      },
-    },
-    formatFiletypes = {
-      javascript = 'prettier',
-      typescript = 'prettier',
-      python = 'black',
-    },
-  },
-}
 
 nvim_lsp.cssls.setup{
   root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
-  on_attach = on_attach_lsp,
+  on_attach = function (client)
+    client.resolved_capabilities.document_formatting = false
+    on_attach_lsp(client)
+  end,
   capabilities = capabilities,
 }
 
 nvim_lsp.html.setup{
   root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
-  on_attach = on_attach_lsp,
+  on_attach = function (client)
+    client.resolved_capabilities.document_formatting = false
+    on_attach_lsp(client)
+  end,
   capabilities = capabilities,
+}
+
+local prettier =  {
+  formatCommand = "prettier --stdin-filepath = ${INPUT}",
+  formatStdin = true,
+}
+
+local eslint = {
+  formatCommand = "eslint -f visualstudio --stdin --stdin-filename ${INPUT}",
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"},
+  lintSource = "eslint",
+}
+
+nvim_lsp.efm.setup{
+  -- on_attach = on_attach,
+  init_options = {documentFormatting = true},
+  settings = {
+    log_file = "/Users/mbedell/efm.log",
+    log_level = 1,
+    rootMarkers = {".git/"},
+    languages = {
+      typescript = {prettier, eslint},
+      javascript = {prettier, eslint},
+      typescriptreact = {prettier, eslint},
+      javascriptreact = {prettier, eslint},
+      yaml = {prettier},
+      json = {prettier},
+      html = {prettier},
+      scss = {prettier},
+      css = {prettier},
+      python = {
+        black = {
+          formatCommand = [[
+            black --fast -
+          ]],
+          formatStdin = true,
+        }
+      },
+    },
+  },
+  filetypes = {
+    "typescript",
+    "javascript",
+    "typescriptreact",
+    "javascriptreact",
+    "yaml",
+    "json",
+    "html",
+    "scss",
+    "css",
+    "python",
+  },
 }
 
 vim.fn.sign_define("LspDiagnosticsSignError", {
