@@ -411,7 +411,6 @@ augroup ThemeCustom
   autocmd!
   autocmd ColorScheme gruvbox call GruvCust()
   autocmd OptionSet background call BatTheme(v:option_new)
-  autocmd ColorScheme * highlight SpellBad ctermbg=9 guibg=#770000
   autocmd ColorScheme * call UpdateNormalNC()
 augroup END
 

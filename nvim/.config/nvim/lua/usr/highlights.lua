@@ -65,6 +65,8 @@ local function update_highlights()
   vim.api.nvim_command('highlight link LspDiagnosticsFloatingWarning stlLspWarning')
   vim.api.nvim_command('highlight link LspDiagnosticsFloatingInformation stlLspInformation')
   vim.api.nvim_command('highlight link LspDiagnosticsFloatingHint stlLspHint')
+
+  vim.api.nvim_command('highlight clear SpellBad | highlight link SpellBad ErrorMsg')
 end
 
 local M = {}
