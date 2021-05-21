@@ -2,8 +2,6 @@
 tests:*.{spec,test}.*
 --smart-case
 --hidden
---type-not
-tests
 --glob
 !.git
 --glob
