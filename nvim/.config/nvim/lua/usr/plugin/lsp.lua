@@ -6,6 +6,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = false,
   virtual_text = false,
+  severity_sort = true,
 })
 
 local on_attach_lsp = function(client, bufnr)
@@ -17,10 +18,10 @@ local on_attach_lsp = function(client, bufnr)
   vim.cmd(string.format('augroup LspAttach:%s:%s', bufnr, client.id))
   vim.cmd('au!')
   vim.cmd(
-    string.format('autocmd BufLeave,InsertEnter <buffer=%s> :lua vim.lsp.diagnostic.clear(%s)', bufnr, bufnr)
+    string.format('autocmd InsertEnter <buffer=%s> :lua vim.lsp.diagnostic.clear(%s)', bufnr, bufnr)
   )
   vim.cmd(
-    string.format('autocmd BufEnter,InsertLeave <buffer=%s> :lua vim.lsp.diagnostic.display(nil, %s, %s, { virtual_text = false, underline = false })', bufnr, bufnr, client.id)
+    string.format('autocmd InsertLeave <buffer=%s> :lua vim.lsp.diagnostic.display(nil, %s, %s, { virtual_text = false, underline = false, severity_sort = true })', bufnr, bufnr, client.id)
   )
   vim.cmd('augroup END')
 
