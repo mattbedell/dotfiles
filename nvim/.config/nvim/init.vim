@@ -39,6 +39,7 @@ call plug#end()
 
 "}}}
 " lua user plugins {{{
+lua require('usr.commands')
 lua require('usr.highlights')
 
 lua require('usr.plugin.lsp')
