@@ -9,6 +9,7 @@ brew "fd"                      # Better find
 brew "fzf"                     # Fuzzy finder
 brew "gh"                      # Github CLI
 brew "git"
+brew "git-delta"               # Git diffs
 brew "htop"                    # Better top
 brew "jq"                      # Json processor
 brew "less"
