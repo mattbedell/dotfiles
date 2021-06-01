@@ -15,6 +15,7 @@ Plug 'rhysd/git-messenger.vim'                                    " fugitive Bla
 Plug 'iautom8things/gitlink-vim'                                  " Generate a github link to current line
 Plug 'gruvbox-community/gruvbox'                                  " theme
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }   " indent lines w/ treesitter context awareness
+Plug 'ray-x/lsp_signature.nvim'                                   " lsp function signatures
 Plug 'hrsh7th/nvim-compe'                                         " completion
 Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers
 Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
