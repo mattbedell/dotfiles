@@ -588,7 +588,7 @@ key_bindings:
   - { key: Key6,     mods: Control,       chars: "\x1e"            }
   # sending escape sequences for alt is supported but not working on osx, so map manually as needed
   - { key: Period,   mods: Alt,           chars: "\x1b."           }
-
+  - { key: C,        mods: Alt,           chars: "\x1bc" }
   # (Windows, Linux, and BSD only)
   #- { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }
