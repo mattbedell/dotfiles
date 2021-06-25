@@ -14,8 +14,8 @@
 [interactive]
   diffFilter = delta --color-only
 [delta]
-  side-by-side = true
-  ; line-numbers = false
+  ; side-by-side = true
+  line-numbers = true
   hunk-header-style = omit
 [difftool "nvim"]
 	cmd = "nvim -d ${LOCAL} ${REMOTE}"
