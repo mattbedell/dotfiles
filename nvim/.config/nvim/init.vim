@@ -14,7 +14,7 @@ Plug 'junegunn/fzf.vim'                                           " fzf fuzzy fi
 Plug 'rhysd/git-messenger.vim'                                    " fugitive Blame is slow, this is faster
 Plug 'iautom8things/gitlink-vim'                                  " Generate a github link to current line
 Plug 'gruvbox-community/gruvbox'                                  " theme
-Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }   " indent lines w/ treesitter context awareness
+Plug 'lukas-reineke/indent-blankline.nvim'                        " indent lines w/ treesitter context awareness
 Plug 'ray-x/lsp_signature.nvim'                                   " lsp function signatures
 Plug 'hrsh7th/nvim-compe'                                         " completion
 Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers

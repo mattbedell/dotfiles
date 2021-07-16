@@ -59,7 +59,8 @@ nvim_lsp.tsserver.setup{
 --   capabilities = capabilities,
 -- }
 
-nvim_lsp.pyls.setup{
+-- community fork of palantir/pyls
+nvim_lsp.pylsp.setup{
   on_attach = on_attach_lsp,
   capabilities = capabilities,
 }
