@@ -106,57 +106,33 @@ nvim_lsp.sumneko_lua.setup{
   }
 }
 
-nvim_lsp.diagnosticls.setup{
+local efm_javascript = {
+  lintCommand = "eslint -f visualstudio --stdin --stdin-filename ${INPUT}",
+  lintStdin = true,
+  lintFormats = {
+    "%f(%l,%c): %tarning %m",
+    "%f(%l,%c): %rror %m",
+  },
+  lintIgnoreExitCode = true,
+  formatCommand = "prettier --stdin-filepath ${INPUT}",
+  formatStdin = true,
+  lintSource = "eslint",
+}
+
+nvim_lsp.efm.setup{
   on_attach = on_attach_lsp,
-  capabilities = capabilities,
-  filetypes={'javascript', 'typescript', 'python'},
-  init_options = {
-    linters = {
-      eslint = {
-        command = './node_modules/.bin/eslint',
-        rootPatterns = {'.git'},
-        debounce = 100,
-        args = {
-          '--stdin',
-          '--stdin-filename',
-          '%filepath',
-          '--format',
-          'json',
-        },
-        sourceName = 'eslint',
-        parseJson = {
-          errorsRoot = '[0].messages',
-          line = 'line',
-          column = 'column',
-          endLine = 'endLine',
-          endColumn = 'endColumn',
-          message = 'eslint: ${message} [${ruleId}]',
-          security = 'severity',
-        },
-        securities = {
-          [2] = 'error',
-          [1] = 'warning',
-        },
-      },
-    },
-    filetypes = {
-      javascript = 'eslint',
-      typescript = 'eslint',
-    },
-    formatters = {
-      prettier = {
-        command = "./node_modules/.bin/prettier",
-        args = {'--stdin-filepath' ,'%filepath', '--single-quote', '--print-width 120'},
-      },
-      black = {
-        command = './.venv/bin/black',
-        args = {'--code', '%text'},
-      },
-    },
-    formatFiletypes = {
-      javascript = 'prettier',
-      typescript = 'prettier',
-      python = 'black',
+  init_options = {documentFormatting = true},
+  filetypes = {'javascript', 'javascriptreact', 'typescript', 'python'},
+  settings = {
+    rootMarkers = {".git/"},
+    languages = {
+      javascript = {efm_javascript},
+      typescript = {efm_javascript},
+      javascriptreact = {efm_javascript},
+      python = {{
+        formatCommand = "black --fast -",
+        formatStdin = true,
+      }},
     },
   },
 }
