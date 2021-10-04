@@ -4,6 +4,7 @@ tap "mattbedell/formulae"
 
 brew "bat"                     # Better cat
 brew "coreutils"               # GNU coreutils instead of BSD
+brew "dict"                    # Dictionary server protocol client
 brew "efm-langserver"          # LSP linting/diagnostics
 brew "exa"                     # Better ls
 brew "fd"                      # Better find
