@@ -205,26 +205,6 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
-
-" cursor related settings {{{
-" toggle cursor line and cursor column on active window, if it is enabled for
-" the buffer
-" this allows for :set nocursorcolumn in the buffer without it being
-" reenabled if the window loses and regains focus
-function! ToggleCursorLC(isEnter)
-  if a:isEnter && &g:cursorline | setlocal cursorline | endif
-  if a:isEnter && &g:cursorcolumn | setlocal cursorcolumn | endif
-
-  if !a:isEnter && &g:cursorline | setlocal nocursorline | endif
-  if !a:isEnter && &g:cursorcolumn | setlocal nocursorcolumn | endif
-endfunction
-
-augroup ActiveWindow
-  autocmd!
-  autocmd WinEnter * call ToggleCursorLC(1)
-  autocmd WinLeave * call ToggleCursorLC(0)
-augroup END
-
 augroup highlight_yank
   autocmd!
   " autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
