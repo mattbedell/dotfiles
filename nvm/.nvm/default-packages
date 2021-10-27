@@ -5,7 +5,5 @@ graphql-language-service-cli
 prettier
 typescript
 typescript-language-server
-vscode-css-languageserver-bin
-vscode-html-languageserver-bin
-vscode-json-languageserver
+vscode-langservers-extracted
 yaml-language-server
