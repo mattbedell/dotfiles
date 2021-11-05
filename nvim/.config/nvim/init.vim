@@ -21,6 +21,7 @@ Plug 'neovim/nvim-lspconfig'                                      " convenient c
 Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " nvim-treesitter dependency
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'                " nvim-treesitter dependency
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'                " update commentstring using treesitter for injected languages
 Plug 'tmsvg/pear-tree'                                            " autopair parens, etc.
 Plug 'unblevable/quick-scope'                                     " highlight unique chars for 'f' and 't' motions
 Plug 'wellle/targets.vim'                                         " enhanced text objects
