@@ -1,30 +1,27 @@
-require'compe'.setup{
-  enabled = true;
-  autocomplete = false;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
+local cmp = require'cmp'
 
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    vsnip = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    treesitter = true;
-    spell = true;
-    tags = true;
-    snippets_nvim = false;
-  };
-}
-
-vim.api.nvim_set_keymap('i', '<c-n>', [[pumvisible() ? '<c-n>' : compe#complete()]], {noremap = true, silent = true, expr = true})
-
+cmp.setup({
+  completion = {
+    autocomplete = false,
+  },
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+  }),
+  mapping = {
+    ['<C-n>'] = function (fallback)
+      if cmp.visible() == true then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+      else
+        cmp.complete()
+      end
+    end,
+  },
+})

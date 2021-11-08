@@ -9,6 +9,10 @@ let g:netrw_altfile = 1
 " }}}
 " vim-plug {{{
 call plug#begin('~/.local/share/nvim/site/plugged')
+Plug 'hrsh7th/cmp-buffer'                                         " cmp completion source
+Plug 'hrsh7th/cmp-nvim-lsp'                                       " cmp completion source
+Plug 'hrsh7th/cmp-path'                                           " cmp completion source
+Plug 'hrsh7th/cmp-vsnip'                                          " cmp completion source
 Plug 'junegunn/fzf'                                               " fzf fuzzy finder wrapper
 Plug 'junegunn/fzf.vim'                                           " fzf fuzzy finder plugin
 Plug 'rhysd/git-messenger.vim'                                    " fugitive Blame is slow, this is faster
@@ -16,7 +20,7 @@ Plug 'iautom8things/gitlink-vim'                                  " Generate a g
 Plug 'gruvbox-community/gruvbox'                                  " theme
 Plug 'lukas-reineke/indent-blankline.nvim'                        " indent lines w/ treesitter context awareness
 " Plug 'ray-x/lsp_signature.nvim'                                   " lsp function signatures
-Plug 'hrsh7th/nvim-compe'                                         " completion
+Plug 'hrsh7th/nvim-cmp'                                           " completion
 Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers
 Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " nvim-treesitter dependency
