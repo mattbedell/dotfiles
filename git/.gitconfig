@@ -22,6 +22,10 @@
 [diff]
 	tool = vimdiff
 	colorMoved = true
+[blame]
+	markUnblamableLines = true
+	markIgnoredLines = true
+	ignoreRevsFile = ~/.gitignore_revs
 [pull]
 	ff = only
 [push]
