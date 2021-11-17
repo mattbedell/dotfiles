@@ -18,7 +18,7 @@ cmp.setup({
   mapping = {
     ['<C-n>'] = function (fallback)
       if cmp.visible() == true then
-        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
       else
         cmp.complete()
       end
