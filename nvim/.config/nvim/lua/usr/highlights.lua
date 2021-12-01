@@ -1,10 +1,14 @@
 local usr_util = require'usr.util'
 
 local hl_diagnostics =
-              'highlight link LspDiagnosticsError DiffDelete'
-  .. ' | ' .. 'highlight link LspDiagnosticsWarning DiffText'
-  .. ' | ' .. 'highlight link LspDiagnosticsInformation DiffAdd'
-  .. ' | ' .. 'highlight link LspDiagnosticsHint DiffChange'
+  'highlight clear DiagnosticError'
+  .. ' | ' .. 'highlight clear DiagnosticWarning'
+  .. ' | ' .. 'highlight clear DiagnosticInformation'
+  .. ' | ' .. 'highlight clear DiagnosticHint'
+  .. ' | ' .. 'highlight link DiagnosticError DiffDelete'
+  .. ' | ' .. 'highlight link DiagnosticWarning DiffText'
+  .. ' | ' .. 'highlight link DiagnosticInformation DiffAdd'
+  .. ' | ' .. 'highlight link DiagnosticHint DiffChange'
 
 
 local function update_highlights()
@@ -33,38 +37,38 @@ local function update_highlights()
 
   vim.api.nvim_command(hl_diagnostics)
 
-  usr_util.extend_hi_gui('LspDiagnosticsError', 'stlLspError', {
+  usr_util.extend_hi_gui('DiagnosticError', 'stlLspError', {
     reverse = false,
     inverse = false,
     bold = true,
     bg = usr_util.get_hi_attr('Pmenu', 'bg', 'gui'),
   })
 
-  usr_util.extend_hi_gui('LspDiagnosticsWarning', 'stlLspWarning', {
+  usr_util.extend_hi_gui('DiagnosticWarning', 'stlLspWarning', {
     reverse = false,
     inverse = false,
     bold = true,
     bg = usr_util.get_hi_attr('Pmenu', 'bg', 'gui'),
   })
 
-  usr_util.extend_hi_gui('LspDiagnosticsInformation', 'stlLspInformation', {
+  usr_util.extend_hi_gui('DiagnosticInformation', 'stlLspInformation', {
     reverse = false,
     inverse = false,
     bold = true,
     bg = usr_util.get_hi_attr('Pmenu', 'bg', 'gui'),
   })
 
-  usr_util.extend_hi_gui('LspDiagnosticsHint', 'stlLspHint', {
+  usr_util.extend_hi_gui('DiagnosticHint', 'stlLspHint', {
     reverse = false,
     inverse = false,
     bold = true,
     bg = usr_util.get_hi_attr('Pmenu', 'bg', 'gui'),
   })
 
-  vim.api.nvim_command('highlight link LspDiagnosticsFloatingError stlLspError')
-  vim.api.nvim_command('highlight link LspDiagnosticsFloatingWarning stlLspWarning')
-  vim.api.nvim_command('highlight link LspDiagnosticsFloatingInformation stlLspInformation')
-  vim.api.nvim_command('highlight link LspDiagnosticsFloatingHint stlLspHint')
+  vim.api.nvim_command('highlight link DiagnosticFloatingError stlLspError')
+  vim.api.nvim_command('highlight link DiagnosticFloatingWarning stlLspWarning')
+  vim.api.nvim_command('highlight link DiagnosticFloatingInformation stlLspInformation')
+  vim.api.nvim_command('highlight link DiagnosticFloatingHint stlLspHint')
 
   vim.api.nvim_command('highlight clear SpellBad | highlight link SpellBad ErrorMsg')
 end

@@ -2,10 +2,14 @@ local nvim_lsp = require'lspconfig'
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.diagnostic.config({
   underline = false,
   virtual_text = false,
   severity_sort = true,
+  float = {
+    severity_sort = true,
+    source = 'always',
+  },
 })
 
 local on_attach_lsp = function(client, bufnr)
@@ -22,10 +26,10 @@ local on_attach_lsp = function(client, bufnr)
   vim.cmd(string.format('augroup LspAttach:%s:%s', bufnr, client.id))
   vim.cmd('au!')
   vim.cmd(
-    string.format('autocmd InsertEnter <buffer=%s> :lua vim.lsp.diagnostic.clear(%s)', bufnr, bufnr)
+    string.format('autocmd InsertEnter <buffer=%s> :lua vim.diagnostic.hide(nil, %s)', bufnr, bufnr)
   )
   vim.cmd(
-    string.format('autocmd InsertLeave <buffer=%s> :lua vim.lsp.diagnostic.display(nil, %s, %s, { virtual_text = false, underline = false, severity_sort = true })', bufnr, bufnr, client.id)
+    string.format('autocmd InsertLeave <buffer=%s> :lua vim.diagnostic.show(nil, %s)', bufnr, bufnr)
   )
   vim.cmd('augroup END')
 
@@ -38,7 +42,7 @@ local on_attach_lsp = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>le', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ll', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', {noremap = true, silent = true})
+  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ll', '<cmd>lua vim.diagnostic.setloclist()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap = true, silent = true})
@@ -90,20 +94,20 @@ nvim_lsp.graphql.setup{
   capabilities = capabilities,
 }
 
-nvim_lsp.sumneko_lua.setup{
-  root_dir = nvim_lsp.util.root_pattern(".git"),
-  on_attach = on_attach_lsp,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = {"vim", "map", "filter", "range", "reduce", "head", "tail", "nth"},
-        disable = {"redefined-local"},
-      },
-      runtime = {version = "LuaJIT"},
-    }
-  }
-}
+-- nvim_lsp.sumneko_lua.setup{
+--   root_dir = nvim_lsp.util.root_pattern(".git"),
+--   on_attach = on_attach_lsp,
+--   capabilities = capabilities,
+--   settings = {
+--     Lua = {
+--       diagnostics = {
+--         globals = {"vim", "map", "filter", "range", "reduce", "head", "tail", "nth"},
+--         disable = {"redefined-local"},
+--       },
+--       runtime = {version = "LuaJIT"},
+--     }
+--   }
+-- }
 
 local efm_javascript = {
   lintCommand = "eslint -f visualstudio --stdin --stdin-filename ${INPUT}",
@@ -148,19 +152,19 @@ nvim_lsp.html.setup{
   capabilities = capabilities,
 }
 
-vim.fn.sign_define("LspDiagnosticsSignError", {
+vim.fn.sign_define("DiagnosticSignError", {
   text = '>>',
-  texthl = "LspDiagnosticsError",
+  texthl = "DiagnosticError",
 })
-vim.fn.sign_define("LspDiagnosticsSignWarning", {
+vim.fn.sign_define("DiagnosticSignWarning", {
   text = '!>',
-  texthl = "LspDiagnosticsWarning",
+  texthl = "DiagnosticWarning",
 })
-vim.fn.sign_define("LspDiagnosticsSignInformation", {
+vim.fn.sign_define("DiagnosticSignInformation", {
   text = '<>',
-  texthl = "LspDiagnosticsInformation",
+  texthl = "DiagnosticInformation",
 })
-vim.fn.sign_define("LspDiagnosticsSignHint", {
+vim.fn.sign_define("DiagnosticSignHint", {
   text = '?>',
-  texthl = "LspDiagnosticsHint",
+  texthl = "DiagnosticHint",
 })

@@ -152,7 +152,6 @@ set path+=src/**
 set path+=packages/*/src/**
 set undofile
 set dictionary+=/usr/share/dict/words
-set hidden
 set timeoutlen=1000 ttimeoutlen=5
 set ignorecase
 set smartcase
@@ -261,7 +260,6 @@ augroup END
 " some window commands have two keymaps for opening horiz. splits, so take one of them for vertical splits
 nnoremap <C-W><C-F> <C-W>vgf
 
-noremap Y y$
 nnoremap <silent>- :Vifm<CR>
 
 " make character-wise search repeat keys always jump in the same direction. Ex. repeating Fa and fa, ; always jumps cursor to next 'a' character to the right
