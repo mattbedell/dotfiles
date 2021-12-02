@@ -2,7 +2,9 @@ require'nvim-treesitter.configs'.setup{
   ensure_installed = {
     "bash",
     "c",
+    "comment",
     "css",
+    "dockerfile",
     "graphql",
     "html",
     "javascript",
@@ -12,8 +14,11 @@ require'nvim-treesitter.configs'.setup{
     "python",
     "regex",
     "rust",
+    "scss",
     "toml",
+    "tsx",
     "typescript",
+    "yaml",
   },
   highlight = {
     enable = true,
