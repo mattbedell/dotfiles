@@ -157,9 +157,9 @@ vim.fn.sign_define("DiagnosticSignError", {
   text = '>>',
   texthl = "DiagnosticError",
 })
-vim.fn.sign_define("DiagnosticSignWarning", {
+vim.fn.sign_define("DiagnosticSignWarn", {
   text = '!>',
-  texthl = "DiagnosticWarning",
+  texthl = "DiagnosticWarn",
 })
 vim.fn.sign_define("DiagnosticSignInformation", {
   text = '<>',

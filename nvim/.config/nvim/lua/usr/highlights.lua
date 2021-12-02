@@ -2,11 +2,11 @@ local usr_util = require'usr.util'
 
 local hl_diagnostics =
   'highlight clear DiagnosticError'
-  .. ' | ' .. 'highlight clear DiagnosticWarning'
+  .. ' | ' .. 'highlight clear DiagnosticWarn'
   .. ' | ' .. 'highlight clear DiagnosticInformation'
   .. ' | ' .. 'highlight clear DiagnosticHint'
   .. ' | ' .. 'highlight link DiagnosticError DiffDelete'
-  .. ' | ' .. 'highlight link DiagnosticWarning DiffText'
+  .. ' | ' .. 'highlight link DiagnosticWarn DiffText'
   .. ' | ' .. 'highlight link DiagnosticInformation DiffAdd'
   .. ' | ' .. 'highlight link DiagnosticHint DiffChange'
 
@@ -44,7 +44,7 @@ local function update_highlights()
     bg = usr_util.get_hi_attr('Pmenu', 'bg', 'gui'),
   })
 
-  usr_util.extend_hi_gui('DiagnosticWarning', 'stlLspWarning', {
+  usr_util.extend_hi_gui('DiagnosticWarn', 'stlLspWarning', {
     reverse = false,
     inverse = false,
     bold = true,
@@ -66,7 +66,7 @@ local function update_highlights()
   })
 
   vim.api.nvim_command('highlight link DiagnosticFloatingError stlLspError')
-  vim.api.nvim_command('highlight link DiagnosticFloatingWarning stlLspWarning')
+  vim.api.nvim_command('highlight link DiagnosticFloatingWarn stlLspWarning')
   vim.api.nvim_command('highlight link DiagnosticFloatingInformation stlLspInformation')
   vim.api.nvim_command('highlight link DiagnosticFloatingHint stlLspHint')
 
