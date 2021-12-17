@@ -48,6 +48,7 @@ export PATH="$HOME/.cargo/bin:$PATH" # rust
 export PATH="/usr/local/sbin:$PATH" #brew
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/usr/local/share/git-core/contrib/diff-highlight:/usr/share/doc/git/contrib/diff-highlight" # git inline diff, contributor script
+export MANPAGER="nvim +Man!"
 export NOTES_DIR=~/Documents/notes
 export VISUAL='nvim'
 export BAT_THEME
