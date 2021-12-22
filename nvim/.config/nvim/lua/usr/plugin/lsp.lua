@@ -13,11 +13,12 @@ vim.diagnostic.config({
 })
 
 local on_attach_lsp = function(client, bufnr)
-  -- require'lsp_signature'.on_attach({
-  --   hint_enable = false,
-  --   doc_lines = 0,
-  --   handler_opts = {border = 'double'},
-  -- })
+  require'lsp_signature'.on_attach({
+    hint_enable = false,
+    doc_lines = 0,
+    hi_parameter = 'DiagnosticHint',
+    handler_opts = {border = 'double'},
+  })
 
   if not bufnr or bufnr == 0 then
     bufnr = vim.api.nvim_get_current_buf()
