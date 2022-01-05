@@ -131,8 +131,6 @@ if (( $+commands[exa] )); then
 fi
 
 alias la='ls -la'
-alias gs='git status'
-alias ga='git add .'
 alias bsa='brew services start'
 alias bso='brew services stop'
 alias bsr='brew services restart'
