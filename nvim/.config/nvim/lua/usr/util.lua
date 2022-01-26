@@ -15,6 +15,14 @@ local function join(list, delim)
   return str
 end
 
+local function length(table)
+  local count = 0
+  for _ in pairs(table) do
+    count = count + 1
+  end
+  return count
+end
+
 local function get_hi_attr(hi_name, attr, mode)
   local id = fn.synIDtrans(fn.hlID(hi_name))
   return fn.synIDattr(id, attr, mode)
@@ -76,6 +84,7 @@ local function create_augroups(definitions)
 end
 
 M.join = join
+M.length = length
 M.create_augroups = create_augroups
 M.extend_hi_gui = extend_hi_gui
 M.get_hi_attr = get_hi_attr

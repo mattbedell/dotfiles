@@ -36,13 +36,11 @@ end
 --   vim.wo.statusline = stl_text
 -- end
 
-
 local function diagnostics(level)
-  if #vim.lsp.buf_get_clients() == 0 then
+  if usr_util.length(vim.lsp.buf_get_clients()) == 0 then
     return ''
   end
-
-  local count = vim.lsp.diagnostic.get_count(0, level)
+  local count = usr_util.length(vim.diagnostic.get(0, { severity = level }))
 
   if count ~= 0 then
     return ' '..count..' '
@@ -67,10 +65,10 @@ local function get_status(full_path, git_branch)
   .. git_branch_str
   ..'%#stlWarn#%m%*%r'
   ..'%= '
-  ..'%#stlLspError#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Error')")}]]
-  ..'%#stlLspWarning#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Warning')")}]]
-  ..'%#stlLspInformation#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Information')")}]]
-  ..'%#stlLspHint#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics('Hint')")}]]
+  ..'%#stlLspError#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics(vim.diagnostic.severity.ERROR)")}]]
+  ..'%#stlLspWarning#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics(vim.diagnostic.severity.WARN)")}]]
+  ..'%#stlLspInformation#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics(vim.diagnostic.severity.INFO)")}]]
+  ..'%#stlLspHint#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics(vim.diagnostic.severity.HINT)")}]]
   ..'%*'
   ..' %-6.(%l:%c%)'
   ..' %-4.(%P%)'
