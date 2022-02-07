@@ -23,6 +23,14 @@ local on_attach_lsp = function(client, bufnr)
     bufnr = vim.api.nvim_get_current_buf()
   end
 
+  local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+
+  -- use efm + eslint/prettier formatting for js files, disable tsserver formatting so we're not asked which LS to use
+  if client.name == 'tsserver' and (filetype == 'javascript' or filetype == 'javascriptreact') then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end
+
   vim.cmd(string.format('augroup LspAttach:%s:%s', bufnr, client.id))
   vim.cmd('au!')
   vim.cmd(
