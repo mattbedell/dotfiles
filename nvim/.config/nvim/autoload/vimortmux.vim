@@ -7,7 +7,7 @@ function! vimortmux#VimOrTmuxNav(direction)
   execute 'wincmd '. a:direction
 
   if (nr == winnr())
-    let l:cmd = 'tmux select-pane -'. tr(a:direction, 'hjkl', 'LDUR')
+    let l:cmd = 'tmux select-pane -Z'. tr(a:direction, 'hjkl', 'LDUR')
     return system(l:cmd)
   endif
 endfunction
