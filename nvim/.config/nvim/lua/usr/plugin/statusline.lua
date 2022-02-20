@@ -58,7 +58,6 @@ local function get_progress()
   local msgs = {}
   local buf_messages = vim.lsp.util.get_progress_messages()
   for _, msg in ipairs(buf_messages) do
-    print(msg.name)
     local client_name = '[' .. msg.name .. ']'
     local contents = ''
     if msg.progress then
