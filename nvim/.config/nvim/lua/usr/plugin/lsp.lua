@@ -119,7 +119,7 @@ nvim_lsp.graphql.setup{
 -- }
 
 local efm_javascript = {
-  lintCommand = "eslint -f visualstudio --stdin --stdin-filename ${INPUT}",
+  lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
   lintStdin = true,
   lintFormats = {
     "%f(%l,%c): %tarning %m",
