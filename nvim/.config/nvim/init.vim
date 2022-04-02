@@ -158,6 +158,7 @@ set timeoutlen=1000 ttimeoutlen=5
 set ignorecase
 set smartcase
 set hlsearch
+set nowrapscan
 set list
 set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
 set completeopt=menu,menuone,noselect
