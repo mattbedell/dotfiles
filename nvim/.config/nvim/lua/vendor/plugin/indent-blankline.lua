@@ -16,7 +16,7 @@ end
 
 vim.api.nvim_set_var('indent_blankline_char', '▏')
 vim.api.nvim_set_var('indent_blankline_use_treesitter', true)
-vim.api.nvim_set_var('indent_blankline_show_current_context', true)
+-- vim.api.nvim_set_var('indent_blankline_show_current_context', true)
 vim.api.nvim_set_var('indent_blankline_context_patterns', { 'class', 'function', 'method', 'object_pattern', 'statement_block' })
 vim.api.nvim_set_var('indent_blankline_show_trailing_blankline_indent', false)
 vim.api.nvim_set_var('indent_blankline_context_highlight_list', { 'Boolean' })
