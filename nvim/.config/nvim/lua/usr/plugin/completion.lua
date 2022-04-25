@@ -24,6 +24,13 @@ cmp.setup({
         cmp.complete()
       end
     end,
+    ['<C-p>'] = function (fallback)
+      if cmp.visible() == true then
+        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+      else
+        fallback()
+      end
+    end,
   },
   sorting = {
     comparators = {
