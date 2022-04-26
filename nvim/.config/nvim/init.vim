@@ -41,6 +41,7 @@ Plug 'vimjas/vim-python-pep8-indent'                              " python trees
 Plug 'tpope/vim-repeat'                                           " make mappings repeatable
 Plug 'kshenoy/vim-signature'                                      " visual marks in gutter
 Plug 'tpope/vim-surround'                                         " mappings for surrounding characters
+Plug 'fgsch/vim-varnish'                                          " VCL syntax highlighting
 Plug 'hrsh7th/vim-vsnip'                                          " lsp snippet support
 call plug#end()
 
