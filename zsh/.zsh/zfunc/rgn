@@ -1,0 +1,2 @@
+# search notes
+rg "$@" $(realpath --relative-to $(pwd) $(bnotes go))
