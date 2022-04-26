@@ -11,6 +11,7 @@ let g:netrw_altfile = 1
 call plug#begin('~/.local/share/nvim/site/plugged')
 Plug 'hrsh7th/cmp-buffer'                                         " cmp completion source
 Plug 'hrsh7th/cmp-nvim-lsp'                                       " cmp completion source
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'                        " cmp signature help
 Plug 'hrsh7th/cmp-path'                                           " cmp completion source
 Plug 'hrsh7th/cmp-vsnip'                                          " cmp completion source
 Plug 'junegunn/fzf'                                               " fzf fuzzy finder wrapper

@@ -15,6 +15,7 @@ cmp.setup({
     { name = 'vsnip' },
     -- { name = 'buffer' },
     { name = 'path' },
+    { name = 'nvim_lsp_signature_help' },
   }),
   mapping = {
     ['<C-n>'] = function (fallback)
@@ -31,6 +32,8 @@ cmp.setup({
         fallback()
       end
     end,
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<C-y>'] = cmp.mapping.confirm({ select = false }),
   },
   sorting = {
     comparators = {
