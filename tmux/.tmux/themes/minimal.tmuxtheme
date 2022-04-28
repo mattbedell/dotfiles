@@ -27,8 +27,8 @@ setw -g mode-style fg=colour6,bg=colour0
 is_keys_off="#(if [ \"$(tmux show-option -qv key-table)\" = 'off' ]; then echo '#[fg=colour196,bg=colour88]  OFF  '; else echo '#[default]       '; fi)#[default]"
 # is_keys_off="#[fg=colour196,bg=colour88]#([ $(tmux show-option -qv key-table) = 'off' ] && echo '  OFF  ')#[default]"
 
-setw -g window-status-format " #[fg=colour242]#W[#[fg=green]#I#[fg=colour242]]"
-setw -g window-status-current-format " #[fg=magenta]#W#F#[fg=colour242]"
+setw -g window-status-format " #[fg=white]#W[#[fg=green]#I#[fg=yellow nodim bold]#(printf '%%s\n' '#F' | tr '-' '^' | tr -d 'Z')#[fg=white dim nobold]]"
+setw -g window-status-current-format " #[fg=magenta bold dim]#W#(if [[ -n $(echo '#F' | tr -d '*') ]]; then echo ':'; fi)#[fg=yellow nodim bold]#(printf '%%s\n' '#F' | tr -d '*')#[fg=colour242]"
 setw -g window-status-style dim
 set -g status-position bottom
 set -g status-justify centre
