@@ -8,6 +8,7 @@ brew "dict"                    # Dictionary server protocol client
 brew "efm-langserver"          # LSP linting/diagnostics
 brew "exa"                     # Better ls
 brew "fd"                      # Better find
+brew "findutils"               # GNU instead of BSD
 brew "fzf"                     # Fuzzy finder
 brew "gh"                      # Github CLI
 brew "git"
