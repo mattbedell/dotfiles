@@ -81,6 +81,13 @@ nvim_lsp.pylsp.setup{
 nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach_lsp,
   capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      completion = {
+        addCallParenthesis = false,
+      },
+    },
+  },
 }
 
 nvim_lsp.gopls.setup{
