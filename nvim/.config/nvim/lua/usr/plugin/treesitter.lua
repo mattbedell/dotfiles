@@ -27,7 +27,7 @@ require'nvim-treesitter.configs'.setup{
   },
   indent = {
     enable = true,
-    disable = { "python" },
+    disable = { "python", "rust" },
   },
   refactor = {
     highlight_definitions = { enable = true },
