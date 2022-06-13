@@ -125,14 +125,24 @@ nvim_lsp.graphql.setup{
 --   }
 -- }
 
-local efm_javascript = {
-  lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
-  lintStdin = true,
-  lintFormats = {
-    "%f(%l,%c): %tarning %m",
-    "%f(%l,%c): %rror %m",
+nvim_lsp.eslint.setup{
+  on_attach = on_attach_lsp,
+  -- capabilities = capabilities,
+  settings = {
+    format = {
+      enable = true,
+    },
   },
-  lintIgnoreExitCode = true,
+}
+
+local efm_javascript = {
+  -- lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
+  -- lintStdin = true,
+  -- lintFormats = {
+  --   "%f(%l,%c): %tarning %m",
+  --   "%f(%l,%c): %rror %m",
+  -- },
+  -- lintIgnoreExitCode = true,
   formatCommand = "prettier --stdin-filepath ${INPUT}",
   formatStdin = true,
   lintSource = "eslint",
