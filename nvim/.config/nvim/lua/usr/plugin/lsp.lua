@@ -64,6 +64,11 @@ nvim_lsp.tsserver.setup{
   root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
   on_attach = on_attach_lsp,
   capabilities = capabilities,
+  init_options = {
+    preferences = {
+      includeCompletionsForModuleExports = false
+    }
+  }
 }
 
 -- microsoft pyls requires dotnet and is annoying to build and install, to use the evil palantir LS
