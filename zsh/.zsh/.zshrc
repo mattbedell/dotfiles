@@ -137,6 +137,7 @@ alias bso='brew services stop'
 alias bsr='brew services restart'
 alias k='kubectl'
 alias kx='kubectx'
+alias t = 'terraform'
 
 # }}}
 
