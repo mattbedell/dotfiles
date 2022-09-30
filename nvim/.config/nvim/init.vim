@@ -23,6 +23,7 @@ Plug 'lukas-reineke/indent-blankline.nvim'                        " indent lines
 " Plug 'ray-x/lsp_signature.nvim'                                   " lsp function signatures
 Plug 'windwp/nvim-autopairs'                                      " autopairs
 Plug 'hrsh7th/nvim-cmp'                                           " completion
+Plug 'mfussenegger/nvim-dap'                                      " debugger
 Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers
 Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
 Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " nvim-treesitter dependency
@@ -45,6 +46,8 @@ Plug 'tpope/vim-surround'                                         " mappings for
 Plug 'fgsch/vim-varnish'                                          " VCL syntax highlighting
 Plug 'hrsh7th/vim-vsnip'                                          " lsp snippet support
 call plug#end()
+
+let mapleader=" "
 
 "}}}
 " lua user plugins {{{
@@ -233,7 +236,6 @@ augroup END
 "}}}
 "}}}
 " Mappings {{{
-let mapleader=" "
 
 nnoremap <leader>t :suspend<CR>
 nnoremap <leader>q @@<CR>
