@@ -54,15 +54,16 @@ let mapleader=" "
 lua require('usr.commands')
 lua require('usr.highlights')
 
-lua require('usr.plugin.lsp')
-lua require('usr.plugin.treesitter')
-lua require('usr.plugin.completion')
-lua require('usr.plugin.autopairs')
-lua require('usr.plugin.statusline')
-lua require('usr.plugin.linenumbers')
-lua require('usr.plugin.notes')
 lua require('usr.plugin.autocmd')
+lua require('usr.plugin.linenumbers')
+lua require('usr.plugin.lsp')
+lua require('usr.plugin.statusline')
+lua require('usr.plugin.treesitter')
+
 lua require('vendor.plugin.indent-blankline')
+lua require('vendor.plugin.nvim-autopairs')
+lua require('vendor.plugin.nvim-cmp')
+lua require('vendor.plugin.nvim-dap')
 "}}}
 " plugin configurations {{{
 "ale {{{
