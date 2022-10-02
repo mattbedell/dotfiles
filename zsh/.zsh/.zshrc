@@ -166,14 +166,6 @@ if (( $+commands[pyenv] )); then
   (( $+commands[pyenv-virtualenv] )) && eval "$(pyenv virtualenv-init -)"
 fi
 
-# this dramatically increases startup time, so remove it for now
-# source optional configs eg. work specific env vars
-# if [[ -d "$ZDOTDIR" ]] && [[ -d "$ZDOTDIR/opt" ]]; then
-#   for file in "$ZDOTDIR"/opt/*.zsh(N); do
-#     source "$file"
-#   done
-# fi
-
 # add user functions
 fpath+=$ZDOTDIR/zfunc
 autoload -Uz portkill tmi spell lazy-nvm yankrtf vd rgp rgn
