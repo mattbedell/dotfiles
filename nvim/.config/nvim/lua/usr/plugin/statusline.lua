@@ -9,7 +9,7 @@ local M = {}
 
 local function git()
   local stl_text = ''
-  if vim.fn.exists('g:loaded_fugitive') and vim.bo.modifiable then
+  if vim.fn.exists('g:loaded_fugitive') == 1 and vim.bo.modifiable then
     local git_head = vim.fn['fugitive#Head']()
     stl_text = string.len(git_head) > 0 and '%#stlGit#[' .. git_head .. ']%*' or ''
   end
