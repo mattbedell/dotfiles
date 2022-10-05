@@ -7,48 +7,9 @@ packadd! matchit " extend %
 let g:netrw_altfile = 1
 
 " }}}
-" vim-plug {{{
-call plug#begin('~/.local/share/nvim/site/plugged')
-Plug 'hrsh7th/cmp-buffer'                                         " cmp completion source
-Plug 'hrsh7th/cmp-nvim-lsp'                                       " cmp completion source
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'                        " cmp signature help
-Plug 'hrsh7th/cmp-path'                                           " cmp completion source
-Plug 'hrsh7th/cmp-vsnip'                                          " cmp completion source
-Plug 'junegunn/fzf'                                               " fzf fuzzy finder wrapper
-Plug 'junegunn/fzf.vim'                                           " fzf fuzzy finder plugin
-Plug 'rhysd/git-messenger.vim'                                    " fugitive Blame is slow, this is faster
-Plug 'iautom8things/gitlink-vim'                                  " Generate a github link to current line
-Plug 'gruvbox-community/gruvbox'                                  " theme
-Plug 'lukas-reineke/indent-blankline.nvim'                        " indent lines w/ treesitter context awareness
-" Plug 'ray-x/lsp_signature.nvim'                                   " lsp function signatures
-Plug 'windwp/nvim-autopairs'                                      " autopairs
-Plug 'hrsh7th/nvim-cmp'                                           " completion
-Plug 'mfussenegger/nvim-dap'                                      " debugger
-Plug 'neovim/nvim-lspconfig'                                      " convenient configs for language servers
-Plug 'nvim-treesitter/nvim-treesitter'                            " abstraction layer for neovim's treesitter integration
-Plug 'nvim-treesitter/nvim-treesitter-refactor'                   " nvim-treesitter dependency
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'                " nvim-treesitter dependency
-Plug 'RRethy/nvim-treesitter-textsubjects'                        " similar to treesitter textobjects
-Plug 'windwp/nvim-ts-autotag'                                     " auto-close html tags
-Plug 'JoosepAlviste/nvim-ts-context-commentstring'                " update commentstring using treesitter for injected languages
-Plug 'unblevable/quick-scope'                                     " highlight unique chars for 'f' and 't' motions
-Plug 'wellle/targets.vim'                                         " enhanced text objects
-Plug 'vifm/vifm.vim'                                              " vifm file manager
-Plug 'tpope/vim-commentary'                                       " comment code
-Plug 'romainl/vim-cool'                                           " auto highlight search, add search match count
-Plug 'tpope/vim-dispatch'                                         " async make
-Plug 'tpope/vim-fugitive'                                         " git integration
-Plug 'yassinebridi/vim-purpura'                                   " theme, all purple because its fun
-Plug 'vimjas/vim-python-pep8-indent'                              " python treesitter indent is a WIP, use this until it's ready
-Plug 'tpope/vim-repeat'                                           " make mappings repeatable
-Plug 'kshenoy/vim-signature'                                      " visual marks in gutter
-Plug 'tpope/vim-surround'                                         " mappings for surrounding characters
-Plug 'fgsch/vim-varnish'                                          " VCL syntax highlighting
-Plug 'hrsh7th/vim-vsnip'                                          " lsp snippet support
-call plug#end()
-
 let mapleader=" "
 
+lua require('plugins')
 "}}}
 " lua user plugins {{{
 lua require('usr.commands')
@@ -56,45 +17,11 @@ lua require('usr.highlights')
 
 lua require('usr.plugin.autocmd')
 lua require('usr.plugin.linenumbers')
-lua require('usr.plugin.lsp')
 lua require('usr.plugin.statusline')
-lua require('usr.plugin.treesitter')
 
-lua require('vendor.plugin.indent-blankline')
-lua require('vendor.plugin.nvim-autopairs')
-lua require('vendor.plugin.nvim-cmp')
-lua require('vendor.plugin.nvim-dap')
+" lua require('vendor.plugin.nvim-cmp')
 "}}}
 " plugin configurations {{{
-"ale {{{
-" lint on save, insert leave
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_insert_leave = 1
-
-let g:ale_linters_explicit = 1
-let g:ale_set_loclist = 0
-let g:ale_disable_lsp = 1
-let g:ale_linters = {'javascript': ['eslint'], 'typescript': ['eslint']}
-
-let g:ale_set_highlights = 0
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '!>'
-let g:ale_sign_info = '<>'
-let g:ale_sign_style_error = '>>'
-let g:ale_sign_style_warning = '!>'
-
-augroup AleHi
-  autocmd!
-  autocmd ColorScheme *
-    \ | highlight link ALEErrorSign DiffDelete
-    \ | highlight link ALEWarningSign DiffText
-    \ | highlight link ALEInfoSign DiffChange
-    \ | highlight link ALEStyleErrorSign DiffDelete
-    \ | highlight link ALEStyleWarningSign DiffText
-augroup END
-"}}}
 " fzf {{{
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 1, 'border': 'bottom' } }
 

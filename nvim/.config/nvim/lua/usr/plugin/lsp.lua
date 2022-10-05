@@ -13,22 +13,8 @@ vim.diagnostic.config({
 })
 
 local on_attach_lsp = function(client, bufnr)
-  -- require'lsp_signature'.on_attach({
-  --   hint_enable = false,
-  --   doc_lines = 0,
-  --   handler_opts = {border = 'double'},
-  -- })
-
   if not bufnr or bufnr == 0 then
     bufnr = vim.api.nvim_get_current_buf()
-  end
-
-  local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
-
-  -- use efm + eslint/prettier formatting for js files, disable tsserver formatting so we're not asked which LS to use
-  if client.name == 'tsserver' and (filetype == 'javascript' or filetype == 'javascriptreact') then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
   end
 
   vim.cmd(string.format('augroup LspAttach:%s:%s', bufnr, client.id))
@@ -53,7 +39,7 @@ local on_attach_lsp = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ll', '<cmd>lua vim.diagnostic.setloclist()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap = true, silent = true})
+  vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, {silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
 
   vim.api.nvim_win_set_option(0, "foldmethod", "expr")
