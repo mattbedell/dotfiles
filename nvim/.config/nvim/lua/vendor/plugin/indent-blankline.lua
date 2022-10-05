@@ -27,6 +27,7 @@ local M = {}
 
 M.update_indent_hi = update_indent_hi
 
+update_indent_hi()
 usr_util.create_augroups({
   IndentHighlights = {
     {'ColorScheme', '*', [[lua require'vendor.plugin.indent-blankline'.update_indent_hi()]]},
