@@ -130,6 +130,7 @@ set belloff=all
 set noshowmode
 set foldlevelstart=99
 set signcolumn=yes
+set mouse=
 
 set autoread
 
