@@ -28,15 +28,17 @@ shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
 # make floating window fill right-half of screen
 shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 
-# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-shift + cmd + ctrl + alt - n : yabai -m space --create && \
-                  index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-                  yabai -m window --space "${index}" && \
-                  yabai -m space --focus "${index}"
+# create desktop, move window and follow focus
+shift + cmd + ctrl + alt - n  : space_ids=$(yabai -m query --spaces --display | jq 'reduce .[] as $item ({}; .[$item.uuid] = $item.id)') && \
+                yabai -m space --create && \
+                index=$(yabai -m query --spaces --display | jq 'map(select(.uuid | in($space_ids) | not)) | first | .index' --argjson space_ids $space_ids) && \
+                yabai -m window --space "${index}" && \
+                yabai -m space --focus "${index}"
 
-# create desktop and follow focus - uses jq for parsing json (brew install jq)
-cmd + alt - n : yabai -m space --create && \
-                index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+# create desktop and follow focus
+cmd + alt - n : space_ids=$(yabai -m query --spaces --display | jq 'reduce .[] as $item ({}; .[$item.uuid] = $item.id)') && \
+                yabai -m space --create && \
+                index=$(yabai -m query --spaces --display | jq 'map(select(.uuid | in($space_ids) | not)) | first | .index' --argjson space_ids $space_ids) && \
                 yabai -m space --focus "${index}"
 
 # destroy desktop
@@ -45,13 +47,13 @@ shift + cmd + ctrl + alt - w : yabai -m space --destroy
 # focus desktop, only cycle spaces attached to the focused monitor
 ctrl + cmd - i : yabai -m space --focus recent
 ctrl + cmd - k : spaces=$(yabai -m query --spaces --display) && \
-                        focused=$(echo $spaces | jq 'map(.focused) | index (1)') && \
-                        next_space_id=$(echo $spaces | jq 'map(.index) | .[if $focused > 0 then $focused - 1 else 0 end]' --argjson focused $focused) && \
-                        yabai -m space --focus "${next_space_id}"
+                        focused=$(echo $spaces | jq 'map(select(."has-focus")) | first') && \
+                        next_space_index=$(echo $spaces | jq "map(select(.index == $focused.index - 1)) | first // $focused | .index") && \
+                        yabai -m space --focus "${next_space_index}"
 ctrl + cmd - j : spaces=$(yabai -m query --spaces --display) && \
-                        focused=$(echo $spaces | jq 'map(.focused) | index (1)') && \
-                        next_space_id=$(echo $spaces | jq 'map(.index) | .[$focused + 1] // .[$focused]' --argjson focused $focused) && \
-                        yabai -m space --focus "${next_space_id}"
+                        focused=$(echo $spaces | jq 'map(select(."has-focus")) | first') && \
+                        next_space_index=$(echo $spaces | jq "map(select(.index == $focused.index + 1)) | first // $focused | .index") && \
+                        yabai -m space --focus "${next_space_index}"
 
 # focus monitor
 ctrl + cmd - o  : yabai -m display --focus recent
@@ -59,18 +61,18 @@ ctrl + cmd - h  : yabai -m display --focus west
 ctrl + cmd - l  : yabai -m display --focus east
 
 # send window to desktop and follow focus
-cmd - up : spaces=$(yabai -m query --spaces --display) && \
-                        focused=$(echo $spaces | jq 'map(.focused) | index (1)') && \
-                        next_space_id=$(echo $spaces | jq 'map(.index) | .[if $focused > 0 then $focused - 1 else 0 end]' --argjson focused $focused) && \
-                        yabai -m window --space "${next_space_id}"; yabai -m space --focus "${next_space_id}"
-cmd - down : spaces=$(yabai -m query --spaces --display) && \
-                        focused=$(echo $spaces | jq 'map(.focused) | index (1)') && \
-                        next_space_id=$(echo $spaces | jq 'map(.index) | .[$focused + 1] // .[$focused]' --argjson focused $focused) && \
-                        yabai -m window --space "${next_space_id}"; yabai -m space --focus "${next_space_id}"
+cmd - up  : spaces=$(yabai -m query --spaces --display) && \
+                        focused=$(echo $spaces | jq 'map(select(."has-focus")) | first') && \
+                        next_space_index=$(echo $spaces | jq "map(select(.index == $focused.index - 1)) | first // $focused | .index") && \
+                        yabai -m window --space "${next_space_index}" --focus
+cmd - down  : spaces=$(yabai -m query --spaces --display) && \
+                        focused=$(echo $spaces | jq 'map(select(."has-focus")) | first') && \
+                        next_space_index=$(echo $spaces | jq "map(select(.index == $focused.index + 1)) | first // $focused | .index") && \
+                        yabai -m window --space "${next_space_index}" --focus
 
 # send window to monitor and follow focus
-cmd - left  : yabai -m window --display west; yabai -m display --focus west
-cmd - right  : yabai -m window --display east; yabai -m display --focus east
+cmd - left  : yabai -m window --display west --focus
+cmd - right  : yabai -m window --display east --focus
 
 # move window
 shift + ctrl - a : yabai -m window --move rel:-20:0
