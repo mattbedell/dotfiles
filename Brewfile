@@ -16,6 +16,7 @@ brew "git-delta"               # Git diffs
 brew "htop"                    # Better top
 brew "jq"                      # Json processor
 brew "less"
+brew "llvm"                    # Compiler + toolchain
 brew "mdrender"                # mattbedell/mdrender Render markdown files in the terminal
 brew "neovim"
 brew "nvim"

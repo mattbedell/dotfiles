@@ -44,6 +44,7 @@ precmd_vcs_info() { vcs_info }
 precmd_functions=( precmd_vcs_info )
 
 # env {{{
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH" # rust
 export PATH="/usr/local/sbin:$PATH" #brew
 export PATH="$HOME/.local/bin:$PATH"
