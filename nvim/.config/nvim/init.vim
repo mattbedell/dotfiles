@@ -283,25 +283,9 @@ nnoremap <leader>fa :Files<space>
 set background=light
 set termguicolors
 
-function! BatTheme(bg) abort
-  " bat is the underlying syntax highlighter for FZF preview windows
-  " tell bat to use a theme that works with the current background setting
-  if !exists('g:bat_theme')
-    let g:bat_theme=$BAT_THEME
-  endif
-
-  if a:bg ==# 'light'
-    let $BAT_THEME='GitHub'
-  else
-    let $BAT_THEME=g:bat_theme
-  endif
-endfunction
-
-call BatTheme(&background)
-
 " gruvbox theme {{{
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
+" let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_light='hard'
 
 " set background color to black
 " gruvbox overrides fzf popup colors, set black background
@@ -333,13 +317,11 @@ endfunction
 augroup ThemeCustom
   autocmd!
   autocmd ColorScheme gruvbox call GruvCust()
-  autocmd OptionSet background call BatTheme(v:option_new)
   autocmd ColorScheme * call UpdateNormalNC()
 augroup END
 
 "}}}
 
-silent! colorscheme gruvbox
 
 "}}}
 

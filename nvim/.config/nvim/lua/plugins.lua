@@ -21,7 +21,13 @@ return require('packer').startup({
     }
     use 'rhysd/git-messenger.vim'                               -- fugitive Blame is slow, this is faster
     use 'iautom8things/gitlink-vim'                             -- generate a github link to current line
-    use 'gruvbox-community/gruvbox'                             -- theme
+    use {
+      'ellisonleao/gruvbox.nvim',
+      config = function()
+        require('vendor.plugin.gruvbox')
+      end
+
+    }
     use {                                                       -- indent lines w/ treesitter context awareness
 
       'lukas-reineke/indent-blankline.nvim',
