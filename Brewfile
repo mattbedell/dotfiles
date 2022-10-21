@@ -10,6 +10,7 @@ brew "exa"                     # Better ls
 brew "fd"                      # Better find
 brew "findutils"               # GNU instead of BSD
 brew "fzf"                     # Fuzzy finder
+brew "fzy"                     # Fuzzy finder (telescope.nvim)
 brew "gh"                      # Github CLI
 brew "git"
 brew "git-delta"               # Git diffs
