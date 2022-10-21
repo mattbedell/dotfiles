@@ -32,6 +32,7 @@ vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 vim.keymap.set('n', '<leader><space>', builtin.buffers, {})
 
 vim.cmd('highlight link TelescopeNormal Normal')
+vim.cmd('highlight link TelescopePreviewLine CursorLine | highlight link TelescopeSelection CursorLine')
 
 local telescope_augroup = vim.api.nvim_create_augroup('telescope_user_config', { clear = true })
 
@@ -39,7 +40,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   group = telescope_user_config,
   pattern = '*',
   desc = 'Telescope to use Normal so NormalNC does not set background',
-  command = 'highlight link TelescopeNormal Normal | highlight link TelescopePreviewLine CursorLine',
+  command = 'highlight link TelescopeNormal Normal',
 })
 vim.api.nvim_create_autocmd('ColorScheme', {
   group = telescope_user_config,
