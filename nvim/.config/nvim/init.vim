@@ -22,16 +22,6 @@ lua require('usr.plugin.statusline')
 " lua require('vendor.plugin.nvim-cmp')
 "}}}
 " plugin configurations {{{
-" fzf {{{
-let g:fzf_layout = { 'window': { 'width': 1, 'height': 1, 'border': 'bottom' } }
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '
-  \  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
-  \    fzf#vim#with_preview(), <bang>0)
-
-"}}}
 " nvim-treesitter {{{
 augroup TreesitterHi
   autocmd!
@@ -265,39 +255,10 @@ nnoremap <leader>gh :call gitlink#copygitlink()<CR>
 vnoremap <leader>gh :call gitlink#copygitlink(1)<CR>
 "}}}
 
-" fzf {{{
-nnoremap <leader>fd :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
-nnoremap <silent> <leader>fl :BLines<CR>
-nnoremap <silent> <leader><space> :Buffers<CR>
-nnoremap <leader>fs :Rg<space>
-nnoremap <leader>ff :GFiles<CR>
-nnoremap <leader>fa :Files<space>
-
-" Use FZF for autocompletion
-" imap <c-x><c-k> <plug>(fzf-complete-word)
-" imap <c-x><c-f> <plug>(fzf-complete-path)
-" imap <c-x><c-l> <plug>(fzf-complete-line)
-"}}}
 "}}}
 " Theme {{{
 set background=light
 set termguicolors
-
-function! BatTheme(bg) abort
-  " bat is the underlying syntax highlighter for FZF preview windows
-  " tell bat to use a theme that works with the current background setting
-  if !exists('g:bat_theme')
-    let g:bat_theme=$BAT_THEME
-  endif
-
-  if a:bg ==# 'light'
-    let $BAT_THEME='GitHub'
-  else
-    let $BAT_THEME=g:bat_theme
-  endif
-endfunction
-
-call BatTheme(&background)
 
 " gruvbox theme {{{
 let g:gruvbox_contrast_dark='hard'

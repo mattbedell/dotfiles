@@ -15,10 +15,6 @@ local packer_config = {
 
 return require('packer').startup({
   function(use)
-    use {                                                       -- fzf fuzzy finder wrapper
-      'junegunn/fzf.vim',
-      requires = 'junegunn/fzf',
-    }
     use 'rhysd/git-messenger.vim'                               -- fugitive Blame is slow, this is faster
     use 'iautom8things/gitlink-vim'                             -- generate a github link to current line
     use 'gruvbox-community/gruvbox'                             -- theme
@@ -97,6 +93,16 @@ return require('packer').startup({
         'JoosepAlviste/nvim-ts-context-commentstring',          -- update commentstring using treesitter for injected languages
         after = 'nvim-treesitter',
       },
+    }
+    use {
+      'nvim-telescope/telescope.nvim', tag = '0.1.0',
+      requires = {
+        {'nvim-lua/plenary.nvim'},
+        { 'nvim-telescope/telescope-fzy-native.nvim' },
+      },
+      config = function()
+        require('vendor.plugin.telescope')
+      end
     }
     use 'unblevable/quick-scope'                                -- highlight unique chars for 'f' and 't' motions
     use 'wellle/targets.vim'                                    -- enhanced text objects
