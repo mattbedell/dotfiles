@@ -25,11 +25,15 @@ function project_files()
   if not ok then require"telescope.builtin".find_files(opts) end
 end
 
+function buffers()
+  builtin.buffers({ sort_mru = true })
+end
+
 vim.keymap.set('n', '<leader>ff', project_files, {})
 vim.keymap.set('n', '<leader>fa', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fs', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fr', builtin.resume, {})
-vim.keymap.set('n', '<leader><space>', builtin.buffers, {})
+vim.keymap.set('n', '<leader><space>', buffers, {})
 
 vim.cmd('highlight link TelescopeNormal Normal')
 vim.cmd('highlight link TelescopePreviewLine CursorLine | highlight link TelescopeSelection CursorLine')
