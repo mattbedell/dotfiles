@@ -18,6 +18,7 @@ require('telescope').setup{
 }
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('live_grep_args')
 
 function project_files()
   local opts = {}
@@ -31,7 +32,7 @@ end
 
 vim.keymap.set('n', '<leader>ff', project_files, {})
 vim.keymap.set('n', '<leader>fa', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fs', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fs', require('telescope').extensions.live_grep_args.live_grep_args, {})
 vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 vim.keymap.set('n', '<leader><space>', buffers, {})
 

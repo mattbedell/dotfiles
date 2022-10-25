@@ -105,6 +105,7 @@ return require('packer').startup({
       requires = {
         {'nvim-lua/plenary.nvim'},
         {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+        {'nvim-telescope/telescope-live-grep-args.nvim'}
       },
       config = function()
         require('vendor.plugin.telescope')
