@@ -15,6 +15,11 @@ require('telescope').setup{
       find_command = { 'fd', '--type', 'f', '--no-ignore-vcs', '--hidden', '--follow', '--strip-cwd-prefix', '--exclude', '.git/*' },
     },
   },
+  extensions = {
+    live_grep_args = {
+      auto_quoting = false
+    }
+  }
 }
 
 require('telescope').load_extension('fzf')
