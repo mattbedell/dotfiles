@@ -126,6 +126,7 @@ return require('packer').startup({
     use 'kshenoy/vim-signature'                                 -- visual marks in gutter TODO: replace this
     use 'tpope/vim-surround'                                    -- mappings for surround characters
     use 'fgsch/vim-varnish'                                     -- VCL syntax highlighting
+    use 'towolf/vim-helm'
   end,
   config = packer_config,
 })
