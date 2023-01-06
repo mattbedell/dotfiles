@@ -22,10 +22,8 @@ return require('packer').startup({
       config = function()
         require('vendor.plugin.gruvbox')
       end
-
     }
     use {                                                       -- indent lines w/ treesitter context awareness
-
       'lukas-reineke/indent-blankline.nvim',
       config = function()
         require('vendor.plugin.indent-blankline')
@@ -127,6 +125,14 @@ return require('packer').startup({
     use 'tpope/vim-surround'                                    -- mappings for surround characters
     use 'fgsch/vim-varnish'                                     -- VCL syntax highlighting
     use 'towolf/vim-helm'
+    use {                                                       -- center buffers
+      "shortcuts/no-neck-pain.nvim",
+      tag = "*",
+      after = { 'gruvbox.nvim' },
+      config = function()
+        require('vendor.plugin.no-neck-pain')
+      end
+   }
   end,
   config = packer_config,
 })

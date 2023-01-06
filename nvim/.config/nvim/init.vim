@@ -85,6 +85,7 @@ set hlsearch
 set nowrapscan
 set list
 set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
+set fillchars+=vert:\ 
 set completeopt=menu,menuone,noselect
 set shortmess+=c
 set incsearch
@@ -164,6 +165,7 @@ nnoremap <leader>w <C-w>
 nmap <leader>bd <plug>Kwbd
 nmap <leader>bf :let @* = expand('%:p')<CR>:echo 'Filepath copied to clipboard'<CR>
 nmap <leader>br :let @* = expand('%')<CR>:echo 'Relative filepath copied to clipboard'<CR>
+nmap <silent><leader>bc :lua require('no-neck-pain') require("no-neck-pain").toggle()<CR>
 
 "close quickfix/location lists
 nnoremap <silent><leader>c :ccl<CR>:lcl<CR>
