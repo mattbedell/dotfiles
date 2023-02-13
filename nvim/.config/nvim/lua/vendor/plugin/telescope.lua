@@ -35,9 +35,14 @@ function buffers()
   builtin.buffers({ sort_mru = true })
 end
 
+function live_grep_word()
+  require('telescope').extensions.live_grep_args.live_grep_args({ default_text = vim.fn.expand('<cword>') })
+end
+
 vim.keymap.set('n', '<leader>ff', project_files, {})
 vim.keymap.set('n', '<leader>fa', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fs', require('telescope').extensions.live_grep_args.live_grep_args, {})
+vim.keymap.set('n', '<leader>fw', live_grep_word, {})
 vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 vim.keymap.set('n', '<leader><space>', buffers, {})
 
