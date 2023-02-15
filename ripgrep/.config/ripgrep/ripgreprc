@@ -6,3 +6,9 @@ tests:*.{spec,test}.*
 !.git
 --glob
 !node_modules
+--glob
+!*.spec.*
+--glob
+!fixture.js
+--glob
+!*.stories.js
