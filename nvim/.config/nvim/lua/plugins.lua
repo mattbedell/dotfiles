@@ -22,7 +22,13 @@ return require('packer').startup({
       end
     }
     use 'rhysd/git-messenger.vim'                               -- fugitive Blame is slow, this is faster
-    use 'iautom8things/gitlink-vim'                             -- generate a github link to current line
+    use {
+      'ruifm/gitlinker.nvim',
+      requires = 'nvim-lua/plenary.nvim',
+      config = function()
+        require('vendor.plugin.gitlinker')
+      end
+    }
     use {
       'ellisonleao/gruvbox.nvim',
       config = function()

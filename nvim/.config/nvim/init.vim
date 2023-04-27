@@ -253,8 +253,6 @@ nnoremap <leader>ge :Gedit<CR>
 " git log of current buffer
 nnoremap <leader>glb :0Glog<CR>
 
-nnoremap <leader>gh :call gitlink#copygitlink()<CR>
-vnoremap <leader>gh :call gitlink#copygitlink(1)<CR>
 "}}}
 
 "}}}
