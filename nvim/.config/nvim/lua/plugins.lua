@@ -19,7 +19,8 @@ return require('packer').startup({
       'lewis6991/gitsigns.nvim',
       config = function()
         require('vendor.plugin.gitsigns')
-      end
+      end,
+      after = 'gruvbox.nvim',
     }
     use 'rhysd/git-messenger.vim'                               -- fugitive Blame is slow, this is faster
     use {
