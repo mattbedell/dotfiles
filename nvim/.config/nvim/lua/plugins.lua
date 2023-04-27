@@ -15,6 +15,12 @@ local packer_config = {
 
 return require('packer').startup({
   function(use)
+    use {
+      'lewis6991/gitsigns.nvim',
+      config = function()
+        require('vendor.plugin.gitsigns')
+      end
+    }
     use 'rhysd/git-messenger.vim'                               -- fugitive Blame is slow, this is faster
     use 'iautom8things/gitlink-vim'                             -- generate a github link to current line
     use {
