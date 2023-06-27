@@ -95,6 +95,11 @@ nvim_lsp.jsonls.setup{
 nvim_lsp.yamlls.setup{
   on_attach = on_attach_lsp,
   capabilities = capabilities,
+  settings = {
+    yaml = {
+      keyOrdering = false,
+    },
+  },
 }
 
 nvim_lsp.graphql.setup{
