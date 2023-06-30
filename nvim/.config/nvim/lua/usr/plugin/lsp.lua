@@ -13,6 +13,10 @@ vim.diagnostic.config({
 })
 
 local on_attach_lsp = function(client, bufnr)
+  if client.name == 'yamlls' then
+    client.server_capabilities.documentFormattingProvider = true
+  end
+
   if not bufnr or bufnr == 0 then
     bufnr = vim.api.nvim_get_current_buf()
   end
@@ -98,6 +102,9 @@ nvim_lsp.yamlls.setup{
   settings = {
     yaml = {
       keyOrdering = false,
+      format = {
+        enable = true,
+      },
     },
   },
 }
