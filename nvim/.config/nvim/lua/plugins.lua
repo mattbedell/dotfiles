@@ -127,6 +127,9 @@ return require('packer').startup({
     use 'vifm/vifm.vim'                                         -- vifm file manager
     use {                                                       -- comment code
       'tpope/vim-commentary',
+      config = function()
+        require('vendor.plugin.vim-commentary')
+      end
     }
     use 'romainl/vim-cool'                                      -- auto highlight search, add search match count
     use 'tpope/vim-dispatch'                                    -- async make
