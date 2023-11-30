@@ -104,9 +104,6 @@ require'nvim-treesitter.configs'.setup{
       ['i;'] = 'textsubjects-container-inner',
     },
   },
-  context_commentstring = {
-    enable = true,
-  },
   autotag = {
     enable = true,
   },
