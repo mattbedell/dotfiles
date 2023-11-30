@@ -44,6 +44,9 @@ precmd_vcs_info() { vcs_info }
 precmd_functions=( precmd_vcs_info )
 
 # env {{{
+
+eval "$(/opt/homebrew/bin/brew shellenv)" # brew, M chips
+
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH" # rust
 export PATH="/usr/local/sbin:$PATH" #brew
