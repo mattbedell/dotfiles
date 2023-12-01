@@ -29,6 +29,7 @@ brew "skhd"                    # Hotkey daemon
 brew "stow"                    # Symlink farm manager
 brew "task"                    # Taskwarrior CLI todo list
 brew "tasksh"                  # Taskwarrior shell
+brew "tfenv"                   # Terraform version manager
 brew "tmux"
 brew "tree"                    # Filesystem tree view
 brew "vifm"                    # Terminal file manager
