@@ -22,14 +22,6 @@ lua require('usr.plugin.statusline')
 " lua require('vendor.plugin.nvim-cmp')
 "}}}
 " plugin configurations {{{
-" nvim-treesitter {{{
-augroup TreesitterHi
-  autocmd!
-  autocmd ColorScheme *
-    \   highlight link TSDefinition DiffAdd
-    \ | highlight link TSDefinitionUsage Search
-augroup END
-"}}}
 " quick-scope {{{
 augroup qs_colors
   autocmd!

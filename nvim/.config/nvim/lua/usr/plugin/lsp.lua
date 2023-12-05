@@ -190,17 +190,17 @@ nvim_lsp.html.setup{
 
 vim.fn.sign_define("DiagnosticSignError", {
   text = '>>',
-  texthl = "DiagnosticError",
+  texthl = "DiagnosticSignError",
 })
 vim.fn.sign_define("DiagnosticSignWarn", {
   text = '!>',
-  texthl = "DiagnosticWarn",
+  texthl = "DiagnosticSignWarn",
 })
 vim.fn.sign_define("DiagnosticSignInformation", {
   text = '<>',
-  texthl = "DiagnosticInformation",
+  texthl = "DiagnosticSignInfo",
 })
 vim.fn.sign_define("DiagnosticSignHint", {
   text = '?>',
-  texthl = "DiagnosticHint",
+  texthl = "DiagnosticSignHint",
 })
