@@ -33,8 +33,12 @@ local function extend_hi_gui(super_hl, highlight_name, opts)
   local term_gui_attrs = {"bold", "underline", "undercurl", "strikethrough", "reverse", "inverse", "italic", "standout"}
   local hi_tg_attrs = {}
 
-  local bg = opts.bg ~= nil and opts.bg or get_hi_attr(super_hl, 'bg#', 'gui') or nil
-  local fg = opts.fg ~= nil and opts.fg or get_hi_attr(super_hl, 'fg#', 'gui') or nil
+  local bg_val = opts.bg or get_hi_attr(super_hl, 'bg#', 'gui') or ''
+  local fg_val = opts.fg or get_hi_attr(super_hl, 'fg#', 'gui') or ''
+
+
+  local bg = bg_val ~= '' and ' guibg=' .. bg_val or bg_val
+  local fg = fg_val ~= '' and ' guifg=' .. fg_val or fg_val
 
   for _, attr in ipairs(term_gui_attrs) do
     if opts[attr] ~= nil then
@@ -57,8 +61,9 @@ local function extend_hi_gui(super_hl, highlight_name, opts)
   .. highlight_name
   .. gui
   .. cterm
-  .. ' guifg=' .. fg
-  .. ' guibg=' .. bg
+  .. fg
+  .. bg
+
   vim.api.nvim_command(hi)
 end
 
