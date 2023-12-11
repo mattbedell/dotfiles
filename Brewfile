@@ -22,8 +22,8 @@ brew "mdrender"                # mattbedell/mdrender Render markdown files in th
 brew "neovim"
 brew "nvim"
 brew "pandoc"                  # File format converter
-brew "pyenv"                   # Python version manager
-brew "pyenv-virtualenv"        # Virtual env manager plugin for pyenv
+# brew "pyenv"                   # Python version manager
+# brew "pyenv-virtualenv"        # Virtual env manager plugin for pyenv
 brew "ripgrep"                 # Better grep
 brew "skhd"                    # Hotkey daemon
 brew "stow"                    # Symlink farm manager
