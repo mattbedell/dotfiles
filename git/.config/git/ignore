@@ -16,6 +16,11 @@ log/
 node_modules/
 dist/
 
+# Rust
+debug/
+target/
+**/*.rs.bk
+
 # VS Code
 .vscode
 .vscode/*
