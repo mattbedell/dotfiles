@@ -2,6 +2,7 @@ tap "homebrew/cask"
 tap "koekeishiya/formulae"
 tap "mattbedell/formulae"
 
+brew "awscli"
 brew "bat"                        # Better cat
 brew "coreutils"                  # GNU coreutils instead of BSD
 brew "dict"                       # Dictionary server protocol client
@@ -15,8 +16,10 @@ brew "gh"                         # Github CLI
 brew "git"
 brew "git-delta"                  # Git diffs
 brew "hashicorp/tap/terraform-ls" # Terraform language server
+brew "helm"
 brew "htop"                       # Better top
 brew "jq"                         # Json processor
+brew "kubectl"
 brew "less"
 brew "llvm"                       # Compiler + toolchain
 brew "mdrender"                   # mattbedell/mdrender Render markdown files in the terminal
