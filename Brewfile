@@ -5,6 +5,8 @@ tap "mattbedell/formulae"
 brew "awscli"
 brew "bat"                        # Better cat
 brew "coreutils"                  # GNU coreutils instead of BSD
+brew "gawk"                       # GNU awk
+brew "gnu-sed"                    # GNU sed
 brew "dict"                       # Dictionary server protocol client
 brew "efm-langserver"             # LSP linting/diagnostics
 brew "exa"                        # Better ls
