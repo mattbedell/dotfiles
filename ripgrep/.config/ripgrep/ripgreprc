@@ -1,6 +1,8 @@
 --type-add
 test:*.{spec,test}.*
 --type-add
+test:*fixture.js
+--type-add
 test:fixture.js
 --type-add
 test:*.stories.js
