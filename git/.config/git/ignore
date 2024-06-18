@@ -29,6 +29,16 @@ target/
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+.terraform.tfstate.lock.info
+.terraformrc
+terraform.rc
+
 # Vim
 *.swp
 .vim-lsp-settings
