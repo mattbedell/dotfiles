@@ -2,6 +2,7 @@ tap "homebrew/cask"
 tap "koekeishiya/formulae"
 tap "mattbedell/formulae"
 
+brew "aspell"                     # GNU spell checker
 brew "awscli"
 brew "bat"                        # Better cat
 brew "coreutils"                  # GNU coreutils instead of BSD
