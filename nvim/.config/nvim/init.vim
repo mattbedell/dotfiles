@@ -158,6 +158,7 @@ nmap <leader>bd <plug>Kwbd
 nmap <leader>bf :let @* = expand('%:p')<CR>:echo 'Filepath copied to clipboard'<CR>
 nmap <leader>br :let @* = expand('%')<CR>:echo 'Relative filepath copied to clipboard'<CR>
 nmap <silent><leader>bc :lua require('no-neck-pain') require("no-neck-pain").toggle()<CR>
+nnoremap <silent><leader>gp :lua require'usr.plugin.github'.open_pr()<CR>
 
 "close quickfix/location lists
 nnoremap <silent><leader>c :ccl<CR>:lcl<CR>
