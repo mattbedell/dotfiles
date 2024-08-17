@@ -131,7 +131,6 @@ return require('packer').startup({
         require('vendor.plugin.vim-commentary')
       end
     }
-    use 'romainl/vim-cool'                                      -- auto highlight search, add search match count
     use 'tpope/vim-dispatch'                                    -- async make
     use 'tpope/vim-fugitive'                                    -- git integration
     use 'yassinebridi/vim-purpura'                              -- theme, all purple because its fun
