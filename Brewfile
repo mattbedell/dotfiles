@@ -10,7 +10,7 @@ brew "gawk"                       # GNU awk
 brew "gnu-sed"                    # GNU sed
 brew "dict"                       # Dictionary server protocol client
 brew "efm-langserver"             # LSP linting/diagnostics
-brew "exa"                        # Better ls
+brew "eza"                        # Better ls
 brew "fd"                         # Better find
 brew "findutils"                  # GNU instead of BSD
 brew "fzf"                        # Fuzzy finder

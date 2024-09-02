@@ -128,8 +128,8 @@ zle -N zle-line-finish
 alias vi='vim -c "let g:tty='\''$(tty)'\''"'
 alias ni='nvim -c "let g:tty='\''$(tty)'\''"'
 alias ra='ranger'
-if (( $+commands[exa] )); then
-  alias ls='exa'
+if (( $+commands[eza] )); then
+  alias ls='eza'
 fi
 
 alias la='ls -la'
