@@ -4,6 +4,7 @@ local vim = vim
 -- local lsp_messages = require'lsp-status.messaging'.messages
 
 local usr_util = require'usr.util'
+local lsp_last_status = ''
 
 local M = {}
 
@@ -36,6 +37,7 @@ end
 --   vim.wo.statusline = stl_text
 -- end
 
+
 local function diagnostics(level)
   if usr_util.length(vim.lsp.buf_get_clients()) == 0 then
     return ''
@@ -49,49 +51,15 @@ local function diagnostics(level)
   return ' _ '
 end
 
--- https://github.com/teto/home/blob/master/config/nvim/lua/statusline.lua#L28
-local function get_progress()
-  if usr_util.length(vim.lsp.buf_get_clients()) == 0 then
-    return ''
+local function lsp_set_last_status(status)
+  local lsp_status = ''
+  if status then
+    lsp_status = status
+  else
+    lsp_status = vim.lsp.status()
   end
-
-  local msgs = {}
-  local buf_messages = vim.lsp.util.get_progress_messages()
-  for _, msg in ipairs(buf_messages) do
-    local client_name = '[' .. msg.name .. ']'
-    local contents = ''
-    if msg.progress then
-      contents = msg.title
-      if msg.message then
-        contents = contents .. ' ' .. msg.message
-      end
-
-      if msg.percentage then
-        contents = contents .. ' [' .. msg.percentage .. '%]'
-      end
-
-    elseif msg.status then
-      contents = msg.content
-      if msg.uri then
-        local filename = vim.uri_to_fname(msg.uri)
-        filename = vim.fn.fnamemodify(filename, ':~:.')
-        local space = math.min(40, math.floor(0.4 * vim.fn.winwidth(0)))
-        if #filename > space then
-          filename = vim.fn.pathshorten(filename)
-        end
-
-        contents = contents .. ' ' .. filename
-      end
-    else
-      contents = msg.content
-    end
-
-    table.insert(msgs, client_name .. ' ' .. contents)
-  end
-
-  return table.concat(msgs, ' ')
+  lsp_last_status = lsp_status
 end
-
 
 local function get_status(full_path, git_branch)
 
@@ -109,7 +77,7 @@ local function get_status(full_path, git_branch)
   .. git_branch_str
   ..'%#stlWarn#%m%*%r'
   ..'%= '
-  ..' ' .. [[%{luaeval("require'usr.plugin.statusline'.get_progress()")}]]
+  ..' ' .. [[%{luaeval("require'usr.plugin.statusline'.lsp_get_last_status()")}]]
   ..'%= '
   ..'%#stlLspError#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics(vim.diagnostic.severity.ERROR)")}]]
   ..'%#stlLspWarning#%' .. [[{luaeval("require'usr.plugin.statusline'.diagnostics(vim.diagnostic.severity.WARN)")}]]
@@ -119,20 +87,66 @@ local function get_status(full_path, git_branch)
   ..' %-6.(%l:%c%)'
   ..' %-4.(%P%)'
 
-  vim.wo.statusline = stl_text
+  return stl_text
 end
 
 M.get_status = get_status
-M.get_progress = get_progress
 M.diagnostics = diagnostics
+M.lsp_get_last_status = function()
+  return lsp_last_status
+end
 
-usr_util.create_augroups({
-  UsrStatusLine = {
-    {'WinLeave', '*', [[lua require'usr.plugin.statusline'.get_status(false, false)]]},
-    {'WinEnter,BufEnter', '*', [[lua require'usr.plugin.statusline'.get_status(true, true)]]},
-    {'User', 'LspDiagnosticsChanged', 'redrawstatus!'},
-    {'User', 'LspProgressUpdate', 'redrawstatus!'}
-  }
+local lsp_status_timer = vim.uv.new_timer()
+
+local group = vim.api.nvim_create_augroup('lsp_statusline', { clear = true })
+vim.api.nvim_create_autocmd({ 'LspProgress', 'DiagnosticChanged' }, {
+  group = group,
+  pattern = {'begin', 'report'},
+  callback = function(args)
+    lsp_status_timer:stop()
+    lsp_set_last_status()
+    vim.cmd('redrawstatus')
+  end,
+})
+vim.api.nvim_create_autocmd({ 'LspProgress' }, {
+  group = group,
+  pattern = 'end',
+  callback = function(args)
+    lsp_status_timer:stop()
+    lsp_status_timer:start(2000, 0, vim.schedule_wrap(function ()
+      lsp_set_last_status('')
+      vim.cmd('redrawstatus')
+    end
+    ))
+  end,
+})
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  group = group,
+  pattern = '*',
+  callback = function(args)
+    vim.cmd('redrawstatus')
+  end,
+})
+vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
+  group = group,
+  pattern = '*',
+  callback = function(args)
+    vim.wo.statusline = get_status(true, true)
+  end,
+})
+vim.api.nvim_create_autocmd({ 'WinEnter' }, {
+  group = group,
+  pattern = '*',
+  callback = function(args)
+    vim.wo.statusline = get_status(true, true)
+  end,
+})
+vim.api.nvim_create_autocmd({ 'WinLeave' }, {
+  group = group,
+  pattern = '*',
+  callback = function(args)
+    vim.wo.statusline = get_status(false, false)
+  end,
 })
 
 return M
