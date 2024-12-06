@@ -44,6 +44,10 @@ precmd_vcs_info() { vcs_info }
 precmd_functions=( precmd_vcs_info )
 
 # env {{{
+export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH" # GNU coreutils
+export PATH="$HOMEBREW_PREFIX/opt/gawk/libexec/gnubin:$PATH"      # GNU AWK
+export PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"   # GNU SED
+export PATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"      # GNU GREP
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH" # rust
 export PATH="/usr/local/sbin:$PATH" #brew
