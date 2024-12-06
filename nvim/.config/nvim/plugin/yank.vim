@@ -10,10 +10,10 @@ function Osc52Yank()
         \ " > ".shellescape(g:tty)
 endfunction
 
-if has('clipboard')
-  augroup Yank
-    autocmd!
-    autocmd TextYankPost * if v:event.operator ==# 'y' | call Osc52Yank() | endif
-  augroup END
-endif
+" if has('clipboard')
+"   augroup Yank
+"     autocmd!
+"     autocmd TextYankPost * if v:event.operator ==# 'y' | call Osc52Yank() | endif
+"   augroup END
+" endif
 
