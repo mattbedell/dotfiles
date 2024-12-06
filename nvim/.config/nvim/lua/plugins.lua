@@ -141,13 +141,62 @@ return require('packer').startup({
     use 'fgsch/vim-varnish'                                     -- VCL syntax highlighting
     use 'towolf/vim-helm'
     use {                                                       -- center buffers
-      "shortcuts/no-neck-pain.nvim",
-      tag = "*",
+      'shortcuts/no-neck-pain.nvim',
+      tag = '*',
       after = { 'gruvbox.nvim' },
       config = function()
         require('vendor.plugin.no-neck-pain')
       end
-   }
+    }
+    use {
+      'olimorris/codecompanion.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-treesitter/nvim-treesitter',
+      },
+      config = function()
+        require('codecompanion').setup({
+          strategies = {
+            chat = {
+              adapter = 'copilot'
+            },
+            inline = {
+              adapter = 'copilot'
+            },
+            agent = {
+              adapter = 'copilot'
+            }
+          }
+        })
+        require('vendor.plugin.copilot')
+      end,
+    }
+    use {
+      'MeanderingProgrammer/render-markdown.nvim',
+      after = { 'nvim-treesitter' },
+      config = function()
+        require('render-markdown').setup({
+          file_types = { 'markdown', 'codecompanion'},
+          heading = {
+            backgrounds = {
+              'RenderMarkdownH1Bg',
+              'RenderMarkdownH2Bg',
+              'RenderMarkdownH2Bg',
+              'RenderMarkdownH2Bg',
+              'RenderMarkdownH2Bg',
+              'RenderMarkdownH2Bg',
+            }
+          }
+        })
+      end,
+    }
+    -- use "Copilot auth" to get a token, then this can be disabled
+    -- use {
+    --   "zbirenbaum/copilot.lua",
+    --   config = function()
+    --     require("copilot").setup()
+    --   end
+    -- }
   end,
   config = packer_config,
 })
