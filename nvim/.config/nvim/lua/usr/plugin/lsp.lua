@@ -120,6 +120,10 @@ nvim_lsp.terraformls.setup{
   filetypes = { "terraform", "terraform-vars", "hcl" }
 }
 
+nvim_lsp.protols.setup{
+  capabilities = capabilities
+}
+
 -- nvim_lsp.sumneko_lua.setup{
 --   root_dir = nvim_lsp.util.root_pattern(".git"),
 --   on_attach = on_attach_lsp,
