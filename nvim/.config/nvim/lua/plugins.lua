@@ -36,12 +36,12 @@ return require('packer').startup({
         require('vendor.plugin.gruvbox')
       end
     }
-    use {                                                       -- indent lines w/ treesitter context awareness
-      'lukas-reineke/indent-blankline.nvim',
-      config = function()
-        require('vendor.plugin.indent-blankline')
-      end,
-    }
+    -- use {                                                       -- indent lines w/ treesitter context awareness
+    --   'lukas-reineke/indent-blankline.nvim',
+    --   config = function()
+    --     require('vendor.plugin.indent-blankline')
+    --   end,
+    -- }
     use {
     'windwp/nvim-autopairs',                                    -- autopairs
       config = function()
@@ -134,11 +134,11 @@ return require('packer').startup({
     use 'tpope/vim-dispatch'                                    -- async make
     use 'tpope/vim-fugitive'                                    -- git integration
     use 'yassinebridi/vim-purpura'                              -- theme, all purple because its fun
-    use 'vimjas/vim-python-pep8-indent'                         -- python treesitter indent is a WIP, use this until it's ready
+    -- use 'vimjas/vim-python-pep8-indent'                         -- python treesitter indent is a WIP, use this until it's ready
     use 'tpope/vim-repeat'                                      -- make mappings repeatable
     use 'kshenoy/vim-signature'                                 -- visual marks in gutter TODO: replace this
     use 'tpope/vim-surround'                                    -- mappings for surround characters
-    use 'fgsch/vim-varnish'                                     -- VCL syntax highlighting
+    -- use 'fgsch/vim-varnish'                                     -- VCL syntax highlighting
     use 'towolf/vim-helm'
     use {                                                       -- center buffers
       'shortcuts/no-neck-pain.nvim',
