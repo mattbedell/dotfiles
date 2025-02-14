@@ -289,7 +289,6 @@ augroup ThemeCustom
   autocmd ColorScheme gruvbox call GruvCust()
   autocmd ColorScheme * call UpdateNormalNC()
 augroup END
-
 "}}}
 
 

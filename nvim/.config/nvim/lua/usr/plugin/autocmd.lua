@@ -16,3 +16,13 @@ vim.api.nvim_create_autocmd('CursorMoved', {
     end
   end
 })
+
+vim.api.nvim_create_autocmd("WinNew", {
+  callback = function()
+    if vim.api.nvim_win_get_config(0).relative ~= "" then
+      vim.api.nvim_win_call(0, function()
+        vim.cmd("set winhighlight=NormalNC:Normal")
+      end)
+    end
+  end,
+})

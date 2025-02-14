@@ -2,6 +2,10 @@ local nvim_lsp = require'lspconfig'
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+local float_border = "double"
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = float_border })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = float_border })
+
 vim.diagnostic.config({
   underline = false,
   virtual_text = false,
@@ -9,6 +13,7 @@ vim.diagnostic.config({
   float = {
     severity_sort = true,
     source = 'always',
+    border = float_border,
   },
 })
 
