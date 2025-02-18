@@ -5,6 +5,7 @@ require'nvim-treesitter.configs'.setup{
     "comment",
     "css",
     "dockerfile",
+    "gitcommit",
     "go",
     "graphql",
     "hcl",
