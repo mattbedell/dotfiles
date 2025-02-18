@@ -55,7 +55,7 @@ local on_attach_lsp = function(client, bufnr)
   vim.api.nvim_win_set_option(0, "foldexpr", "nvim_treesitter#foldexpr()")
 end
 
-nvim_lsp.tsserver.setup{
+nvim_lsp.ts_ls.setup{
   root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
   on_attach = on_attach_lsp,
   capabilities = capabilities,

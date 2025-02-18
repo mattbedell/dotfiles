@@ -19,6 +19,7 @@ require'nvim-treesitter.configs'.setup{
     "regex",
     "rust",
     "scss",
+    "terraform",
     "toml",
     "tsx",
     "typescript",
