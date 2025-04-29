@@ -132,7 +132,7 @@ set expandtab
 augroup highlight_yank
   autocmd!
   " autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
-  autocmd TextYankPost * lua require'vim.highlight'.on_yank({ timeout = 400 })
+  autocmd TextYankPost * lua require'vim.hl'.on_yank({ timeout = 400 })
 augroup END
 
 " general overrides for all filetype plugins

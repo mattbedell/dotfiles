@@ -39,7 +39,7 @@ end
 
 
 local function diagnostics(level)
-  if usr_util.length(vim.lsp.buf_get_clients()) == 0 then
+  if usr_util.length(vim.lsp.get_clients({ bufnr = 0 })) == 0 then
     return ''
   end
   local count = usr_util.length(vim.diagnostic.get(0, { severity = level }))
