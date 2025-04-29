@@ -12,3 +12,5 @@ test:*.stories.js
 !.git
 --glob
 !node_modules
+--glob
+!package-lock.json
