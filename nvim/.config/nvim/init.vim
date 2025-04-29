@@ -107,7 +107,6 @@ set complete-=i
 set sessionoptions-=options
 set viewoptions-=options
 set iskeyword+=-
-set pastetoggle=<F1>
 set formatoptions-=cro
 set belloff=all
 set noshowmode
