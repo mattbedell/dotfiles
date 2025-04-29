@@ -51,6 +51,7 @@ export PATH="$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$PATH"      # GNU GREP
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH" # rust
 export PATH="/usr/local/sbin:$PATH" #brew
+export PATH="/opt/homebrew/bin:$PATH" #brew
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:/usr/local/share/git-core/contrib/diff-highlight:/usr/share/doc/git/contrib/diff-highlight" # git inline diff, contributor script
 export PATH="$PATH:$HOME/go/bin"
