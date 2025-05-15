@@ -21,7 +21,7 @@ local function update_highlights()
 
   local statusline_bg = usr_util.get_hi_attr('PmenuThumb', 'bg#', 'gui')
   vim.api.nvim_command('highlight StatusLine guibg=' ..statusline_bg)
-  usr_util.extend_hi_gui('StatusLine', 'StatusLineNC', { reverse = true })
+  usr_util.extend_hi_gui('StatusLine', 'StatusLineNC', {})
 
   usr_util.extend_hi_gui('DiagnosticError', 'stlLspError', {
     reverse = false,
