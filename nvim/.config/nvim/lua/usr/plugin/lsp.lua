@@ -3,8 +3,6 @@ local nvim_lsp = require'lspconfig'
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local float_border = "double"
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = float_border })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = float_border })
 
 vim.diagnostic.config({
   underline = false,
@@ -36,9 +34,16 @@ local on_attach_lsp = function(client, bufnr)
   )
   vim.cmd('augroup END')
 
+  vim.keymap.set('n', 'K', function()
+    vim.lsp.buf.hover({ border = float_border })
+  end, { buffer = true, silent = true, noremap = true })
+
+  vim.keymap.set('n', '<leader>lh', function()
+    vim.lsp.buf.signature_help({ border = float_border })
+  end, { buffer = true, silent = true, noremap = true })
+
   vim.api.nvim_buf_set_keymap(0, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<c-w><c-]>', '<c-w>v<c-]>', {noremap = false, silent = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lw', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', {noremap = true, silent = true})
@@ -46,8 +51,6 @@ local on_attach_lsp = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ll', '<cmd>lua vim.diagnostic.setloclist()<CR>', {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lc', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {noremap = true, silent = true})
   vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, {silent = true})
   vim.api.nvim_buf_set_keymap(0, 'n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
 
