@@ -1,202 +1,208 @@
-local packer_augroup = vim.api.nvim_create_augroup('packer_user_config', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', {
-  group = packer_augroup,
-  pattern = 'plugins.lua',
-  desc = 'Packer compile on plugin config update',
-  callback = function(args)
-    vim.cmd('source ' .. args.file)
-    vim.cmd('PackerCompile')
-  end,
-})
+return {
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      vim.api.nvim_command('highlight link GitSignsAdd DiagnosticHint')
+      vim.api.nvim_command('highlight link GitSignsChange DiagnosticInfo')
+      vim.api.nvim_command('highlight link GitSignsDelete DiagnosticError')
+    end,
+  },
+  { 'rhysd/git-messenger.vim' },                               -- fugitive Blame is slow, this is faster
+  {
+    'ruifm/gitlinker.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      mappings = nil,
+    },
+    keys = {
+      {
+        '<leader>gh',
+        '<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>',
+        silent = true
+      },
+      {
+        '<leader>gh',
+        '<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".copy_to_clipboard})<cr>',
+        mode = 'v',
+      }
+    }
+  },
+  {
+    'ellisonleao/gruvbox.nvim',
+    config = function()
+      require('gruvbox').setup{
+        italic = {
+          strings = false,
+        },
+        contrast = 'hard',
+      }
 
-local packer_config = {
-  plugin_package = 'packer-plugins',
-}
+      vim.cmd.colorscheme('gruvbox')
 
-return require('packer').startup({
-  function(use)
-    use {
-      'lewis6991/gitsigns.nvim',
-      config = function()
-        require('vendor.plugin.gitsigns')
-      end,
-      after = 'gruvbox.nvim',
-    }
-    use 'rhysd/git-messenger.vim'                               -- fugitive Blame is slow, this is faster
-    use {
-      'ruifm/gitlinker.nvim',
-      requires = 'nvim-lua/plenary.nvim',
-      config = function()
-        require('vendor.plugin.gitlinker')
-      end
-    }
-    use {
-      'ellisonleao/gruvbox.nvim',
-      config = function()
-        require('vendor.plugin.gruvbox')
-      end
-    }
+      vim.cmd('highlight clear SignColumn')
+      -- force StatusLine and StatusLineNC to be different so spaces aren't replaced with carats in the active statusline
+      vim.cmd('highlight StatusLine ctermfg=223')
+      vim.cmd('highlight clear NormalFloat')
+    end
+  },
     -- use {                                                       -- indent lines w/ treesitter context awareness
     --   'lukas-reineke/indent-blankline.nvim',
     --   config = function()
     --     require('vendor.plugin.indent-blankline')
     --   end,
     -- }
-    use {
+  {
     'windwp/nvim-autopairs',                                    -- autopairs
-      config = function()
-        require('vendor.plugin.nvim-autopairs')
-      end,
+    opts = {
+      check_ts = true,
+      break_undo = false,
     }
-    use {
-      'hrsh7th/nvim-cmp',
-      requires = {
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-nvim-lsp-signature-help',
-        'hrsh7th/cmp-path',
-        'hrsh7th/vim-vsnip',
-        { 'hrsh7th/cmp-vsnip', after = { 'vim-vsnip' } },
+  },
+    -- {                                                       -- debugger
+    --   'mfussenegger/nvim-dap',
+    --   config = function()
+    --     require('vendor.plugin.nvim-dap')
+    --   end,
+    -- }
+  {
+    'unblevable/quick-scope',
+    init = function()
+      vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
+      vim.g.qs_lazy_highlight = 1
+    end,
+    config = function()
+      local theme = vim.api.nvim_create_augroup('QuickScopeColors', { clear = true })
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = theme,
+        pattern = "gruvbox",
+        callback = function()
+          vim.api.nvim_set_hl(0, 'QuickScopePrimary', { fg = '#ff00ff', bold = true, ctermfg = 201 })
+          vim.api.nvim_set_hl(0, 'QuickScopeSecondary', { fg = '#ff0000', bold = true, ctermfg = 9, cterm = { bold = true } })
+        end
+      })
+    end
+  },
+  {'wellle/targets.vim' },
+  { 'vifm/vifm.vim' },
+  {
+    'tpope/vim-commentary',
+    config = function()
+      local group = vim.api.nvim_create_augroup("VimCommentary", { clear = true })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "terraform",
+        command = "set commentstring=#%s",
+        group = group,
+      })
+      return {}
+    end
+  },
+  { 'tpope/vim-dispatch' },
+  { 'tpope/vim-fugitive' },
+  { 'yassinebridi/vim-purpura', enabled = false },
+  { 'tpope/vim-repeat' },
+  { 'kshenoy/vim-signature' },
+  { 'tpope/vim-surround' },
+  { 'towolf/vim-helm' },
+  {
+    'shortcuts/no-neck-pain.nvim',
+    opts = function()
+      local hi_normalnc = vim.api.nvim_get_hl_by_name('NormalNC', true)
+      return {
+        autocmds = { enableOnVimEnter = false },
+        width = 120,
+          buffers = {
+            -- colors = {
+            --   background = string.format('#%06x', hi_normalnc.background),
+            -- },
+            right = {
+              enabled = true,
+            },
+        },
+      }
+    end
+  },
+  {
+    'olimorris/codecompanion.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    opts = function()
+      vim.cmd([[cab cc CodeCompanion]])
+      return {
+        strategies = {
+          chat = {
+            adapter = 'copilot'
+          },
+          inline = {
+            adapter = 'copilot'
+          },
+          agent = {
+            adapter = 'copilot'
+          }
+        }
+      }
+    end,
+    keys = {
+      {
+        '<leader>aa',
+        '<cmd>CodeCompanionActions<cr>',
+        noremap = true,
+        silent = true,
       },
-      config = function()
-        require('vendor.plugin.nvim-cmp')
-      end,
-      after = {
-        'cmp-buffer',
-        'cmp-nvim-lsp',
-        'cmp-nvim-lsp-signature-help',
-        'cmp-path',
-        'vim-vsnip',
-        'cmp-vsnip',
+      {
+        '<leader>aa',
+        '<cmd>CodeCompanionActions<cr>',
+        noremap = true,
+        silent = true,
+        mode = 'v'
+      },
+      {
+        '<leader>ac',
+        '<cmd>CodeCompanionChat Toggle<cr>',
+        noremap = true,
+        silent = true,
+      },
+      {
+        '<leader>ac',
+        '<cmd>CodeCompanionChat Toggle<cr>',
+        noremap = true,
+        silent = true,
+        mode = 'v'
+      },
+      {
+        '<leader>ad',
+        '<cmd>CodeCompanionChat Add<cr>',
+        noremap = true,
+        silent = true,
+        mode = 'v'
+      },
+    },
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter' },
+    ft = { 'markdown', 'codecompanion' },
+    opts = {
+      file_types = { 'markdown', 'codecompanion'},
+      heading = {
+        backgrounds = {
+          'RenderMarkdownH1Bg',
+          'RenderMarkdownH2Bg',
+          'RenderMarkdownH2Bg',
+          'RenderMarkdownH2Bg',
+          'RenderMarkdownH2Bg',
+          'RenderMarkdownH2Bg',
+        }
       }
     }
-    use {                                                       -- debugger
-      'mfussenegger/nvim-dap',
-      config = function()
-        require('vendor.plugin.nvim-dap')
-      end,
-    }
-    use {                                                       -- convenient configs for language servers
-      'neovim/nvim-lspconfig',
-      after = { 'cmp-nvim-lsp' },
-      config = function()
-        require('usr.plugin.lsp')
-      end,
-    }
-    use {
-      {
-        'nvim-treesitter/nvim-treesitter',
-        config = function()
-          require('usr.plugin.treesitter')
-        end,
-      },
-      {
-        'windwp/nvim-ts-autotag',                               -- autoclose html tags
-        after = 'nvim-treesitter',
-      },
-      {
-        'nvim-treesitter/nvim-treesitter-refactor',
-        after = 'nvim-treesitter',
-      },
-      {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        after = 'nvim-treesitter',
-      },
-      {
-        'RRethy/nvim-treesitter-textsubjects',
-        after = 'nvim-treesitter',
-      },
-      {
-        'JoosepAlviste/nvim-ts-context-commentstring',          -- update commentstring using treesitter for injected languages
-        after = 'nvim-treesitter',
-      },
-    }
-    use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.x',
-      requires = {
-        {'nvim-lua/plenary.nvim'},
-        {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-        {'nvim-telescope/telescope-live-grep-args.nvim'}
-      },
-      config = function()
-        require('vendor.plugin.telescope')
-      end
-    }
-    use 'unblevable/quick-scope'                                -- highlight unique chars for 'f' and 't' motions
-    use 'wellle/targets.vim'                                    -- enhanced text objects
-    use 'vifm/vifm.vim'                                         -- vifm file manager
-    use {                                                       -- comment code
-      'tpope/vim-commentary',
-      config = function()
-        require('vendor.plugin.vim-commentary')
-      end
-    }
-    use 'tpope/vim-dispatch'                                    -- async make
-    use 'tpope/vim-fugitive'                                    -- git integration
-    use 'yassinebridi/vim-purpura'                              -- theme, all purple because its fun
-    -- use 'vimjas/vim-python-pep8-indent'                         -- python treesitter indent is a WIP, use this until it's ready
-    use 'tpope/vim-repeat'                                      -- make mappings repeatable
-    use 'kshenoy/vim-signature'                                 -- visual marks in gutter TODO: replace this
-    use 'tpope/vim-surround'                                    -- mappings for surround characters
-    -- use 'fgsch/vim-varnish'                                     -- VCL syntax highlighting
-    use 'towolf/vim-helm'
-    use {                                                       -- center buffers
-      'shortcuts/no-neck-pain.nvim',
-      tag = '*',
-      after = { 'gruvbox.nvim' },
-      config = function()
-        require('vendor.plugin.no-neck-pain')
-      end
-    }
-    use {
-      'olimorris/codecompanion.nvim',
-      requires = {
-        'nvim-lua/plenary.nvim',
-        'nvim-treesitter/nvim-treesitter',
-      },
-      config = function()
-        require('codecompanion').setup({
-          strategies = {
-            chat = {
-              adapter = 'copilot'
-            },
-            inline = {
-              adapter = 'copilot'
-            },
-            agent = {
-              adapter = 'copilot'
-            }
-          }
-        })
-        require('vendor.plugin.copilot')
-      end,
-    }
-    use {
-      'MeanderingProgrammer/render-markdown.nvim',
-      after = { 'nvim-treesitter' },
-      config = function()
-        require('render-markdown').setup({
-          file_types = { 'markdown', 'codecompanion'},
-          heading = {
-            backgrounds = {
-              'RenderMarkdownH1Bg',
-              'RenderMarkdownH2Bg',
-              'RenderMarkdownH2Bg',
-              'RenderMarkdownH2Bg',
-              'RenderMarkdownH2Bg',
-              'RenderMarkdownH2Bg',
-            }
-          }
-        })
-      end,
-    }
-    -- use "Copilot auth" to get a token, then this can be disabled
-    -- use {
-    --   "zbirenbaum/copilot.lua",
-    --   config = function()
-    --     require("copilot").setup()
-    --   end
-    -- }
-  end,
-  config = packer_config,
-})
+  },
+  -- use "Copilot auth" to get a token, then this can be disabled
+  -- use {
+  --   "zbirenbaum/copilot.lua",
+  --   config = function()
+  --     require("copilot").setup()
+  --   end
+  -- }
+}

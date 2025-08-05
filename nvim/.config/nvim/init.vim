@@ -9,7 +9,7 @@ let g:netrw_altfile = 1
 " }}}
 let mapleader=" "
 
-require("config.lazy")
+lua require("config.lazy")
 "}}}
 " lua user plugins {{{
 lua require('usr.commands')
@@ -23,15 +23,6 @@ lua require('usr.plugin.statusline')
 "}}}
 " plugin configurations {{{
 " quick-scope {{{
-augroup qs_colors
-  autocmd!
-  autocmd ColorScheme * highlight QuickScopePrimary guifg='#ff00ff' gui=bold ctermfg=201 cterm=bold
-  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#ff0000' gui=bold ctermfg=9 cterm=bold
-augroup END
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T'] "Only highlight on keys
-let g:qs_lazy_highlight = 1 " autocmd event from CursorMoved to CursorHold (reduces slowdown)
-
-"}}}
 " vim-cool {{{
 let g:CoolTotalMatches = 1
 
@@ -251,43 +242,6 @@ nnoremap <leader>glb :0Glog<CR>
 " Theme {{{
 set background=light
 set termguicolors
-
-" gruvbox theme {{{
-" let g:gruvbox_contrast_dark='hard'
-" let g:gruvbox_contrast_light='hard'
-
-" set background color to black
-" gruvbox overrides fzf popup colors, set black background
-" override cursorline color with something more subtle on black background
-" override red color to be less orange
-function! GruvCust() abort
-  if exists('g:gruvbox_contrast_dark') && &background ==# 'dark'
-    let g:fzf_colors.bg = ['bg', 'Normal']
-    highlight Normal guibg=#000000 guifg=#fce8c3
-    highlight SpecialKey guifg='#ff00ff' ctermfg=201 cterm=bold
-    highlight CursorLine ctermbg=233 guibg=#121212
-    highlight CursorLineNR cterm=bold ctermbg=233 guibg=#121212
-    highlight GruvboxRed guifg=#ef2f27
-    highlight GruvboxOrange guifg=#ff5f00
-    highlight GruvboxBlue guifg=#0aaeb3
-    highlight GruvboxPurple guifg=#ff5c8f
-  else
-    highlight MatchParen guibg=#736a57 guifg=#a89984
-  endif
-  highlight clear SignColumn
-endfunction
-
-function! UpdateNormalNC() abort
-  let custBg = synIDattr(hlID('CursorLine'),'bg#')
-  exec 'hi NormalNC guibg=' . custBg
-  exec 'hi VertSplit guibg=' . custBg
-endfunction
-
-augroup ThemeCustom
-  autocmd!
-  autocmd ColorScheme gruvbox call GruvCust()
-  autocmd ColorScheme * call UpdateNormalNC()
-augroup END
 "}}}
 
 
