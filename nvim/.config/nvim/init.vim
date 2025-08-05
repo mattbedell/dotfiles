@@ -9,7 +9,7 @@ let g:netrw_altfile = 1
 " }}}
 let mapleader=" "
 
-lua require('plugins')
+require("config.lazy")
 "}}}
 " lua user plugins {{{
 lua require('usr.commands')
