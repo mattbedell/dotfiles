@@ -1,13 +1,28 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'master',
+    lazy = false,
     build = ':TSUpdate',
-    event = { 'BufReadPost', 'BufNewFile', },
+    main = 'nvim-treesitter.configs',
     dependencies = {
-      'windwp/nvim-ts-autotag',
       'nvim-treesitter/nvim-treesitter-refactor',
       'nvim-treesitter/nvim-treesitter-textobjects',
-      'RRethy/nvim-treesitter-textsubjects',
+      {
+        'RRethy/nvim-treesitter-textsubjects',
+        configs = function()
+            require('nvim-treesitter-textsubjects').configure({
+              textsubjects = {
+                enable = true,
+                keymaps = {
+                  ['.'] = 'textsubjects-smart',
+                  [';'] = 'textsubjects-container-outer',
+                  ['i;'] = 'textsubjects-container-inner',
+                },
+              },
+            })
+        end,
+      },
       'JoosepAlviste/nvim-ts-context-commentstring',
     },
     opts = {
@@ -114,17 +129,6 @@ return {
             ["[]"] = "@class.outer",
           },
         },
-      },
-      textsubjects = {
-        enable = true,
-        keymaps = {
-          ['.'] = 'textsubjects-smart',
-          [';'] = 'textsubjects-container-outer',
-          ['i;'] = 'textsubjects-container-inner',
-        },
-      },
-      autotag = {
-        enable = true,
       },
     }
   }

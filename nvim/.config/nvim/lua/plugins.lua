@@ -1,4 +1,6 @@
 return {
+
+  'windwp/nvim-ts-autotag',
   {
     'lewis6991/gitsigns.nvim',
     event = 'VeryLazy',
