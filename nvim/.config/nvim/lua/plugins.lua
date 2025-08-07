@@ -1,13 +1,26 @@
 return {
   {
     'lewis6991/gitsigns.nvim',
+    event = 'VeryLazy',
     config = function()
       vim.api.nvim_command('highlight link GitSignsAdd DiagnosticHint')
       vim.api.nvim_command('highlight link GitSignsChange DiagnosticInfo')
       vim.api.nvim_command('highlight link GitSignsDelete DiagnosticError')
     end,
   },
-  { 'rhysd/git-messenger.vim' },                               -- fugitive Blame is slow, this is faster
+  {
+    'rhysd/git-messenger.vim',
+    init = function()
+      vim.g.git_messenger_no_default_mappings = true
+    end,
+    keys = {
+      {
+        '<leader>gm',
+        '<cmd>GitMessenger<cr>',
+        silent = true,
+      }
+    }
+  },                               -- fugitive Blame is slow, this is faster
   {
     'ruifm/gitlinker.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -29,6 +42,7 @@ return {
   },
   {
     'ellisonleao/gruvbox.nvim',
+    priority = 1000,
     config = function()
       require('gruvbox').setup{
         italic = {
@@ -52,7 +66,8 @@ return {
     --   end,
     -- }
   {
-    'windwp/nvim-autopairs',                                    -- autopairs
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
     opts = {
       check_ts = true,
       break_undo = false,
@@ -66,6 +81,7 @@ return {
     -- }
   {
     'unblevable/quick-scope',
+    event = 'VeryLazy',
     init = function()
       vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
       vim.g.qs_lazy_highlight = 1
@@ -82,10 +98,14 @@ return {
       })
     end
   },
-  {'wellle/targets.vim' },
+  {
+    'wellle/targets.vim',
+    event = 'BufReadPost',
+  },
   { 'vifm/vifm.vim' },
   {
     'tpope/vim-commentary',
+    event = 'BufReadPost',
     config = function()
       local group = vim.api.nvim_create_augroup("VimCommentary", { clear = true })
 
@@ -97,15 +117,40 @@ return {
       return {}
     end
   },
-  { 'tpope/vim-dispatch' },
-  { 'tpope/vim-fugitive' },
+  {
+    'tpope/vim-dispatch',
+    event = 'VeryLazy',
+  },
+  {
+    'tpope/vim-fugitive',
+    event = 'VeryLazy',
+  },
   { 'yassinebridi/vim-purpura', enabled = false },
-  { 'tpope/vim-repeat' },
-  { 'kshenoy/vim-signature' },
-  { 'tpope/vim-surround' },
-  { 'towolf/vim-helm' },
+  {
+    'tpope/vim-repeat',
+    event = 'BufReadPost',
+  },
+  {
+    'kshenoy/vim-signature',
+    event = 'VeryLazy',
+  },
+  {
+    'tpope/vim-surround',
+    event = 'BufReadPost',
+  },
+  {
+    'towolf/vim-helm',
+    ft = { 'yaml' },
+  },
   {
     'shortcuts/no-neck-pain.nvim',
+    keys = {
+      {
+        '<leader>bc',
+        '<cmd>lua require("no-neck-pain").toggle()<cr>',
+        silent = true,
+      }
+    },
     opts = function()
       local hi_normalnc = vim.api.nvim_get_hl_by_name('NormalNC', true)
       return {
