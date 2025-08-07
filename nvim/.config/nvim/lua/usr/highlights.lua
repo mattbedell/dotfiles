@@ -1,6 +1,9 @@
 local usr_util = require'usr.util'
 
 local function update_highlights()
+
+  vim.cmd('highlight link FloatBorder Normal')
+
   usr_util.extend_hi_gui('StatusLine', 'stlWarn', {
     reverse = true,
     bold = true,
