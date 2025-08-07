@@ -87,15 +87,8 @@ return {
       vim.g.qs_lazy_highlight = 1
     end,
     config = function()
-      local theme = vim.api.nvim_create_augroup('QuickScopeColors', { clear = true })
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        group = theme,
-        pattern = "gruvbox",
-        callback = function()
-          vim.api.nvim_set_hl(0, 'QuickScopePrimary', { fg = '#ff00ff', bold = true, ctermfg = 201 })
-          vim.api.nvim_set_hl(0, 'QuickScopeSecondary', { fg = '#ff0000', bold = true, ctermfg = 9, cterm = { bold = true } })
-        end
-      })
+      vim.api.nvim_set_hl(0, 'QuickScopePrimary', { fg = '#ff00ff', bold = true, ctermfg = 201 })
+      vim.api.nvim_set_hl(0, 'QuickScopeSecondary', { fg = '#ff0000', bold = true, ctermfg = 9, cterm = { bold = true } })
     end
   },
   {
