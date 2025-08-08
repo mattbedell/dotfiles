@@ -9,6 +9,10 @@ return {
       'nvim-treesitter/nvim-treesitter-refactor',
       'nvim-treesitter/nvim-treesitter-textobjects',
       {
+        'windwp/nvim-ts-autotag',
+        enabled = false,
+      },
+      {
         'RRethy/nvim-treesitter-textsubjects',
         configs = function()
             require('nvim-treesitter-textsubjects').configure({
