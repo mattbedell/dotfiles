@@ -218,6 +218,9 @@ return {
     ft = { 'markdown', 'codecompanion' },
     opts = {
       file_types = { 'markdown', 'codecompanion'},
+      code = {
+        language = false,
+      },
       heading = {
         backgrounds = {
           'RenderMarkdownH1Bg',
