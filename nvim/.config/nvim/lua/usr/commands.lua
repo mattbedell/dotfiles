@@ -18,6 +18,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       vim.cmd('highlight MatchParen guibg=#736a57 guifg=#a89984')
     end
     vim.cmd('highlight clear SignColumn')
+    vim.cmd('highlight clear NormalFloat')
   end,
 })
 
