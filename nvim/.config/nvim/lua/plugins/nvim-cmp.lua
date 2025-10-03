@@ -52,13 +52,14 @@ return {
         window = {
           documentation = cmp.config.window.bordered(),
         },
-        -- formatting = {
-        --   fields = { "abbr" },
-        --   format = function(entry, vim_item)
-        --     vim_item.abbr = string.sub(vim_item.abbr, 1, 200)
-        --     return vim_item
-        --   end
-        -- },
+        formatting = {
+          format = function(entry, item)
+            if item.menu then
+              item.menu = string.sub(item.menu, 1, 30)
+            end
+            return item
+          end
+        },
         sorting = {
           comparators = {
             function(...) return cmp_buffer:compare_locality(...) end,
