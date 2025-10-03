@@ -49,10 +49,9 @@ return {
           ['<C-e>'] = cmp.mapping.abort(),
           ['<C-y>'] = cmp.mapping.confirm({ select = false }),
         },
-        -- window = {
-        --   completion = cmp.config.window.bordered(),
-        --   documentation = cmp.config.window.bordered(),
-        -- },
+        window = {
+          documentation = cmp.config.window.bordered(),
+        },
         -- formatting = {
         --   fields = { "abbr" },
         --   format = function(entry, vim_item)
