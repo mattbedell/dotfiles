@@ -65,30 +65,7 @@ return {
         vim.api.nvim_win_set_option(0, "foldexpr", "nvim_treesitter#foldexpr()")
       end
 
-      nvim_lsp.ts_ls.setup{
-        root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
-        on_attach = on_attach_lsp,
-        capabilities = capabilities,
-        init_options = {
-          preferences = {
-            includeCompletionsForModuleExports = false
-          }
-        }
-      }
-
-      -- microsoft pyls requires dotnet and is annoying to build and install, to use the evil palantir LS
-      -- nvim_lsp.pyls_ms.setup{
-      --   on_attach = on_attach_lsp,
-      --   capabilities = capabilities,
-      -- }
-
-      -- community fork of palantir/pyls
-      nvim_lsp.pylsp.setup{
-        on_attach = on_attach_lsp,
-        capabilities = capabilities,
-      }
-
-      nvim_lsp.rust_analyzer.setup{
+      vim.lsp.config('rust_analyzer', {
         on_attach = on_attach_lsp,
         capabilities = capabilities,
         settings = {
@@ -98,19 +75,48 @@ return {
             }
           }
         }
-      }
+      })
+      vim.lsp.enable('rust_analyzer')
 
-      nvim_lsp.gopls.setup{
+      vim.lsp.config('ts_ls', {
+        root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
         on_attach = on_attach_lsp,
         capabilities = capabilities,
-      }
+        init_options = {
+          preferences = {
+            includeCompletionsForModuleExports = false
+          }
+        }
+      })
+      vim.lsp.enable('ts_ls')
 
-      nvim_lsp.jsonls.setup{
+      -- microsoft pyls requires dotnet and is annoying to build and install, to use the evil palantir LS
+      -- nvim_lsp.pyls_ms.setup{
+      --   on_attach = on_attach_lsp,
+      --   capabilities = capabilities,
+      -- }
+
+      -- community fork of palantir/pyls
+      vim.lsp.config('pylsp', {
         on_attach = on_attach_lsp,
         capabilities = capabilities,
-      }
+      })
+      -- vim.lsp.enable('pylsp')
 
-      nvim_lsp.yamlls.setup{
+
+      vim.lsp.config('gopls', {
+        on_attach = on_attach_lsp,
+        capabilities = capabilities,
+      })
+      vim.lsp.enable('gopls')
+
+      vim.lsp.config('jsonls', {
+        on_attach = on_attach_lsp,
+        capabilities = capabilities,
+      })
+      vim.lsp.enable('jsonls')
+
+      vim.lsp.config('yamlls', {
         on_attach = on_attach_lsp,
         capabilities = capabilities,
         settings = {
@@ -121,39 +127,28 @@ return {
             },
           },
         },
-      }
+      })
+      vim.lsp.enable('yamlls')
 
-      nvim_lsp.graphql.setup{
+      vim.lsp.config('graphql', {
         on_attach = on_attach_lsp,
         capabilities = capabilities,
-      }
+      })
+      vim.lsp.enable('graphql')
 
-      nvim_lsp.terraformls.setup{
+      vim.lsp.config('terraformls', {
         on_attach = on_attach_lsp,
         capabilities = capabilities,
         filetypes = { "terraform", "terraform-vars", "hcl" }
-      }
+      })
+      vim.lsp.enable('terraformls')
 
-      nvim_lsp.protols.setup{
+      vim.lsp.config('protols', {
         capabilities = capabilities
-      }
+      })
+      vim.lsp.enable('efm')
 
-      -- nvim_lsp.sumneko_lua.setup{
-      --   root_dir = nvim_lsp.util.root_pattern(".git"),
-      --   on_attach = on_attach_lsp,
-      --   capabilities = capabilities,
-      --   settings = {
-      --     Lua = {
-      --       diagnostics = {
-      --         globals = {"vim", "map", "filter", "range", "reduce", "head", "tail", "nth"},
-      --         disable = {"redefined-local"},
-      --       },
-      --       runtime = {version = "LuaJIT"},
-      --     }
-      --   }
-      -- }
-
-      nvim_lsp.eslint.setup{
+      vim.lsp.config('eslint', {
         on_attach = on_attach_lsp,
         -- capabilities = capabilities,
         settings = {
@@ -161,7 +156,8 @@ return {
             enable = true,
           },
         },
-      }
+      })
+      vim.lsp.enable('eslint')
 
       local efm_javascript = {
         -- lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
@@ -176,7 +172,7 @@ return {
         lintSource = "eslint",
       }
 
-      nvim_lsp.efm.setup{
+      vim.lsp.config('efm', {
         on_attach = on_attach_lsp,
         init_options = {documentFormatting = true},
         filetypes = {'javascript', 'javascriptreact', 'typescript', 'python'},
@@ -192,19 +188,22 @@ return {
             }},
           },
         },
-      }
+      })
+      vim.lsp.enable('efm')
 
-      nvim_lsp.cssls.setup{
+      vim.lsp.config('cssls', {
         root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
         on_attach = on_attach_lsp,
         capabilities = capabilities,
-      }
+      })
+      -- vim.lsp.enable('cssls')
 
-      nvim_lsp.html.setup{
+      vim.lsp.config('html', {
         root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
         on_attach = on_attach_lsp,
         capabilities = capabilities,
-      }
+      })
+      -- vim.lsp.enable('html')
 
       vim.diagnostic.config({
         signs = {
