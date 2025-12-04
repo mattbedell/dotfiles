@@ -60,6 +60,7 @@ return {
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ll', '<cmd>lua vim.diagnostic.setloclist()<CR>', {noremap = true, silent = true})
         vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, {silent = true})
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
+        vim.api.nvim_buf_set_keymap(0, 'n', '<leader>li', '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })<CR>', {noremap = true})
 
         vim.api.nvim_win_set_option(0, "foldmethod", "expr")
         vim.api.nvim_win_set_option(0, "foldexpr", "nvim_treesitter#foldexpr()")
@@ -72,6 +73,15 @@ return {
           ["rust-analyzer"] = {
             check = {
               command = "clippy"
+            },
+            inlayHints = {
+              parameterHints = {
+                enable = false
+              },
+              lifetimeElisionHints = {
+                -- enable = "skip_trivial"
+                enable = true
+              }
             }
           }
         }
@@ -79,7 +89,7 @@ return {
       vim.lsp.enable('rust_analyzer')
 
       vim.lsp.config('ts_ls', {
-        root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
+        -- root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
         on_attach = on_attach_lsp,
         capabilities = capabilities,
         init_options = {
