@@ -1,3 +1,8 @@
+function toggleDiagnosticsVirtualText()
+  local config = vim.diagnostic.config()
+  vim.diagnostic.config({ virtual_text = not config.virtual_text, virtual_lines = not config.virtual_lines })
+end
+
 return {
   {
     'neovim/nvim-lspconfig',
@@ -50,11 +55,12 @@ return {
         end, { buffer = true, silent = true, noremap = true })
 
         vim.api.nvim_buf_set_keymap(0, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, silent = true})
-        vim.api.nvim_buf_set_keymap(0, 'n', '<c-w><c-]>', '<c-w>v<c-]>', {noremap = false, silent = true})
+        vim.api.nvim_buf_set_keymap(0, 'n', '<c-w><c-]>', '<c-w>v<c-]>', {noremap = false, silent = true, desc = "Goto definition in new vertical window"})
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, silent = true})
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lw', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', {noremap = true, silent = true})
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', {noremap = true, silent = true})
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>', {noremap = true, silent = true})
+        vim.keymap.set('n', '<leader>ld', toggleDiagnosticsVirtualText, {buffer = 0, noremap = true, silent = true, desc = 'Toggle diagnostics virtual text/lines'})
         vim.api.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
         vim.api.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ll', '<cmd>lua vim.diagnostic.setloclist()<CR>', {noremap = true, silent = true})
