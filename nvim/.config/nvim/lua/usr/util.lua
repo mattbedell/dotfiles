@@ -67,6 +67,24 @@ local function extend_hi_gui(super_hl, highlight_name, opts)
   vim.api.nvim_command(hi)
 end
 
+function get_highlight_attrs(name)
+  local highlight_attrs = vim.api.nvim_get_hl(0, { name = name, link = true})
+
+  while highlight_attrs.link ~= nil do
+    highlight_attrs = vim.api.nvim_get_hl(0, { name = highlight_attrs.link, link = true })
+  end
+  return highlight_attrs
+end
+
+function modify_highlight(name, opts)
+  local attrs = get_highlight_attrs(name)
+  for k,v in pairs(opts) do
+    attrs[k] = v
+  end
+
+  vim.api.nvim_set_hl(0, name, attrs)
+end
+
 -- https://github.com/jamestthompson3/vimConfig/blob/master/lua/nvim_utils.lua
 -- usage:
 -- local autocmds = {
@@ -115,6 +133,8 @@ M.join = join
 M.length = length
 M.create_augroups = create_augroups
 M.extend_hi_gui = extend_hi_gui
+M.modify_highlight = modify_highlight
+M.get_highlight_attrs = get_highlight_attrs
 M.get_hi_attr = get_hi_attr
 M.lazy_is_loaded = lazy_is_loaded
 M.lazy_on_load = lazy_on_load

@@ -79,6 +79,13 @@ local function update_highlights()
   })
 
   vim.api.nvim_command('highlight clear SpellBad | highlight link SpellBad ErrorMsg')
+
+  local cursor_line_bg = usr_util.get_highlight_attrs("CursorLine").bg
+  usr_util.modify_highlight("DiagnosticVirtualLinesError", { bg = cursor_line_bg })
+  usr_util.modify_highlight("DiagnosticVirtualLinesWarn", { bg = cursor_line_bg })
+  usr_util.modify_highlight("DiagnosticVirtualLinesInfo", { bg = cursor_line_bg })
+  usr_util.modify_highlight("DiagnosticVirtualLinesHint", { bg = cursor_line_bg })
+  usr_util.modify_highlight("DiagnosticVirtualLinesOK", { bg = cursor_line_bg })
 end
 
 local M = {}
