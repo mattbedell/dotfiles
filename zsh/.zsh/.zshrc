@@ -97,7 +97,7 @@ PROMPT+="%F{cyan}%~%f"
 PROMPT+="%F{yellow}%(1j.(%j).)%f"
 PROMPT+='${vcs_info_msg_0_} '
 
-RPROMPT="%F{242}%n@%m"
+RPROMPT="%F{242}%n@%m %*"
 
 # vim shell cursor and prompt {{{
 export KEYTIMEOUT=1
