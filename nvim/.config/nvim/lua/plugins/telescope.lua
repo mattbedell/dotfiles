@@ -56,7 +56,7 @@ return {
         end
       },
       {
-        '<leader>fw',
+        '<leader>f*',
         function()
           require('telescope').extensions.live_grep_args.live_grep_args({ default_text = vim.fn.expand('<cword>') })
         end
