@@ -163,17 +163,24 @@ return {
     opts = function()
       vim.cmd([[cab cc CodeCompanion]])
       return {
+        display = {
+          chat = {
+            window = {
+              layout = 'float',
+            },
+          },
+        },
         strategies = {
           chat = {
-            adapter = 'copilot'
+            adapter = 'copilot',
           },
           inline = {
-            adapter = 'copilot'
+            adapter = 'copilot',
           },
           agent = {
-            adapter = 'copilot'
-          }
-        }
+            adapter = 'copilot',
+          },
+        },
       }
     end,
     keys = {
