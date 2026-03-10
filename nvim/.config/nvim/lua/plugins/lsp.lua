@@ -162,7 +162,7 @@ return {
       vim.lsp.config('protols', {
         capabilities = capabilities
       })
-      vim.lsp.enable('efm')
+      vim.lsp.enable('protols')
 
       vim.lsp.config('eslint', {
         on_attach = on_attach_lsp,
