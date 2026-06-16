@@ -146,7 +146,11 @@ nnoremap <silent><leader>z :ZoomToggle<CR>
 nnoremap <leader>w <C-w>
 nmap <leader>bd <plug>Kwbd
 nmap <leader>bf :let @* = expand('%:p')<CR>:echo 'Filepath copied to clipboard'<CR>
+nmap <leader>bfn :let @* = expand('%:p') . '#' . line('.')<CR>:echo 'Filepath clipboard'<CR>
+vnoremap <leader>bfn :<C-u> let @* = expand('%:p') . '#' . line("'<") . '-' . line("'>")<CR>:echo 'Filepath copied to clipboard'<CR>
 nmap <leader>br :let @* = expand('%')<CR>:echo 'Relative filepath copied to clipboard'<CR>
+nmap <leader>brn :let @* = expand('%') . '#' . line('.')<CR>:echo 'Relative filepath clipboard'<CR>
+vnoremap <leader>brn :<C-u>let @* = expand('%') . '#' . line("'<") . '-' . line("'>")<CR>:echo 'Relative filepath copied to clipboard'<CR>
 nmap <silent><leader>bc :lua require('no-neck-pain') require("no-neck-pain").toggle()<CR>
 nnoremap <silent><leader>gp :lua require'usr.plugin.github'.open_pr()<CR>
 
@@ -191,7 +195,9 @@ nnoremap <silent> [L :lfirst<CR>
 nnoremap <silent> ]a :next<CR>
 nnoremap <silent> [a :previous<CR>
 nnoremap <silent> ]A :last<CR>
-nnoremap <silent> [A :first<CR>
+
+nnoremap <silent> ]r :tabn<CR>
+nnoremap <silent> [r :tabp<CR>
 
 
 " https://github.com/whiteinge/dotfiles/blob/e728e33bd105b16aeef134eb12e1175e0c00ef0a/.vim/autoload/vimortmux.vim
