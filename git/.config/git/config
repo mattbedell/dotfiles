@@ -37,6 +37,7 @@
 	s = status
 	rb = rebase
 	diffc = diff --cached
+  diffu = "!zsh -c 'comm -12 <(git diff --name-only --diff-filter=U | sort) <(git diff --check | grep \"conflict marker\" | cut -d: -f1 | sort)'"
 	assume = update-index --assume-unchanged
 	unassume = update-index --no-assume-unchanged
 	lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%an%d%Creset %s %Cgreen(%cr)%Creset' --date=relative

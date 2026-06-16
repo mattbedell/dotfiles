@@ -15,6 +15,7 @@ log/
 # Node
 node_modules/
 dist/
+.npmrc
 
 # Rust
 debug/
@@ -43,3 +44,10 @@ terraform.rc
 *.swp
 .vim-lsp-settings
 
+# Claude
+CLAUDE.md
+.claude
+
+.scratch
+
+__pycache__
