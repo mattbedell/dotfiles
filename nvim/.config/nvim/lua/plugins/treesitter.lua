@@ -1,12 +1,11 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    branch = 'master',
     lazy = false,
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs',
+    -- main = 'nvim-treesitter.configs',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-refactor',
+      -- 'nvim-treesitter/nvim-treesitter-refactor',
       'nvim-treesitter/nvim-treesitter-textobjects',
       {
         'windwp/nvim-ts-autotag',
@@ -14,6 +13,7 @@ return {
       },
       {
         'RRethy/nvim-treesitter-textsubjects',
+        enabled = false,
         configs = function()
             require('nvim-treesitter-textsubjects').configure({
               textsubjects = {
