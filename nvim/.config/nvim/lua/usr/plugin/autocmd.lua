@@ -26,3 +26,29 @@ vim.api.nvim_create_autocmd("WinNew", {
     end
   end,
 })
+
+local AutoIndentUtil = vim.api.nvim_create_augroup('auto-indent-util', { clear = true })
+
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = AutoIndentUtil,
+  pattern = { '*.ts' },
+  callback = function()
+    local lines = vim.api.nvim_buf_get_lines(0, 0, 100, false)
+    local space_count = 0
+    for _, line in ipairs(lines) do
+      if space_count > 10 then
+        vim.bo.expandtab = true
+        break
+      end
+
+      if line:find("^\t") then
+        vim.bo.expandtab = false
+        break
+      end
+
+      if line:find("^ ") then
+        space_count = space_count + 1
+      end
+    end
+  end
+})

@@ -1,3 +1,5 @@
+local bl = require'usr.plugin.open_buf_linenumber'
+
 vim.api.nvim_command([[command Sp set spell!]])
 
 local theme = vim.api.nvim_create_augroup('ThemeCustom', { clear = true })
@@ -31,3 +33,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.cmd('hi VertSplit guibg=' .. custBg)
   end,
 })
+
+
+vim.api.nvim_create_user_command('E', bl.open_buf_linenumber, { nargs = 1, complete = 'file' })
+
+
