@@ -100,17 +100,30 @@ return {
       })
       vim.lsp.enable('rust_analyzer')
 
-      vim.lsp.config('ts_ls', {
+      -- vim.lsp.config('ts_ls', {
+      --   -- root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
+      --   on_attach = on_attach_lsp,
+      --   capabilities = capabilities,
+      --   init_options = {
+      --     preferences = {
+      --       includeCompletionsForModuleExports = false
+      --     }
+      --   }
+      -- })
+      -- vim.lsp.enable('ts_ls')
+
+      vim.lsp.config('vtsls', {
         -- root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
         on_attach = on_attach_lsp,
         capabilities = capabilities,
-        init_options = {
-          preferences = {
-            includeCompletionsForModuleExports = false
-          }
-        }
       })
-      vim.lsp.enable('ts_ls')
+      vim.lsp.enable('vtsls')
+
+      vim.lsp.config('biome', {
+        on_attach = on_attach_lsp,
+        capabilities = capabilities,
+      })
+      vim.lsp.enable('biome')
 
       -- microsoft pyls requires dotnet and is annoying to build and install, to use the evil palantir LS
       -- nvim_lsp.pyls_ms.setup{
