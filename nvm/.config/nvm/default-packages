@@ -6,5 +6,6 @@ graphql-language-service-cli
 prettier
 typescript
 typescript-language-server
+@vtsls/language-server
 vscode-langservers-extracted
 yaml-language-server
