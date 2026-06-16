@@ -1,7 +1,3 @@
-tap "homebrew/cask"
-tap "koekeishiya/formulae"
-tap "mattbedell/formulae"
-
 brew "aspell"                     # GNU spell checker
 brew "awscli"
 brew "bat"                        # Better cat
@@ -32,7 +28,6 @@ brew "pandoc"                     # File format converter
 # brew "pyenv"                      # Python version manager
 # brew "pyenv-virtualenv"           # Virtual env manager plugin for pyenv
 brew "ripgrep"                    # Better grep
-brew "skhd"                       # Hotkey daemon
 brew "stow"                       # Symlink farm manager
 brew "task"                       # Taskwarrior CLI todo list
 brew "tasksh"                     # Taskwarrior shell
@@ -41,10 +36,22 @@ brew "tmux"
 brew "tree"                       # Filesystem tree view
 brew "vifm"                       # Terminal file manager
 brew "vim"
-brew "yabai"                      # tiling window manager
 brew "zsh"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
+
+brew "asmvik"/formulae/skhd
+brew "asmvik"/formulae/yabai
+brew "gh"
+brew "protobuf"
+brew "kubectl"
+brew "postgresql"
+brew "grpcurl"
+brew "dbmate"
+brew "podman"
+brew "tree-sitter-cli"
+brew "lua"
+brew "luarocks"
 
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"] # Ctags
 
