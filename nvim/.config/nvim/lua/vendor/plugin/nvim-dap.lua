@@ -97,7 +97,7 @@ dap.listeners.after['event_initialized']['me'] = function()
     group = dap_augroup,
     pattern = '*',
     callback = function(args)
-      if api.nvim_buf_get_option(args.buf, 'filetype') == 'dap-float' then
+      if vim.bo[args.buf].filetype == 'dap-float' then
         api.nvim_buf_delete(args.buf, { force = true })
       end
     end

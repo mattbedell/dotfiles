@@ -114,10 +114,10 @@ vim.api.nvim_set_keymap('n', '<Space>nl', [[:NoteLink ]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Space>na', [[<cmd>lua require'usr.plugin.notes'.new_note(true)<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Space>ng', string.format([[<cmd>tabnew|setlocal bufhidden=wipe|setlocal nobuflisted|setlocal nomodifiable|setlocal makeprg=%s|tcd %s<CR>]], make_prg, notes_src), {noremap = true})
 
-vim.api.nvim_exec(
+vim.api.nvim_exec2(
 [[function! NotesTagFunc(pattern, flags, info) abort
 return luaeval('require("usr.plugin.notes").tagfunc(_A[1], _A[2], _A[3])', [a:pattern, a:flags, a:info])
 endfunction]]
-, false)
+, { output = false })
 
 return M

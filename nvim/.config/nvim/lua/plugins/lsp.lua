@@ -22,7 +22,7 @@ return {
         severity_sort = true,
         float = {
           severity_sort = true,
-          source = 'always',
+          source = true,
           border = float_border,
         },
       })
@@ -61,8 +61,8 @@ return {
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', {noremap = true, silent = true})
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>', {noremap = true, silent = true})
         vim.keymap.set('n', '<leader>ld', toggleDiagnosticsVirtualText, {buffer = 0, noremap = true, silent = true, desc = 'Toggle diagnostics virtual text/lines'})
-        vim.api.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>lua vim.diagnostic.goto_next()<CR>', {noremap = true, silent = true})
-        vim.api.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', {noremap = true, silent = true})
+        vim.keymap.set('n', ']e', function() vim.diagnostic.jump({ count = 1, float = true }) end, { buffer = 0, silent = true })
+        vim.keymap.set('n', '[e', function() vim.diagnostic.jump({ count = -1, float = true }) end, { buffer = 0, silent = true })
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ll', '<cmd>lua vim.diagnostic.setloclist()<CR>', {noremap = true, silent = true})
         vim.keymap.set('n', '<leader>lf', function()
           if #vim.lsp.get_clients({ bufnr = 0, name = 'biome' }) > 0 then
@@ -74,8 +74,8 @@ return {
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>li', '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })<CR>', {noremap = true})
 
-        vim.api.nvim_win_set_option(0, "foldmethod", "expr")
-        vim.api.nvim_win_set_option(0, "foldexpr", "nvim_treesitter#foldexpr()")
+        vim.wo[0].foldmethod = "expr"
+        vim.wo[0].foldexpr = "nvim_treesitter#foldexpr()"
       end
 
       vim.lsp.config('rust_analyzer', {

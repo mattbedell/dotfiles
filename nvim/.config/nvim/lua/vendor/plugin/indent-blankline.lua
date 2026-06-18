@@ -7,7 +7,7 @@ local function update_indent_hi()
     ident_fg = 'None'
   end
 
-  if vim.g.colors_name == 'gruvbox' and vim.api.nvim_get_option('background') == 'light' then
+  if vim.g.colors_name == 'gruvbox' and vim.o.background == 'light' then
     ident_fg = '#ebe6c7'
   end
 
