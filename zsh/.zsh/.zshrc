@@ -175,8 +175,10 @@ fi
 
 # add user functions
 fpath+=$ZDOTDIR/zfunc
-autoload -Uz portkill tmi spell lazy-nvm yankrtf vd rgp rgn
+autoload -Uz portkill tmi spell lazy-nvm yankrtf vd rgp rgn gar-npm-auth bun-auth
 
+gar-npm-auth
+bun-auth
 lazy-nvm
 
 compinit -d $ZDOTDIR/.zcompdump-${HOST:-'host'}-$ZSH_VERSION

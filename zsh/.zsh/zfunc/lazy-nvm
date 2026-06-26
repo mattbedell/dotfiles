@@ -13,6 +13,7 @@ load-nvm () {
   unset -f node
 
   if [ -d "${HOME}/.nvm" ]; then
+    gar-token
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   fi

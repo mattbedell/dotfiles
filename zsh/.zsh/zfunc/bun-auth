@@ -1,0 +1,9 @@
+bun () { bun-gar-token; bun "$@"; }
+
+bun-gar-token () {
+  unset -f bun
+  gar-token
+}
+
+
+bun-auth () {}

@@ -1,0 +1,14 @@
+load-gar-token() {
+  if (( $+commands[gcloud] )); then
+    export GOOGLE_NPM_TOKEN="$(gcloud auth print-access-token)"
+  fi
+}
+
+gar-token() {
+  if (( $+functions[load-gar-token] )); then
+    load-gar-token
+    unset -f load-gar-token
+  fi
+}
+
+gar-npm-auth () {}
