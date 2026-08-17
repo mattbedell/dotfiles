@@ -50,7 +50,10 @@ return {
           ['<C-y>'] = cmp.mapping.confirm({ select = false }),
         },
         window = {
-          documentation = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered({
+            border = 'double',
+            winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+          }),
         },
         formatting = {
           format = function(entry, item)
