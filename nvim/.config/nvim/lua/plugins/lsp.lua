@@ -72,7 +72,8 @@ return {
           end
         end, { buffer = true, silent = true })
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap = true})
-        vim.api.nvim_buf_set_keymap(0, 'n', '<leader>li', '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })<CR>', {noremap = true})
+        vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lih', '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })<CR>', {noremap = true})
+        vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
 
         vim.wo[0].foldmethod = "expr"
         vim.wo[0].foldexpr = "nvim_treesitter#foldexpr()"
