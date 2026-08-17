@@ -36,5 +36,3 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 
 vim.api.nvim_create_user_command('E', bl.open_buf_linenumber, { nargs = 1, complete = 'file' })
-
-

@@ -12,6 +12,7 @@ let mapleader=" "
 lua require("config.lazy")
 "}}}
 " lua user plugins {{{
+lua require('usr.settings')
 lua require('usr.commands')
 lua require('usr.highlights')
 
