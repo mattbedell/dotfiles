@@ -150,8 +150,8 @@ nmap <leader>bf :let @* = expand('%:p')<CR>:echo 'Filepath copied to clipboard'<
 nmap <leader>bfn :let @* = expand('%:p') . '#' . line('.')<CR>:echo 'Filepath clipboard'<CR>
 vnoremap <leader>bfn :<C-u> let @* = expand('%:p') . '#' . line("'<") . '-' . line("'>")<CR>:echo 'Filepath copied to clipboard'<CR>
 nmap <leader>br :let @* = expand('%')<CR>:echo 'Relative filepath copied to clipboard'<CR>
-nmap <leader>brn :let @* = expand('%') . '#' . line('.')<CR>:echo 'Relative filepath clipboard'<CR>
-vnoremap <leader>brn :<C-u>let @* = expand('%') . '#' . line("'<") . '-' . line("'>")<CR>:echo 'Relative filepath copied to clipboard'<CR>
+nmap <leader>brn :let @* = expand('%') . ':' . line('.')<CR>:echo 'Relative filepath clipboard'<CR>
+vnoremap <leader>brn :<C-u>let @* = expand('%') . ':' . line("'<") . '-' . line("'>")<CR>:echo 'Relative filepath copied to clipboard'<CR>
 nmap <silent><leader>bc :lua require('no-neck-pain') require("no-neck-pain").toggle()<CR>
 nnoremap <silent><leader>gp :lua require'usr.plugin.github'.open_pr()<CR>
 
