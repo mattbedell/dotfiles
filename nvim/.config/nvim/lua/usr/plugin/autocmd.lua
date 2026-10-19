@@ -52,3 +52,35 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end
   end
 })
+
+local function set_lsp_reference_highlights()
+  for _, group in ipairs({ 'LspReferenceText', 'LspReferenceRead', 'LspReferenceWrite' }) do
+    vim.api.nvim_set_hl(0, group, { link = 'Visual' })
+  end
+end
+
+set_lsp_reference_highlights()
+
+local LspHighlightReferences = vim.api.nvim_create_augroup('lsp-highlight-refs', { clear = true })
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  group = LspHighlightReferences,
+  callback = set_lsp_reference_highlights,
+})
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  group = LspHighlightReferences,
+  callback = function(event)
+    local method = vim.lsp.protocol.Methods.textDocument_documentHighlight
+    if #vim.lsp.get_clients({ bufnr = event.buf, method = method }) > 0 then
+      vim.lsp.buf.document_highlight()
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter" }, {
+  group = LspHighlightReferences,
+  callback = function()
+    vim.lsp.buf.clear_references()
+  end,
+})
