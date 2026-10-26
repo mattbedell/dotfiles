@@ -29,8 +29,8 @@ return {
       },
       'JoosepAlviste/nvim-ts-context-commentstring',
     },
-    opts = {
-      ensure_installed = {
+    config = function()
+      local parsers = {
         "bash",
         "c",
         "comment",
@@ -61,14 +61,29 @@ return {
         "tsx",
         "typescript",
         "yaml",
-      },
-      highlight = {
-        enable = true,
-      },
-      indent = {
-        enable = true,
-        disable = { "python", "rust", "yaml" },
-      },
+      }
+      require('nvim-treesitter').install(parsers)
+
+      local filetypes = {}
+      for _, lang in ipairs(parsers) do
+        vim.list_extend(filetypes, vim.treesitter.language.get_filetypes(lang))
+      end
+
+      local indent_disabled = { "python", "rust", "yaml" }
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = filetypes,
+        callback = function(args)
+          vim.treesitter.start(args.buf)
+          vim.wo[0][0].foldmethod = "expr"
+          vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          if not vim.tbl_contains(indent_disabled, vim.bo[args.buf].filetype) then
+            vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
+      })
+    end,
+    opts = {
       refactor = {
         highlight_definitions = { enable = true },
         highlight_current_scope = { enable = false },
@@ -134,6 +149,6 @@ return {
           },
         },
       },
-    }
+    },
   }
 }
