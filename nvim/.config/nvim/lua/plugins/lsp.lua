@@ -61,6 +61,7 @@ return {
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', {noremap = true, silent = true})
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>le', '<cmd>lua vim.diagnostic.open_float()<CR>', {noremap = true, silent = true})
         vim.keymap.set('n', '<leader>ld', toggleDiagnosticsVirtualText, {buffer = 0, noremap = true, silent = true, desc = 'Toggle diagnostics virtual text/lines'})
+        vim.keymap.set('n', '<leader>li', vim.lsp.implementation, {buffer = 0, noremap = true, silent = true, desc = 'LSP list implementations'})
         vim.keymap.set('n', ']e', function() vim.diagnostic.jump({ count = 1, float = true }) end, { buffer = 0, silent = true })
         vim.keymap.set('n', '[e', function() vim.diagnostic.jump({ count = -1, float = true }) end, { buffer = 0, silent = true })
         vim.api.nvim_buf_set_keymap(0, 'n', '<leader>ll', '<cmd>lua vim.diagnostic.setloclist()<CR>', {noremap = true, silent = true})
@@ -97,6 +98,12 @@ return {
         }
       })
       vim.lsp.enable('rust_analyzer')
+
+      vim.lsp.config('clangd', {
+        on_attach = on_attach_lsp,
+        capabilities = capabilities,
+      })
+      vim.lsp.enable('clangd')
 
       -- vim.lsp.config('ts_ls', {
       --   -- root_dir = nvim_lsp.util.root_pattern(".git", "package.json"),
