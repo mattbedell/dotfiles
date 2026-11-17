@@ -56,6 +56,7 @@ return {
         "regex",
         "rust",
         "scss",
+        "sql",
         "terraform",
         "toml",
         "tsx",
