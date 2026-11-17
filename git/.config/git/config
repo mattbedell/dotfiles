@@ -28,6 +28,11 @@
 	ff = only
 [push]
   default = upstream
+  useForceIfIncludes = true
+[rebase]
+	updateRefs = true
+[rerere]
+	enabled = true
 [alias]
 	co = checkout
 	sw = switch
